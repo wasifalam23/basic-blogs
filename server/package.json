@@ -1,0 +1,19 @@
+{
+  "name": "basic-blogs",
+  "version": "1.0.0",
+  "description": "a basic blogging site",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "wasif",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}
