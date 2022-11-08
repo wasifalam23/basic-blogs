@@ -45,9 +45,6 @@ exports.updateBlog = catchAsync(async (req, res, next) => {
     runValidators: true,
   });
 
-  console.log(req.params.id);
-  console.log(newBlog);
-
   if (!newBlog) {
     return next(new AppError('No blog found with that ID', 404));
   }
