@@ -8,4 +8,10 @@ router
   .get(blogController.getAllBlog)
   .post(blogController.createBlog);
 
+router
+  .route('/:id')
+  .get(blogController.getBlogById)
+  .patch(blogController.updateBlog)
+  .delete(blogController.deleteBlog);
+
 module.exports = router;
