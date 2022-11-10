@@ -29,6 +29,8 @@ exports.getBlogById = catchAsync(async (req, res, next) => {
 });
 
 exports.createBlog = catchAsync(async (req, res, next) => {
+  req.body.author = req.user.id;
+
   const blog = await Blog.create(req.body);
 
   res.status(201).json({
@@ -39,8 +41,34 @@ exports.createBlog = catchAsync(async (req, res, next) => {
   });
 });
 
+const checkPermission = async (loggedInUserId, blogId, next) => {
+  const blog = await Blog.findById(blogId);
+
+  if (!blog) {
+    return next(new AppError('No blog found with that ID', 404));
+  }
+
+  const authorId = blog.author.id;
+  const permissionGranted = loggedInUserId === authorId ? blogId : undefined;
+
+  return permissionGranted;
+};
+
 exports.updateBlog = catchAsync(async (req, res, next) => {
-  const newBlog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
+  const contactId = await checkPermission(req.user.id, req.params.id, next);
+
+  if (!contactId) {
+    return next(
+      new AppError('You do not have permission to perform this action', 401)
+    );
+  }
+
+  const updateValues = {
+    title: req.body.title,
+    description: req.body.description,
+  };
+
+  const newBlog = await Blog.findByIdAndUpdate(contactId, updateValues, {
     new: true,
     runValidators: true,
   });
@@ -58,7 +86,15 @@ exports.updateBlog = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteBlog = catchAsync(async (req, res, next) => {
-  await Blog.findByIdAndDelete(req.params.id);
+  const contactId = await checkPermission(req.user.id, req.params.id, next);
+
+  if (!contactId) {
+    return next(
+      new AppError('You do not have permission to perform this action', 401)
+    );
+  }
+
+  await Blog.findByIdAndDelete(contactId);
 
   res.status(200).json({
     status: 'success',
