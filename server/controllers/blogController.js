@@ -3,7 +3,10 @@ const Blog = require('../models/blogModel');
 const AppError = require('../utils/appError');
 
 exports.getAllBlog = catchAsync(async (req, res, next) => {
-  const blogs = await Blog.find();
+  const blogs = await Blog.find().populate({
+    path: 'comments',
+  });
+
   res.status(200).json({
     status: 'success',
     data: {

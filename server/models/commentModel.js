@@ -4,7 +4,7 @@ const commentSchema = new mongoose.Schema({
   comment: {
     type: String,
     trim: true,
-    required: [true, 'Comment can not be empty!'],
+    required: [true, 'Comment cannot be empty!'],
   },
 
   createdAt: {
@@ -25,4 +25,14 @@ const commentSchema = new mongoose.Schema({
   },
 });
 
+commentSchema.pre(/^find/, function (next) {
+  this.populate({ path: 'user', select: '-__v -email' }).populate({
+    path: 'blog',
+    select: 'author',
+  });
+  next();
+});
+
 const Comment = mongoose.model('Comment', commentSchema);
+
+module.exports = Comment;
