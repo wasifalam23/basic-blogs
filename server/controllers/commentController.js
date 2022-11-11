@@ -2,6 +2,27 @@ const Comment = require('../models/commentModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
+const checkPermission = async (loggedInUserId, commentId, method, next) => {
+  const comment = await Comment.findById(commentId);
+
+  if (!comment) {
+    return next(new AppError('No comment found with that ID', 404));
+  }
+
+  const commentCreatorId = comment.user.id;
+  const blogAuthorId = comment.blog.author.id;
+
+  let permissionGranted = undefined;
+  if (method === 'PATCH') {
+    if (loggedInUserId === commentCreatorId) permissionGranted = commentId;
+  } else if (method === 'DELETE') {
+    if (loggedInUserId === commentCreatorId || loggedInUserId === blogAuthorId)
+      permissionGranted = commentId;
+  }
+
+  return permissionGranted;
+};
+
 exports.getAllComments = catchAsync(async (req, res, next) => {
   const comments = await Comment.find();
 
@@ -29,7 +50,20 @@ exports.createComment = catchAsync(async (req, res, next) => {
 });
 
 exports.updateComment = catchAsync(async (req, res, next) => {
-  const newComment = await Comment.findByIdAndUpdate(req.params.id, req.body, {
+  const commentId = await checkPermission(
+    req.user.id,
+    req.params.id,
+    'PATCH',
+    next
+  );
+
+  if (!commentId) {
+    return next(
+      new AppError('You do not have permission to perform this action', 401)
+    );
+  }
+
+  const newComment = await Comment.findByIdAndUpdate(commentId, req.body, {
     new: true,
     runValidators: true,
   });
@@ -42,26 +76,13 @@ exports.updateComment = catchAsync(async (req, res, next) => {
   });
 });
 
-const checkPermission = async (loggedInUserId, commentId, next) => {
-  const comment = await Comment.findById(commentId);
-
-  if (!comment) {
-    return next(new AppError('No comment found with that ID', 404));
-  }
-
-  const commentCreatorId = comment.user.id;
-  const blogAuthorId = comment.blog.author.id;
-
-  let permissionGranted = undefined;
-  if (loggedInUserId === commentCreatorId || loggedInUserId === blogAuthorId) {
-    permissionGranted = commentId;
-  }
-
-  return permissionGranted;
-};
-
 exports.deleteComment = catchAsync(async (req, res, next) => {
-  const commentId = await checkPermission(req.user.id, req.params.id, next);
+  const commentId = await checkPermission(
+    req.user.id,
+    req.params.id,
+    'DELETE',
+    next
+  );
 
   if (!commentId) {
     return next(
