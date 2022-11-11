@@ -10,12 +10,22 @@ router.use('/:blogId/comments', commentRoutes);
 router
   .route('/')
   .get(blogController.getAllBlog)
-  .post(authController.protect, blogController.createBlog);
+  .post(
+    authController.protect,
+    blogController.uploadBlogImage,
+    blogController.resizeBlogImage,
+    blogController.createBlog
+  );
 
 router
   .route('/:id')
   .get(blogController.getBlogById)
-  .patch(authController.protect, blogController.updateBlog)
+  .patch(
+    authController.protect,
+    blogController.uploadBlogImage,
+    blogController.resizeBlogImage,
+    blogController.updateBlog
+  )
   .delete(blogController.deleteBlog);
 
 module.exports = router;
