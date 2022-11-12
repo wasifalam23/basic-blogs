@@ -146,8 +146,8 @@ exports.deleteBlog = catchAsync(async (req, res, next) => {
     );
   }
 
-  const deletedBlog = await Blog.findByIdAndDelete(contactId);
-  await Comment.deleteMany({ blog: deletedBlog.id });
+  const blog = await Blog.findByIdAndDelete(contactId);
+  await Comment.deleteMany({ blog });
 
   res.status(200).json({
     status: 'success',
