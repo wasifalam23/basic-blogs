@@ -90,7 +90,7 @@ exports.deleteComment = catchAsync(async (req, res, next) => {
     );
   }
 
-  await Comment.findByIdAndDelete(req.params.id);
+  await Comment.findByIdAndDelete(commentId);
 
   res.status(200).json({
     status: 'success',

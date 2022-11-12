@@ -2,6 +2,7 @@ const multer = require('multer');
 const sharp = require('sharp');
 const catchAsync = require('../utils/catchAsync');
 const Blog = require('../models/blogModel');
+const Comment = require('../models/commentModel');
 const AppError = require('../utils/appError');
 
 const checkPermission = async (loggedInUserId, blogId, next) => {
@@ -91,7 +92,7 @@ exports.getBlogById = catchAsync(async (req, res, next) => {
 
 exports.createBlog = catchAsync(async (req, res, next) => {
   req.body.author = req.user.id;
-  req.body.image = req.file.filename;
+  if (req.file) req.body.image = req.file.filename;
 
   const blog = await Blog.create(req.body);
 
@@ -115,8 +116,9 @@ exports.updateBlog = catchAsync(async (req, res, next) => {
   const updateValues = {
     title: req.body.title,
     description: req.body.description,
-    image: req.file.filename,
   };
+
+  if (req.file) updateValues.image = req.file.filename;
 
   const newBlog = await Blog.findByIdAndUpdate(contactId, updateValues, {
     new: true,
@@ -144,7 +146,8 @@ exports.deleteBlog = catchAsync(async (req, res, next) => {
     );
   }
 
-  await Blog.findByIdAndDelete(contactId);
+  const deletedBlog = await Blog.findByIdAndDelete(contactId);
+  await Comment.deleteMany({ blog: deletedBlog.id });
 
   res.status(200).json({
     status: 'success',
