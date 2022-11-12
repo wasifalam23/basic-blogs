@@ -54,8 +54,20 @@ exports.getAllBlog = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
+    results: blogs.length,
     data: {
-      results: blogs.length,
+      blogs,
+    },
+  });
+});
+
+exports.getMyBlogs = catchAsync(async (req, res, next) => {
+  const blogs = await Blog.find({ author: req.user.id });
+
+  res.status(200).json({
+    status: 'success',
+    results: blogs.length,
+    data: {
       blogs,
     },
   });
@@ -63,13 +75,14 @@ exports.getAllBlog = catchAsync(async (req, res, next) => {
 
 exports.getBlogById = catchAsync(async (req, res, next) => {
   const blog = await Blog.findById(req.params.id);
-  console.log(blog);
+
   if (!blog) {
     return next(new AppError('No blog found with that ID', 404));
   }
 
   res.status(200).json({
     status: 'success',
+
     data: {
       blog,
     },

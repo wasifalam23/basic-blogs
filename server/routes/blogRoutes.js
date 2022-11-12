@@ -17,6 +17,8 @@ router
     blogController.createBlog
   );
 
+router.get('/getMyBlogs', authController.protect, blogController.getMyBlogs);
+
 router
   .route('/:id')
   .get(blogController.getBlogById)
@@ -26,6 +28,6 @@ router
     blogController.resizeBlogImage,
     blogController.updateBlog
   )
-  .delete(blogController.deleteBlog);
+  .delete(authController.protect, blogController.deleteBlog);
 
 module.exports = router;
