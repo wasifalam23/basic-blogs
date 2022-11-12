@@ -4,10 +4,22 @@ const catchAsync = require('../utils/catchAsync');
 const Blog = require('../models/blogModel');
 const AppError = require('../utils/appError');
 
+const checkPermission = async (loggedInUserId, blogId, next) => {
+  const blog = await Blog.findById(blogId);
+
+  if (!blog) {
+    return next(new AppError('No blog found with that ID', 404));
+  }
+
+  const authorId = blog.author.id;
+  const permissionGranted = loggedInUserId === authorId ? blogId : undefined;
+
+  return permissionGranted;
+};
+
 const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
-  console.log(file);
   if (file.mimetype.startsWith('image')) {
     cb(null, true);
   } else {
@@ -34,19 +46,6 @@ exports.resizeBlogImage = catchAsync(async (req, res, next) => {
 
   next();
 });
-
-const checkPermission = async (loggedInUserId, blogId, next) => {
-  const blog = await Blog.findById(blogId);
-
-  if (!blog) {
-    return next(new AppError('No blog found with that ID', 404));
-  }
-
-  const authorId = blog.author.id;
-  const permissionGranted = loggedInUserId === authorId ? blogId : undefined;
-
-  return permissionGranted;
-};
 
 exports.getAllBlog = catchAsync(async (req, res, next) => {
   const blogs = await Blog.find().populate({
