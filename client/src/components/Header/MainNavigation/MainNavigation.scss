@@ -1,0 +1,24 @@
+@import '../../../index.scss';
+
+.main-navigation {
+  width: 30%;
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+  }
+
+  &__link:link,
+  &__link:visited {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: $font-medium;
+    color: $color-black;
+  }
+
+  // &__link:active,
+  // &__link:hover {
+  // }
+}

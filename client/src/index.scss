@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+// Font Variables
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+$font-extra-bold: 800;
+
+// Color Variables
+$color-primary-teal: #0ca678;
+$color-primary-gray: #e9ecef;
+$color-black: #222;
+
 *,
 *::before,
 *::after {
@@ -16,15 +29,5 @@ html {
 body {
   font-family: 'Inter', sans-serif;
   line-height: 1;
+  background-color: $color-primary-gray;
 }
-
-// Font Variables
-$font-light: 300;
-$font-regular: 400;
-$font-medium: 500;
-$font-semibold: 600;
-$font-bold: 700;
-$font-extra-bold: 800;
-
-// Color Variables
-$color-primary-teal: #0ca678;

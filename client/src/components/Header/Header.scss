@@ -1,0 +1,17 @@
+@import '../../index.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $color-primary-gray;
+  border-bottom: 0.5px solid #ced4da;
+  padding-left: 24rem;
+  padding-right: 15rem;
+  height: 5.5rem;
+
+  &__logo {
+    font-size: 2.2rem;
+    color: $color-primary-teal;
+  }
+}
