@@ -17,14 +17,55 @@
     background-color: $color-gray-dark;
   }
 
-  &__image {
-    border-radius: $border-radius-5px;
+  &__image--holder {
+    position: relative;
     width: 100%;
     height: 100%;
   }
 
-  &__alter-text {
-    font-size: 1.4rem;
+  &__cross-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: $color-white;
+    font-size: 2rem;
+  }
+
+  &__image {
+    border-radius: $border-radius-5px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__image:hover {
+    // opacity: 0.95;
+  }
+
+  &__pick--holder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__pick-img--holder {
+    width: 4rem;
+    height: 4rem;
+    background-color: #a3a5a7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__pick-img--icon {
+    font-size: 1.6rem;
+  }
+
+  &__pick--text {
+    font-size: 1.5rem;
     font-weight: $font-medium;
   }
 }

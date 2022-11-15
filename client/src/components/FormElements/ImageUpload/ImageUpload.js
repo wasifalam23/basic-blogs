@@ -1,4 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import './ImageUpload.scss';
 
 const ImageUpload = (props) => {
@@ -53,15 +56,29 @@ const ImageUpload = (props) => {
       <main className="image-upload__content">
         <div className="image-upload__preview" onClick={pickImageHandler}>
           {previewUrl && (
-            <img
-              className="image-upload__image"
-              src={previewUrl}
-              alt="preview"
-            />
+            <div className="image-upload__image--holder">
+              <FontAwesomeIcon
+                icon={faTimesCircle}
+                className="image-upload__cross-icon"
+              />
+              <img
+                className="image-upload__image"
+                src={previewUrl}
+                alt="preview"
+              />
+            </div>
           )}
 
           {!previewUrl && (
-            <p className="image-upload__alter-text">Pick an image</p>
+            <div className="image-upload__pick--holder">
+              <div className="image-upload__pick-img--holder">
+                <FontAwesomeIcon
+                  icon={faImage}
+                  className="image-upload__pick-img--icon"
+                />
+              </div>
+              <p className="image-upload__pick--text">Pick an image</p>
+            </div>
           )}
         </div>
       </main>
