@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImage } from '@fortawesome/free-solid-svg-icons';
-import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
+import { faImage, faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
+
 import './ImageUpload.scss';
 
 const ImageUpload = (props) => {
@@ -35,12 +35,60 @@ const ImageUpload = (props) => {
       fileIsValid = false;
     }
 
-    props.onInput(props.id, pickedFile, fileIsValid);
+    // props.onInput(props.id, pickedFile, fileIsValid);
   };
 
   const pickImageHandler = () => {
     filePickedRef.current.click();
   };
+
+  const pickCancelHandler = () => {
+    setPreviewUrl();
+  };
+
+  const image = (
+    <div className="image-upload__img--holder">
+      <header className="image-upload__img--header">
+        <button
+          type="button"
+          className="image-upload__img--edit-btn"
+          onClick={pickImageHandler}
+        >
+          <FontAwesomeIcon
+            icon={faPen}
+            className="image-upload__img--edit-icon"
+          />
+          <span className="image-upload__img--edit-text">Edit</span>
+        </button>
+        <button
+          className="image-upload__img--cross-btn"
+          onClick={pickCancelHandler}
+        >
+          <FontAwesomeIcon
+            icon={faTimes}
+            className="image-upload__img--cross-icon"
+          />
+        </button>
+      </header>
+      <img
+        className="image-upload__img--image"
+        src={previewUrl}
+        alt="preview"
+      />
+    </div>
+  );
+
+  const pickImage = (
+    <div className="image-upload__pick--holder" onClick={pickImageHandler}>
+      <div className="image-upload__pick--img-holder">
+        <FontAwesomeIcon
+          icon={faImage}
+          className="image-upload__pick--img-icon"
+        />
+      </div>
+      <p className="image-upload__pick--text">Pick an image</p>
+    </div>
+  );
 
   return (
     <div className="image-upload__container">
@@ -53,34 +101,9 @@ const ImageUpload = (props) => {
         onChange={pickedHandler}
       />
 
-      <main className="image-upload__content">
-        <div className="image-upload__preview" onClick={pickImageHandler}>
-          {previewUrl && (
-            <div className="image-upload__image--holder">
-              <FontAwesomeIcon
-                icon={faTimesCircle}
-                className="image-upload__cross-icon"
-              />
-              <img
-                className="image-upload__image"
-                src={previewUrl}
-                alt="preview"
-              />
-            </div>
-          )}
-
-          {!previewUrl && (
-            <div className="image-upload__pick--holder">
-              <div className="image-upload__pick-img--holder">
-                <FontAwesomeIcon
-                  icon={faImage}
-                  className="image-upload__pick-img--icon"
-                />
-              </div>
-              <p className="image-upload__pick--text">Pick an image</p>
-            </div>
-          )}
-        </div>
+      <main className="image-upload__preview">
+        {previewUrl && image}
+        {!previewUrl && pickImage}
       </main>
     </div>
   );
