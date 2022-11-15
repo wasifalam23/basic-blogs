@@ -1,0 +1,30 @@
+@import '../../../index.scss';
+
+.image-upload {
+  &__preview {
+    background-color: $color-gray-light;
+    border-radius: $border-radius-5px;
+    width: 100%;
+    height: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__preview:hover {
+    background-color: $color-gray-dark;
+  }
+
+  &__image {
+    border-radius: $border-radius-5px;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__alter-text {
+    font-size: 1.4rem;
+    font-weight: $font-medium;
+  }
+}
