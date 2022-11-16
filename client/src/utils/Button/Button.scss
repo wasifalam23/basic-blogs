@@ -1,0 +1,25 @@
+@import '../../index.scss';
+
+.button {
+  font-size: 1.4rem;
+  border: none;
+  background-color: $color-teal-light;
+  padding: 1rem 1.5rem;
+  border-radius: $border-radius-5px;
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: $font-family-inter;
+  font-weight: $font-medium;
+  transition: $transition-3s;
+
+  &:hover {
+    background-color: $color-primary-teal;
+    cursor: pointer;
+  }
+
+  &__icon {
+    font-size: 1.4rem;
+  }
+}

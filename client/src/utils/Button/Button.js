@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import './Button.scss';
 
 const Button = (props) => {
@@ -8,6 +10,7 @@ const Button = (props) => {
       type={props.type}
       onClick={props.onClick}
     >
+      <FontAwesomeIcon className="button__icon" icon={props.icon} />
       {props.children}
     </button>
   );

@@ -4,7 +4,8 @@
   &__container {
     display: grid;
     grid-template-columns: 40fr 60fr;
-    gap: 6rem;
+    grid-column-gap: 6rem;
+    grid-row-gap: 3rem;
   }
 
   &__text--inputs {
@@ -15,5 +16,10 @@
 
   &__input--description {
     height: 100%;
+  }
+
+  &__publish--btn {
+    grid-column: 2/-1;
+    justify-self: end;
   }
 }

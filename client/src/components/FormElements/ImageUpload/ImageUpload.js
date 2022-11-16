@@ -5,54 +5,13 @@ import { faImage, faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
 import './ImageUpload.scss';
 
 const ImageUpload = (props) => {
-  const [file, setFile] = useState();
-  const [previewUrl, setPreviewUrl] = useState();
-  const [isValid, setIsValid] = useState(false);
-
-  const filePickedRef = useRef();
-
-  useEffect(() => {
-    if (!file) return;
-
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      setPreviewUrl(fileReader.result);
-    };
-
-    fileReader.readAsDataURL(file);
-  }, [file]);
-
-  const pickedHandler = (e) => {
-    let pickedFile;
-    let fileIsValid = isValid;
-    if (e.target.files && e.target.files.length === 1) {
-      pickedFile = e.target.files[0];
-      setFile(pickedFile);
-      setIsValid(true);
-      fileIsValid = true;
-    } else {
-      setIsValid(false);
-      fileIsValid = false;
-    }
-
-    // props.onInput(props.id, pickedFile, fileIsValid);
-  };
-
-  const pickImageHandler = () => {
-    filePickedRef.current.click();
-  };
-
-  const pickCancelHandler = () => {
-    setPreviewUrl();
-  };
-
   const image = (
     <div className="image-upload__img--holder">
       <header className="image-upload__img--header">
         <button
           type="button"
           className="image-upload__img--edit-btn"
-          onClick={pickImageHandler}
+          onClick={props.onPickImg}
         >
           <FontAwesomeIcon
             icon={faPen}
@@ -63,7 +22,7 @@ const ImageUpload = (props) => {
         <button
           type="button"
           className="image-upload__img--cross-btn"
-          onClick={pickCancelHandler}
+          onClick={props.reset}
         >
           <FontAwesomeIcon
             icon={faTimes}
@@ -71,16 +30,12 @@ const ImageUpload = (props) => {
           />
         </button>
       </header>
-      <img
-        className="image-upload__img--image"
-        src={previewUrl}
-        alt="preview"
-      />
+      <img className="image-upload__img--image" src={props.url} alt="preview" />
     </div>
   );
 
   const pickImage = (
-    <div className="image-upload__pick--holder" onClick={pickImageHandler}>
+    <div className="image-upload__pick--holder" onClick={props.onPickImg}>
       <div className="image-upload__pick--img-holder">
         <FontAwesomeIcon
           icon={faImage}
@@ -95,16 +50,16 @@ const ImageUpload = (props) => {
     <div className="image-upload__container">
       <input
         id={props.id}
-        ref={filePickedRef}
+        ref={props.inputRef}
         type="file"
         accept=".jpg,.jpeg,.png"
         style={{ display: 'none' }}
-        onChange={pickedHandler}
+        onChange={props.onInputChange}
       />
 
       <main className="image-upload__preview">
-        {previewUrl && image}
-        {!previewUrl && pickImage}
+        {props.url && image}
+        {!props.url && pickImage}
       </main>
     </div>
   );

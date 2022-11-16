@@ -10,76 +10,56 @@
     position: absolute;
     top: -1.5rem;
     font-size: 1rem;
-    font-weight: $font-semibold;
+    font-weight: $font-medium;
     letter-spacing: 0.5px;
     display: flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: 0.2rem;
     color: $color-red-deep;
   }
 
   &__error--icon {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
-  // Input Field
-  &__box input {
+  // Input & TextArea
+  &__box input,
+  &__box textArea {
     width: 100%;
-    padding: 1.2rem 2rem;
-    border: none;
-    font-weight: $font-regular;
-    border-radius: $border-radius-5px;
-    font-size: 1.8rem;
     background-color: $color-white;
     color: $color-black;
-  }
-
-  &__box input::placeholder {
-    font-size: 1.5rem;
+    padding: 1.2rem 2rem;
+    border-radius: $border-radius-5px;
     font-family: $font-family-inter;
-    font-weight: $font-medium;
-  }
-
-  &__box input:focus {
+    font-weight: $font-regular;
+    border: 1px solid transparent;
+    font-size: 1.8rem;
     outline: none;
   }
 
-  &__box--invalid input {
+  &__box input::placeholder,
+  &__box textarea::placeholder {
+    font-size: 1.5rem;
+    font-family: $font-family-inter;
+    font-weight: $font-medium;
+    color: $color-gray-dark-2;
+  }
+
+  &__box--invalid input,
+  &__box--invalid textarea {
     border: 1px solid $color-red-medium;
     background-color: $color-red-light;
   }
 
-  &__box--invalid input:focus {
+  &__box--invalid input:focus,
+  &__box--invalid textarea:focus {
     border: 1px solid transparent;
     background-color: $color-white;
   }
 
   // TextArea Field
   &__box textarea {
-    width: 100%;
     height: 100%;
     resize: none;
-    outline: none;
-    border: none;
-    border-radius: $border-radius-5px;
-    font-family: $font-family-inter;
-    font-weight: $font-regular;
-    padding: 1.2rem 2rem;
-    font-size: 1.8rem;
-  }
-
-  &__box textarea::placeholder {
-    font-size: 1.5rem;
-    font-weight: $font-medium;
-  }
-
-  &__box--invalid textarea {
-    border: 1px solid $color-red-medium;
-    background-color: $color-red-light;
-  }
-
-  &__box--invalid textarea:focus {
-    border: 1px solid transparent;
-    background-color: $color-white;
   }
 }

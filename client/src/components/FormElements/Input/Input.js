@@ -1,10 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import './Input.scss';
 
 const Input = (props) => {
-  const inputClass = props.inputHasError
+  const inputClass = props.hasError
     ? 'input__box input__box--invalid'
     : 'input__box';
 
@@ -21,6 +21,7 @@ const Input = (props) => {
 
   const textArea = (
     <textarea
+      id={props.id}
       onChange={props.onChange}
       value={props.value}
       onBlur={props.onBlur}
@@ -30,10 +31,10 @@ const Input = (props) => {
 
   return (
     <div className={`${inputClass} ${props.className}`}>
-      {props.inputHasError && (
+      {props.hasError && (
         <p className="input__error--msg">
           <FontAwesomeIcon
-            icon={faExclamationCircle}
+            icon={faExclamationTriangle}
             className="input__error--icon"
           />
           {props.errorMsg}
