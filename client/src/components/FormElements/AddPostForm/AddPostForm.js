@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageUpload from '../ImageUpload/ImageUpload';
+import Input from '../Input/Input';
 import './AddPostForm.scss';
 
 const AddPostForm = () => {
@@ -10,7 +11,15 @@ const AddPostForm = () => {
           <ImageUpload />
         </div>
 
-        <div className="add-post__text--inputs">left</div>
+        <div className="add-post__text--inputs">
+          <Input field="input" placeholder="Give a title" type="text" />
+          <Input
+            field="textarea"
+            placeholder="Give a description..."
+            type="text"
+            className="add-post__input--description"
+          />
+        </div>
       </div>
     </form>
   );

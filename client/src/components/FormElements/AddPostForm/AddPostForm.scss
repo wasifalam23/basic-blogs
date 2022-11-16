@@ -2,15 +2,18 @@
 
 .add-post {
   &__container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 40fr 60fr;
     gap: 6rem;
   }
 
-  &__img--input {
-    flex: 0 1 40%;
+  &__text--inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
   }
 
-  &__text--inputs {
-    flex: 1;
+  &__input--description {
+    height: 100%;
   }
 }

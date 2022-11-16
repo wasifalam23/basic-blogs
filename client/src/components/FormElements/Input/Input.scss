@@ -1,0 +1,85 @@
+@import '../../../index.scss';
+
+.input {
+  &__box {
+    width: 100%;
+    position: relative;
+  }
+
+  &__error--msg {
+    position: absolute;
+    top: -1.5rem;
+    font-size: 1rem;
+    font-weight: $font-semibold;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: $color-red-deep;
+  }
+
+  &__error--icon {
+    font-size: 1.2rem;
+  }
+
+  // Input Field
+  &__box input {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    border: none;
+    font-weight: $font-regular;
+    border-radius: $border-radius-5px;
+    font-size: 1.8rem;
+    background-color: $color-white;
+    color: $color-black;
+  }
+
+  &__box input::placeholder {
+    font-size: 1.5rem;
+    font-family: $font-family-inter;
+    font-weight: $font-medium;
+  }
+
+  &__box input:focus {
+    outline: none;
+  }
+
+  &__box--invalid input {
+    border: 1px solid $color-red-medium;
+    background-color: $color-red-light;
+  }
+
+  &__box--invalid input:focus {
+    border: 1px solid transparent;
+    background-color: $color-white;
+  }
+
+  // TextArea Field
+  &__box textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    outline: none;
+    border: none;
+    border-radius: $border-radius-5px;
+    font-family: $font-family-inter;
+    font-weight: $font-regular;
+    padding: 1.2rem 2rem;
+    font-size: 1.8rem;
+  }
+
+  &__box textarea::placeholder {
+    font-size: 1.5rem;
+    font-weight: $font-medium;
+  }
+
+  &__box--invalid textarea {
+    border: 1px solid $color-red-medium;
+    background-color: $color-red-light;
+  }
+
+  &__box--invalid textarea:focus {
+    border: 1px solid transparent;
+    background-color: $color-white;
+  }
+}

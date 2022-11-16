@@ -61,6 +61,7 @@ const ImageUpload = (props) => {
           <span className="image-upload__img--edit-text">Edit</span>
         </button>
         <button
+          type="button"
           className="image-upload__img--cross-btn"
           onClick={pickCancelHandler}
         >
