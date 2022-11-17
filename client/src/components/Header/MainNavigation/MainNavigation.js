@@ -8,11 +8,13 @@ const MainNavigation = () => {
     <nav className="main-navigation">
       <ul className="main-navigation__list">
         <li className="main-navigation__list--item">
-          <Link className="main-navigation__link">Posts</Link>
+          <Link className="main-navigation__link" to="/">
+            Posts
+          </Link>
         </li>
 
         <li className="main-navigation__list--item">
-          <Link className="main-navigation__link" to="addPost">
+          <Link className="main-navigation__link" to="/addPost">
             Add Post
           </Link>
         </li>
