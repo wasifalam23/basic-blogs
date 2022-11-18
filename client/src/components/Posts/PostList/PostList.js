@@ -5,9 +5,9 @@ import './PostList.scss';
 
 const PostList = () => {
   return (
-    <div className="post-list__container">
+    <main className="post-list__container">
       <PostItem />
-    </div>
+    </main>
   );
 };
 

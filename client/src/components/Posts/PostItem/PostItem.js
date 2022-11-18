@@ -18,7 +18,7 @@ const PostItem = () => {
         >
           Vision on sea on the day more of the
         </h3>
-        <p className="post-item__description">
+        <p className="post-item__descrp">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolor,
           error aperiam in tempore ipsam reiciendis soluta sapiente sit
           quibusdam. error aperiam in tempore ipsam reiciendis soluta sapiente
@@ -32,7 +32,7 @@ const PostItem = () => {
             <img
               className="post-item__author--avatar"
               src={joseph}
-              alt="author"
+              alt="author-avatar"
             />
             <p className="post-item__author--name">Patrick Davies</p>
           </div>
