@@ -54,10 +54,24 @@
     font-size: 2.6rem;
     font-weight: $font-semibold;
     margin-bottom: 2rem;
+    color: $color-black;
   }
 
   &__descrp {
     font-size: 1.6rem;
     line-height: 1.6;
+    color: $color-black;
+  }
+
+  &__comment--section {
+    width: 60%;
+    margin-top: 7rem;
+  }
+
+  &__comment--title {
+    font-size: 1.5rem;
+    font-weight: $font-semibold;
+    color: $color-black;
+    margin-bottom: 2rem;
   }
 }

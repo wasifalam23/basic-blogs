@@ -1,0 +1,56 @@
+@import '../../../../index.scss';
+
+.comment-item {
+  &__container {
+    background-color: $color-teal-light-2;
+    padding: 2rem 1.2rem;
+    padding-right: 4rem;
+    border-radius: $border-radius-5px;
+  }
+
+  &__main--content {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__user-img--holder {
+  }
+
+  &__user-img {
+    width: 3.7rem;
+    height: 3.7rem;
+    border-radius: 50%;
+  }
+
+  &__content {
+    display: flex;
+    gap: 2rem;
+    margin-top: 0.3rem;
+  }
+
+  &__user-comment--holder {
+  }
+
+  &__user-date--holder {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  &__user-name {
+    font-size: 1.4rem;
+    font-weight: $font-medium;
+  }
+
+  &__comment {
+    font-size: 1.2rem;
+    margin-top: 0.6rem;
+    line-height: 1.2;
+  }
+
+  &__comment-date {
+    font-size: 1.2rem;
+    color: $color-gray-dark-3;
+    font-weight: $font-regular;
+  }
+}

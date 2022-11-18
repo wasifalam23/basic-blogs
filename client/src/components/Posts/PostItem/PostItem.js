@@ -1,12 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import bk from '../../../assets/bk.jpg';
 import joseph from '../../../assets/joseph.jpg';
 
 import './PostItem.scss';
 
 const PostItem = () => {
+  const navigate = useNavigate();
+
+  const readMoreHandler = () => {
+    navigate('/postDetails');
+  };
+
   return (
-    <div className="post-item__container">
+    <li className="post-item__container">
       <header className="post-item__header">
         <img className="post-item__image" src={bk} alt="post" />
       </header>
@@ -25,7 +32,13 @@ const PostItem = () => {
           sit quibusdam. quibusdam. error aperiam in tempore ipsam reiciendis
           soluta sapiente sit quibusdam.
         </p>
-        <button className="post-item__read-more--btn">Read More</button>
+        <button
+          type="button"
+          className="post-item__read-more--btn"
+          onClick={readMoreHandler}
+        >
+          Read More
+        </button>
 
         <footer className="post-item__footer">
           <div className="post-item__author--box">
@@ -43,7 +56,7 @@ const PostItem = () => {
           </div>
         </footer>
       </main>
-    </div>
+    </li>
   );
 };
 

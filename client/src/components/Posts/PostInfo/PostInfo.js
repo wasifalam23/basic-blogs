@@ -2,6 +2,7 @@ import React from 'react';
 import bk from '../../../assets/bk.jpg';
 import joseph from '../../../assets/joseph.jpg';
 
+import CommentList from '../Comment/CommentList/CommentList';
 import './PostInfo.scss';
 
 const PostInfo = () => {
@@ -51,6 +52,10 @@ const PostInfo = () => {
           ab molestiae natus fugiat?
         </p>
       </main>
+      <section className="post-info__comment--section">
+        <h3 className="post-info__comment--title">Comments (3)</h3>
+        <CommentList />
+      </section>
     </main>
   );
 };
