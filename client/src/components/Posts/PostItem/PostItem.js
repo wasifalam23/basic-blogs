@@ -12,8 +12,11 @@ const PostItem = () => {
       </header>
       <main className="post-item__content--main">
         <p className="post-item__pub-date">Published on 22 Jan 2021</p>
-        <h3 className="post-item__title">
-          Learning to code for sudents to fight for this object
+        <h3
+          className="post-item__title"
+          title="Learning to code from students for better"
+        >
+          Vision on sea on the day more of the
         </h3>
         <p className="post-item__description">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolor,
