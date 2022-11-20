@@ -10,7 +10,9 @@ const Button = (props) => {
       type={props.type}
       onClick={props.onClick}
     >
-      <FontAwesomeIcon className="button__icon" icon={props.icon} />
+      {props.icon && (
+        <FontAwesomeIcon className="button__icon" icon={props.icon} />
+      )}
       {props.children}
     </button>
   );

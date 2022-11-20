@@ -3,7 +3,10 @@ import bk from '../../../assets/bk.jpg';
 import joseph from '../../../assets/joseph.jpg';
 
 import CommentList from '../Comment/CommentList/CommentList';
+import Input from '../../FormElements/Input/Input';
+
 import './PostInfo.scss';
+import Button from '../../../utils/Button/Button';
 
 const PostInfo = () => {
   return (
@@ -55,6 +58,13 @@ const PostInfo = () => {
       <section className="post-info__comment--section">
         <h3 className="post-info__comment--title">Comments (3)</h3>
         <CommentList />
+
+        <div className="post-info__comment--input-box">
+          <Input field="textarea" placeholder="Write your comment here" />
+          <Button type="button" className="post-info__comment--submit-btn">
+            Submit
+          </Button>
+        </div>
       </section>
     </main>
   );

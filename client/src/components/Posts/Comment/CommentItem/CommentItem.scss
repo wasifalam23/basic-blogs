@@ -3,12 +3,13 @@
 .comment-item {
   &__container {
     background-color: $color-teal-light-2;
-    padding: 2rem 1.2rem;
-    padding-right: 4rem;
+    padding: 1.2rem 1.2rem;
+    padding-right: 3rem;
     border-radius: $border-radius-5px;
   }
 
   &__main--content {
+    position: relative;
     display: flex;
     gap: 1rem;
   }
@@ -17,15 +18,15 @@
   }
 
   &__user-img {
-    width: 3.7rem;
-    height: 3.7rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 50%;
   }
 
   &__content {
     display: flex;
     gap: 2rem;
-    margin-top: 0.3rem;
+    margin-top: 0.4rem;
   }
 
   &__user-comment--holder {
@@ -38,19 +39,71 @@
   }
 
   &__user-name {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: $font-medium;
   }
 
   &__comment {
-    font-size: 1.2rem;
-    margin-top: 0.6rem;
+    font-size: 1.3rem;
+    margin-top: 0.8rem;
     line-height: 1.2;
+    font-weight: $font-regular;
+    color: $color-black;
   }
 
   &__comment-date {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     color: $color-gray-dark-3;
     font-weight: $font-regular;
+  }
+
+  &__action--btn {
+    position: absolute;
+    right: -25px;
+    top: -10px;
+    border: none;
+    background: none;
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__action--btn:hover {
+    background-color: #a5a5a573;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &__action--icon {
+    font-size: 1.4rem;
+    color: $color-gray-dark-4;
+  }
+
+  &__action--dropdown-holder {
+    position: absolute;
+    right: -4px;
+    top: 5px;
+    background-color: $color-white;
+    border-radius: $border-radius-5px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 0.7rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__action--dropdown-btn {
+    border: none;
+    background: none;
+    padding: 0.7rem 2.5rem 0.7rem 1.7rem;
+
+    text-align: left;
+    font-family: $font-family-inter;
+    font-weight: $font-regular;
+  }
+
+  &__action--dropdown-btn:hover {
+    background-color: $color-gray-dark;
+    cursor: pointer;
   }
 }
