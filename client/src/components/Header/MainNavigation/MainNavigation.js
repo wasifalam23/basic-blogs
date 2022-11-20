@@ -24,7 +24,9 @@ const MainNavigation = () => {
         </li>
 
         <li className="main-navigation__list--item">
-          <Link className="main-navigation__link">My Profile</Link>
+          <Link className="main-navigation__link" to="/myProfile">
+            My Profile
+          </Link>
         </li>
       </ul>
     </nav>

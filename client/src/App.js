@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Posts from './pages/Posts';
 import AddPost from './pages/AddPost';
 import PostDetails from './pages/PostDetails';
+import MyProfile from './pages/MyProfile';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/" element={<Posts />} />
         <Route path="/addPost" element={<AddPost />} />
         <Route path="/postDetails" element={<PostDetails />} />
+        <Route path="/myProfile" element={<MyProfile />} />
       </Routes>
     </BrowserRouter>
   );

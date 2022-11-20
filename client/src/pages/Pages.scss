@@ -1,1 +1,7 @@
 @import '../index.scss';
+
+.my-profile {
+  &__edit--btn .button__icon {
+    font-size: 1.3rem;
+  }
+}
