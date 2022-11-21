@@ -1,5 +1,5 @@
 import React from 'react';
-import joseph from '../../../assets/joseph.jpg';
+import joseph from '../../assets/joseph.jpg';
 
 import './Profile.scss';
 

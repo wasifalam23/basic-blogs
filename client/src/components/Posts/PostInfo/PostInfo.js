@@ -6,7 +6,7 @@ import CommentList from '../Comment/CommentList/CommentList';
 import Input from '../../FormElements/Input/Input';
 
 import './PostInfo.scss';
-import Button from '../../../utils/Button/Button';
+import Button from '../../utils/Button/Button';
 
 const PostInfo = () => {
   return (

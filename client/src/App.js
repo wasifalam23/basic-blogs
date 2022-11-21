@@ -5,6 +5,7 @@ import Posts from './pages/Posts';
 import AddPost from './pages/AddPost';
 import PostDetails from './pages/PostDetails';
 import MyProfile from './pages/MyProfile';
+import EditMyProfile from './pages/EditMyProfile';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/addPost" element={<AddPost />} />
         <Route path="/postDetails" element={<PostDetails />} />
         <Route path="/myProfile" element={<MyProfile />} />
+        <Route path="editMyProfile" element={<EditMyProfile />} />
       </Routes>
     </BrowserRouter>
   );

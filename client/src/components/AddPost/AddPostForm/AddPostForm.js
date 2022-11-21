@@ -1,13 +1,12 @@
 import React from 'react';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-
 import useForm from '../../../hooks/form-hook';
-import ImageUpload from '../ImageUpload/ImageUpload';
-import Input from '../Input/Input';
-import Button from '../../../utils/Button/Button';
+import useUpload from '../../../hooks/upload-hook';
+import Input from '../../utils/Input/Input';
+import Button from '../../utils/Button/Button';
+import PostImageUpload from '../PostImageUpload/PostImageUpload';
 
 import './AddPostForm.scss';
-import useUpload from '../../../hooks/upload-hook';
 
 const validateText = (value) => value.trim() !== '';
 
@@ -57,7 +56,7 @@ const AddPostForm = () => {
     <form onSubmit={formSubmissionHandler}>
       <div className="add-post__container">
         <div className="add-post__img--input">
-          <ImageUpload
+          <PostImageUpload
             url={previewUrl}
             inputRef={imgFilePickedRef}
             onInputChange={imgPickedHandler}

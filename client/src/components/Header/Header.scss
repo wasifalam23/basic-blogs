@@ -11,7 +11,8 @@
   height: 6rem;
 
   &__logo {
-    font-size: 2.2rem;
+    font-weight: $font-semibold;
+    font-size: 2.4rem;
     color: $color-primary-teal;
   }
 }
