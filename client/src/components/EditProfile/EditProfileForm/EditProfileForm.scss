@@ -1,1 +1,42 @@
 @import '../../../index.scss';
+
+.edit-profile {
+  &__container {
+  }
+
+  &__inputs--holder {
+    display: flex;
+    gap: 20rem;
+  }
+
+  &__user-img--upload {
+    margin-bottom: 10rem;
+  }
+
+  &__account-inputs--holder {
+    flex: 0 1 50%;
+  }
+
+  &__password-inputs--holder {
+    align-self: flex-end;
+    flex: 0 1 50%;
+  }
+
+  &__input-type--title {
+    font-size: 1.6rem;
+    font-weight: $font-semibold;
+    margin-bottom: 2.6rem;
+  }
+
+  &__text-inputs--holder {
+    display: flex;
+    flex-direction: column;
+    gap: 2.6rem;
+  }
+
+  &__account-save--btn {
+    align-self: flex-end;
+    margin-top: -1rem;
+    padding: 0.8rem 2rem;
+  }
+}

@@ -36,7 +36,7 @@ const useUpload = () => {
   const resetFile = () => {
     setPreviewUrl();
     setImgFile();
-    const randomKey = Math.random().toString(32);
+    const randomKey = Date.now().toString();
     setInputKey(randomKey);
   };
 

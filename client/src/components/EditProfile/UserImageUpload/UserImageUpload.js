@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import addPhotoIcon from '../../../assets/add-photo.png';
 import { faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -16,12 +16,17 @@ const UserImageUpload = (props) => {
     setIsHovered(false);
   };
 
+  const resetBtnHandler = () => {
+    props.reset();
+    setIsHovered(false);
+  };
+
   const resetBtn = (
     <div className="user-upload__reset-img--box">
       <button
         type="button"
         className="user-upload__reset--btn"
-        onClick={props.reset}
+        onClick={resetBtnHandler}
       >
         <FontAwesomeIcon className="user-upload__cross-icon" icon={faTimes} />
       </button>
@@ -48,7 +53,7 @@ const UserImageUpload = (props) => {
   );
 
   return (
-    <div className="user-upload__container">
+    <div className={`user-upload__container ${props.className}`}>
       <input
         style={{ display: 'none' }}
         id={props.id}

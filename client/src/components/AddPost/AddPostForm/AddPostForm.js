@@ -2,8 +2,8 @@ import React from 'react';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import useForm from '../../../hooks/form-hook';
 import useUpload from '../../../hooks/upload-hook';
-import Input from '../../utils/Input/Input';
-import Button from '../../utils/Button/Button';
+import Input from '../../FormElements/Input/Input';
+import Button from '../../FormElements/Button/Button';
 import PostImageUpload from '../PostImageUpload/PostImageUpload';
 
 import './AddPostForm.scss';
@@ -25,6 +25,7 @@ const AddPostForm = () => {
 
   const {
     value: enteredTitle,
+    setEnteredValue: setTitle,
     valueChangeHandler: titleChangeHandler,
     valueBlurHandler: titleBlurHandler,
     isValid: titleIsValid,
@@ -34,6 +35,7 @@ const AddPostForm = () => {
 
   const {
     value: enteredDescr,
+    setEnteredValue: setDescr,
     valueChangeHandler: descrChangeHandler,
     valueBlurHandler: descrBlurHandler,
     isValid: descrIsValid,
