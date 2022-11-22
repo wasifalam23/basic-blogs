@@ -19,6 +19,7 @@ const AddPostForm = () => {
     imgFileIsValid,
     pickImgHandler,
     imgPickedHandler,
+    inputKey,
     resetImgFile,
   } = useUpload();
 
@@ -61,6 +62,7 @@ const AddPostForm = () => {
             inputRef={imgFilePickedRef}
             onInputChange={imgPickedHandler}
             onPickImg={pickImgHandler}
+            inputKey={inputKey}
             reset={resetImgFile}
           />
         </div>

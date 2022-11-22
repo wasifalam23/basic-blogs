@@ -13,6 +13,7 @@ const EditProfileForm = () => {
     imgFileIsValid,
     pickImgHandler,
     imgPickedHandler,
+    inputKey,
     resetImgFile,
   } = useUpload();
 
@@ -21,10 +22,13 @@ const EditProfileForm = () => {
       <div className="edit-profile__container">
         <div className="edit-profile__img--input">
           <UserImageUpload
+            value={imgFile}
+            id="user-upload"
             url={previewUrl}
             inputRef={imgFilePickedRef}
             onInputChange={imgPickedHandler}
             onPickImg={pickImgHandler}
+            inputKey={inputKey}
             reset={resetImgFile}
           />
         </div>

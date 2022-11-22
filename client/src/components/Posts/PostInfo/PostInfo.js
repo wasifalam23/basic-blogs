@@ -3,7 +3,7 @@ import bk from '../../../assets/bk.jpg';
 import joseph from '../../../assets/joseph.jpg';
 
 import CommentList from '../Comment/CommentList/CommentList';
-import Input from '../../FormElements/Input/Input';
+import Input from '../../utils/Input/Input';
 
 import './PostInfo.scss';
 import Button from '../../utils/Button/Button';

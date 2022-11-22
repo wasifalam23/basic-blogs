@@ -4,6 +4,7 @@ const useUpload = () => {
   const [imgFile, setImgFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
   const [isValid, setIsValid] = useState(false);
+  const [inputKey, setInputKey] = useState('');
 
   const imgFilePickedRef = useRef();
 
@@ -19,10 +20,8 @@ const useUpload = () => {
   }, [imgFile]);
 
   const imgPickedHandler = (e) => {
-    let pickedFile;
-
     if (e.target.files && e.target.files.length === 1) {
-      pickedFile = e.target.files[0];
+      const pickedFile = e.target.files[0];
       setImgFile(pickedFile);
       setIsValid(true);
     } else {
@@ -37,6 +36,8 @@ const useUpload = () => {
   const resetFile = () => {
     setPreviewUrl();
     setImgFile();
+    const randomKey = Math.random().toString(32);
+    setInputKey(randomKey);
   };
 
   return {
@@ -48,6 +49,7 @@ const useUpload = () => {
     imgPickedHandler,
     pickImgHandler,
     resetImgFile: resetFile,
+    inputKey,
   };
 };
 

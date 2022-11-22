@@ -5,6 +5,8 @@ import { faImage, faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
 import './PostImageUpload.scss';
 
 const PostImageUpload = (props) => {
+  console.log(props.inputKey);
+
   const image = (
     <div className="post-upload__img--holder">
       <header className="post-upload__img--header">
@@ -55,6 +57,7 @@ const PostImageUpload = (props) => {
         accept=".jpg,.jpeg,.png"
         ref={props.inputRef}
         onChange={props.onInputChange}
+        key={props.inputKey}
       />
 
       <main className="post-upload__preview">

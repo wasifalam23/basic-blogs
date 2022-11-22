@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import addPhotoIcon from '../../../assets/add-photo.png';
 import { faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -56,6 +56,7 @@ const UserImageUpload = (props) => {
         accept=".jpg,.jpeg,.png"
         ref={props.inputRef}
         onChange={props.onInputChange}
+        key={props.inputKey}
       />
 
       <main className="user-upload__preview">
