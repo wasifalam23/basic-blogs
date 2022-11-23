@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import Profile from '../components/Profile/Profile';
-import Button from '../components/utils/Button/Button';
+import Button from '../components/FormElements/Button/Button';
 import Container from '../utils/Container/Container';
 import './Pages.scss';
 

@@ -101,7 +101,7 @@ const EditProfileForm = () => {
 
             <div>
               <h3 className="edit-profile__input-type--title">
-                Account Information
+                Your Account Settings
               </h3>
               <div className="edit-profile__text-inputs--holder">
                 <Input
@@ -141,7 +141,7 @@ const EditProfileForm = () => {
                   type="submit"
                   className="edit-profile__account-save--btn"
                 >
-                  Save
+                  Save Settings
                 </Button>
               </div>
             </div>
@@ -191,7 +191,7 @@ const EditProfileForm = () => {
                   type="submit"
                   className="edit-profile__account-save--btn"
                 >
-                  Save
+                  Save Password
                 </Button>
               </div>
             </div>

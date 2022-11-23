@@ -31,12 +31,12 @@
   &__text-inputs--holder {
     display: flex;
     flex-direction: column;
-    gap: 2.6rem;
+    gap: 2rem;
   }
 
   &__account-save--btn {
     align-self: flex-end;
-    margin-top: -1rem;
-    padding: 0.8rem 2rem;
+    margin-top: 0.5rem;
+    // padding: 0.8rem 2rem;
   }
 }

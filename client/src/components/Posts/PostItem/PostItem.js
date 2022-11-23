@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import bk from '../../../assets/bk.jpg';
 import joseph from '../../../assets/joseph.jpg';
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
 
 import './PostItem.scss';
 
@@ -19,6 +20,7 @@ const PostItem = () => {
       </header>
       <main className="post-item__content--main">
         <p className="post-item__pub-date">Published on 22 Jan 2021</p>
+        <DropdownMenu className="post-item__dropdown" />
         <h3
           className="post-item__title"
           title="Learning to code from students for better"

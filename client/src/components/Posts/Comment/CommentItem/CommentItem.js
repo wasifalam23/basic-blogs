@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
 
 import erik from '../../../../assets/erik.jpg';
+import DropdownMenu from '../../DropdownMenu/DropdownMenu';
 
 import './CommentItem.scss';
 
 const CommentItem = () => {
-  const [actionMenuIsOpen, setActionMenuIsOpen] = useState(false);
+  const onEditBtnClick = () => {
+    console.log('edit btn is clicked');
+  };
 
-  const actionMenuOpenHandler = () => {
-    setActionMenuIsOpen((prev) => !prev);
+  const onDeleteBtnClick = () => {
+    console.log('delete btn is clicked');
   };
 
   return (
@@ -36,25 +37,11 @@ const CommentItem = () => {
           </div>
         </div>
 
-        <button
-          type="button"
-          className="comment-item__action--btn"
-          onClick={actionMenuOpenHandler}
-        >
-          <FontAwesomeIcon
-            className="comment-item__action--icon"
-            icon={faEllipsisH}
-          />
-        </button>
-
-        {actionMenuIsOpen && (
-          <div className="comment-item__action--dropdown-holder">
-            <button className="comment-item__action--dropdown-btn">Edit</button>
-            <button className="comment-item__action--dropdown-btn">
-              Delete
-            </button>
-          </div>
-        )}
+        <DropdownMenu
+          className="comment-item__dropdown"
+          editBtnHandler={onEditBtnClick}
+          deleteBtnHandler={onDeleteBtnClick}
+        />
       </main>
     </li>
   );
