@@ -7,10 +7,13 @@ import Button from '../../FormElements/Button/Button';
 import PostImageUpload from '../PostImageUpload/PostImageUpload';
 
 import './AddPostForm.scss';
+import useHttp from '../../../hooks/http-hook';
 
 const validateText = (value) => value.trim() !== '';
 
 const AddPostForm = () => {
+  const { sendRequest: postData } = useHttp();
+
   const {
     imgFile,
     imgFilePickedRef,
@@ -43,16 +46,34 @@ const AddPostForm = () => {
     reset: descrReset,
   } = useForm(validateText);
 
+  let formIsValid = false;
+  if (titleIsValid && descrIsValid) {
+    formIsValid = true;
+  }
+
   const formSubmissionHandler = (e) => {
     e.preventDefault();
 
-    const data = {
-      imgFile,
-      enteredTitle,
-      enteredDescr,
+    if (!formIsValid) return;
+
+    const formData = new FormData();
+
+    formData.append('image', imgFile);
+    formData.append('title', enteredTitle);
+    formData.append('description', enteredDescr);
+    formData.append('author', '637e408efdfaaff02dac609d');
+
+    const reqConfig = {
+      url: 'http://localhost:3000/api/v1/blogs',
+      method: 'POST',
+      body: formData,
     };
 
-    console.log(data);
+    const receivedPostData = (data) => {
+      console.log(data);
+    };
+
+    postData(reqConfig, receivedPostData);
   };
 
   return (

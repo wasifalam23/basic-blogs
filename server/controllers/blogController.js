@@ -91,7 +91,7 @@ exports.getBlogById = catchAsync(async (req, res, next) => {
 });
 
 exports.createBlog = catchAsync(async (req, res, next) => {
-  req.body.author = req.user.id;
+  if (!req.body.author) req.body.author = req.user.id; // added for dev
   if (req.file) req.body.image = req.file.filename;
 
   const blog = await Blog.create(req.body);

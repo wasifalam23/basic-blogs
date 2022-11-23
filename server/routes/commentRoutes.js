@@ -7,11 +7,11 @@ const router = express.Router({ mergeParams: true });
 router
   .route('/')
   .get(commentController.getAllComments)
-  .post(authController.protect, commentController.createComment);
+  .post(commentController.createComment);
 
 router
   .route('/:id')
-  .patch(authController.protect, commentController.updateComment)
-  .delete(authController.protect, commentController.deleteComment);
+  .patch(commentController.updateComment)
+  .delete(commentController.deleteComment);
 
 module.exports = router;
