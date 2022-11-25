@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import { useNavigate } from 'react-router-dom';
-import joseph from '../../../assets/joseph.jpg';
+
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 
 import './PostItem.scss';
@@ -11,7 +11,7 @@ const PostItem = (props) => {
   const navigate = useNavigate();
 
   const readMoreHandler = () => {
-    navigate('/postDetails');
+    navigate(`/postDetails/${props.id}`);
   };
 
   const postPubDate = moment(props.pubDate).format('Do MMM YYYY');
