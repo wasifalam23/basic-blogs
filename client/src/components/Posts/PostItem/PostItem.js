@@ -1,39 +1,37 @@
 import React from 'react';
+import moment from 'moment';
+
 import { useNavigate } from 'react-router-dom';
-import bk from '../../../assets/bk.jpg';
 import joseph from '../../../assets/joseph.jpg';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 
 import './PostItem.scss';
 
-const PostItem = () => {
+const PostItem = (props) => {
   const navigate = useNavigate();
 
   const readMoreHandler = () => {
     navigate('/postDetails');
   };
 
+  const postPubDate = moment(props.pubDate).format('Do MMM YYYY');
+
   return (
     <li className="post-item__container">
       <header className="post-item__header">
-        <img className="post-item__image" src={bk} alt="post" />
+        <img
+          className="post-item__image"
+          src={`http://localhost:3000/blogs/${props.img}`}
+          alt="post"
+        />
       </header>
       <main className="post-item__content--main">
-        <p className="post-item__pub-date">Published on 22 Jan 2021</p>
+        <p className="post-item__pub-date">Published on {postPubDate}</p>
         <DropdownMenu className="post-item__dropdown" />
-        <h3
-          className="post-item__title"
-          title="Learning to code from students for better"
-        >
-          Vision on sea on the day more of the
+        <h3 className="post-item__title" title={props.title}>
+          {props.title}
         </h3>
-        <p className="post-item__descrp">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolor,
-          error aperiam in tempore ipsam reiciendis soluta sapiente sit
-          quibusdam. error aperiam in tempore ipsam reiciendis soluta sapiente
-          sit quibusdam. quibusdam. error aperiam in tempore ipsam reiciendis
-          soluta sapiente sit quibusdam.
-        </p>
+        <p className="post-item__descrp">{props.descr}</p>
         <button
           type="button"
           className="post-item__read-more--btn"
@@ -46,10 +44,12 @@ const PostItem = () => {
           <div className="post-item__author--box">
             <img
               className="post-item__author--avatar"
-              src={joseph}
+              src={`http://localhost:3000/users/${props.authorAv}`}
               alt="author-avatar"
             />
-            <p className="post-item__author--name">Patrick Davies</p>
+            <p className="post-item__author--name">
+              {props.authorFirstName} {props.authorLastName}
+            </p>
           </div>
 
           <div className="post-item__comment--box">

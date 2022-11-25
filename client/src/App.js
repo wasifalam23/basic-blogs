@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import useHttp from './hooks/http-hook';
+import { useDispatch } from 'react-redux';
+import { postActions } from './store/post-slice';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import Header from './components/Header/Header';
 import Posts from './pages/Posts';
 import AddPost from './pages/AddPost';
@@ -8,6 +12,22 @@ import MyProfile from './pages/MyProfile';
 import EditMyProfile from './pages/EditMyProfile';
 
 const App = () => {
+  const { sendRequest: fetchPosts } = useHttp();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const receivedPostData = (data) => {
+      dispatch(postActions.storePostData(data.data.blogs));
+    };
+
+    const reqConfig = {
+      url: 'http://localhost:3000/api/v1/blogs',
+    };
+
+    fetchPosts(reqConfig, receivedPostData);
+  }, [fetchPosts, dispatch]);
+
   return (
     <BrowserRouter>
       <Header />
