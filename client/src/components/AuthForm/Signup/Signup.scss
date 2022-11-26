@@ -1,0 +1,28 @@
+@import '../../../index.scss';
+
+.signup {
+  &__container {
+    padding: 2.5rem;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  &__intro {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    color: $color-gray-dark-2;
+    font-weight: $font-semibold;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    font-size: 2.2rem;
+  }
+
+  &__form-control {
+    margin-top: 3.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+}

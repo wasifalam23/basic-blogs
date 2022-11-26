@@ -10,6 +10,7 @@ import AddPost from './pages/AddPost';
 import PostDetails from './pages/PostDetails';
 import MyProfile from './pages/MyProfile';
 import EditMyProfile from './pages/EditMyProfile';
+import Auth from './pages/Auth';
 
 const App = () => {
   const { sendRequest: fetchPosts } = useHttp();
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/postDetails/:id" element={<PostDetails />} />
         <Route path="/myProfile" element={<MyProfile />} />
         <Route path="editMyProfile" element={<EditMyProfile />} />
+        <Route path="auth" element={<Auth />} />
       </Routes>
     </BrowserRouter>
   );
