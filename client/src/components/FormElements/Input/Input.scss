@@ -8,7 +8,8 @@
 
   &__error--msg {
     position: absolute;
-    top: -1.5rem;
+    top: -13px;
+    left: 3px;
     font-size: 1rem;
     font-weight: $font-medium;
     letter-spacing: 0.5px;
@@ -20,6 +21,7 @@
 
   &__error--icon {
     font-size: 1.1rem;
+    display: none;
   }
 
   // Input & TextArea
@@ -35,6 +37,11 @@
     border: 1px solid $color-gray-light;
     font-size: 1.8rem;
     outline: none;
+  }
+
+  &__box input:focus,
+  &__box textArea:focus {
+    border: 1px solid $color-teal-light-2;
   }
 
   &__box input::placeholder,
@@ -53,7 +60,7 @@
 
   &__box--invalid input:focus,
   &__box--invalid textarea:focus {
-    border: 1px solid transparent;
+    border: 1px solid $color-teal-light;
     background-color: $color-white;
   }
 
