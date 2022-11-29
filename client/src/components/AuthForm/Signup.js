@@ -1,4 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store/auth-slice';
+
+import useHttp from '../../hooks/http-hook';
 import useForm from '../../hooks/form-hook';
 
 import Input from '../FormElements/Input/Input';
@@ -9,6 +13,10 @@ const emailValidate = (value) => value.includes('@');
 const passwordValidate = (value) => value.trim().length >= 8;
 
 const Signup = () => {
+  const { sendRequest: createUser } = useHttp();
+
+  const dispatch = useDispatch();
+
   const {
     value: enteredFirstName,
     valueChangeHandler: firstNameChangeHandler,
@@ -54,12 +62,51 @@ const Signup = () => {
     reset: confPassReset,
   } = useForm(passwordValidate);
 
+  let formIsValid =
+    firstNameIsValid &&
+    lastNameIsValid &&
+    emailIsValid &&
+    passIsValid &&
+    confPassIsValid;
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+
+    if (!formIsValid) return;
+
+    const createdUserData = (data) => {
+      if (data.status === 'success') {
+        dispatch(authActions.login(data.token));
+        console.log('You have successfully logged in!');
+      } else if (data.status === 'fail') {
+        console.log(data.message);
+      }
+    };
+
+    const reqConfig = {
+      url: 'http://localhost:3000/api/v1/users/signup',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName: enteredFirstName,
+        lastName: enteredLastName,
+        email: enteredEmail,
+        password: enteredPass,
+        passwordConfirm: enteredConfPass,
+      }),
+    };
+
+    createUser(reqConfig, createdUserData);
+  };
+
   return (
     <div className="auth-form__form--container">
       <p className="auth-form__form--intro">Start today</p>
       <h3 className="auth-form__form--title">Create your account</h3>
 
-      <form className="auth-form__form--control">
+      <form onSubmit={formSubmitHandler} className="auth-form__form--control">
         <Input
           field="input"
           id="signup-first-name"
@@ -115,7 +162,7 @@ const Signup = () => {
           hasError={confPassHasError}
           errorMsg="Confirm password should be atleast 8 characters long"
         />
-        <Button className="auth-form__form--btn" type="submit">
+        <Button type="submit" className="auth-form__form--btn">
           Sign Up
         </Button>
       </form>

@@ -3,6 +3,7 @@ const authController = require('../controllers/authController');
 const commentController = require('../controllers/commentController');
 
 const router = express.Router({ mergeParams: true });
+router.use(authController.protect);
 
 router
   .route('/')

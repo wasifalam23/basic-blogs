@@ -46,6 +46,8 @@ const AddPostForm = () => {
     reset: descrReset,
   } = useForm(validateText);
 
+  const token = localStorage.getItem('token');
+
   let formIsValid = false;
   if (titleIsValid && descrIsValid) {
     formIsValid = true;
@@ -61,12 +63,14 @@ const AddPostForm = () => {
     formData.append('image', imgFile);
     formData.append('title', enteredTitle);
     formData.append('description', enteredDescr);
-    formData.append('author', '637e408efdfaaff02dac609d');
 
     const reqConfig = {
       url: 'http://localhost:3000/api/v1/blogs',
       method: 'POST',
       body: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     };
 
     const receivedPostData = (data) => {

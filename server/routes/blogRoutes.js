@@ -11,21 +11,19 @@ router
   .route('/')
   .get(blogController.getAllBlog)
   .post(
+    authController.protect,
     blogController.uploadBlogImage,
     blogController.resizeBlogImage,
     blogController.createBlog
   );
 
-router.get(
-  '/getMyBlogs',
-
-  blogController.getMyBlogs
-);
+router.get('/getMyBlogs', authController.protect, blogController.getMyBlogs);
 
 router
   .route('/:id')
   .get(blogController.getBlogById)
   .patch(
+    authController.protect,
     blogController.uploadBlogImage,
     blogController.resizeBlogImage,
     blogController.updateBlog

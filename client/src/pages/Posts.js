@@ -1,11 +1,22 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Container from '../utils/Container/Container';
 import PostList from '../components/Posts/PostList/PostList';
 import Button from '../components/FormElements/Button/Button';
 
 const Posts = () => {
-  const addPostBtn = <Button icon={faPlus}>Add New Post</Button>;
+  const navigate = useNavigate();
+  const addPostBtnClickHandler = () => {
+    navigate('/addPost');
+  };
+
+  const addPostBtn = (
+    <Button icon={faPlus} onClick={addPostBtnClickHandler}>
+      Add New Post
+    </Button>
+  );
 
   return (
     <Container title="All Posts" button={addPostBtn}>
