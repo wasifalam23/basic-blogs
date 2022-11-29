@@ -21,8 +21,7 @@ const authSlice = createSlice({
 
     stayLoggedIn(state) {
       const token = localStorage.getItem('token');
-      if (token) state.isLoggedIn = true;
-      if (!token) state.isLoggedIn = false;
+      state.isLoggedIn = token ? true : false;
     },
   },
 });

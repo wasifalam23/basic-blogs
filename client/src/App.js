@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { postActions } from './store/post-slice';
+import { userActions } from './store/user-slice';
+import { authActions } from './store/auth-slice';
 
 import useHttp from './hooks/http-hook';
 
@@ -14,19 +16,42 @@ import PostDetails from './pages/PostDetails';
 import MyProfile from './pages/MyProfile';
 import EditMyProfile from './pages/EditMyProfile';
 import Auth from './pages/Auth';
-import { authActions } from './store/auth-slice';
 
 const App = () => {
   const { sendRequest: fetchPosts } = useHttp();
+  const { sendRequest: getCurrentUser } = useHttp();
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const postChanged = useSelector((state) => state.post.postChanged);
+
   const dispatch = useDispatch();
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
+    if (!token) return;
+
     dispatch(authActions.stayLoggedIn());
-  }, [dispatch]);
+    const loggedInUserData = (data) => {
+      if (data.status === 'success') {
+        dispatch(userActions.storeUserData(data.data.user));
+      } else {
+        console.log(data);
+      }
+    };
+
+    const reqConfig = {
+      url: 'http://localhost:3000/api/v1/users/me',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    getCurrentUser(reqConfig, loggedInUserData);
+  }, [getCurrentUser, dispatch, token]);
 
   useEffect(() => {
+    if (!isLoggedIn) return;
+
     const receivedPostData = (data) => {
       dispatch(postActions.storePostData(data.data.blogs));
     };
@@ -36,7 +61,7 @@ const App = () => {
     };
 
     fetchPosts(reqConfig, receivedPostData);
-  }, [fetchPosts, dispatch]);
+  }, [fetchPosts, dispatch, postChanged, isLoggedIn]);
 
   return (
     <BrowserRouter>

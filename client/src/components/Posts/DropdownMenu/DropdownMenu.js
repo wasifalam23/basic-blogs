@@ -27,16 +27,10 @@ const DropdownMenu = (props) => {
 
         {isMenuOpen && (
           <div className="dropdown__btn--holder">
-            <button
-              className="dropdown__edit--btn"
-              onClick={props.editBtnHandler}
-            >
+            <button className="dropdown__edit--btn" onClick={props.onEdit}>
               Edit
             </button>
-            <button
-              className="dropdown__delete--btn"
-              onClick={props.deleteBtnHandler}
-            >
+            <button className="dropdown__delete--btn" onClick={props.onDelete}>
               Delete
             </button>
           </div>

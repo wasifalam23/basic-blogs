@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import moment from 'moment';
 
 import { useNavigate } from 'react-router-dom';
@@ -6,15 +8,28 @@ import { useNavigate } from 'react-router-dom';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 
 import './PostItem.scss';
+import { postActions } from '../../../store/post-slice';
 
 const PostItem = (props) => {
+  const currUserId = useSelector((state) => state.user.userData._id);
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const readMoreHandler = () => {
     navigate(`/postDetails/${props.id}`);
   };
 
+  const dltPostHandler = () => {
+    dispatch(postActions.setDeletePostId(props.id));
+  };
+
   const postPubDate = moment(props.pubDate).format('Do MMM YYYY');
+
+  const dropDownBtns =
+    props.authorId === currUserId ? (
+      <DropdownMenu className="post-item__dropdown" onDelete={dltPostHandler} />
+    ) : null;
 
   return (
     <li className="post-item__container">
@@ -27,7 +42,7 @@ const PostItem = (props) => {
       </header>
       <main className="post-item__content--main">
         <p className="post-item__pub-date">Published on {postPubDate}</p>
-        <DropdownMenu className="post-item__dropdown" />
+        {dropDownBtns}
         <h3 className="post-item__title" title={props.title}>
           {props.title}
         </h3>

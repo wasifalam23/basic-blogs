@@ -1,4 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { postActions } from '../../../store/post-slice';
+
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import useForm from '../../../hooks/form-hook';
 import useUpload from '../../../hooks/upload-hook';
@@ -12,6 +15,8 @@ import useHttp from '../../../hooks/http-hook';
 const validateText = (value) => value.trim() !== '';
 
 const AddPostForm = () => {
+  const dispatch = useDispatch();
+
   const { sendRequest: postData } = useHttp();
 
   const {
@@ -33,7 +38,7 @@ const AddPostForm = () => {
     valueBlurHandler: titleBlurHandler,
     isValid: titleIsValid,
     hasError: titleHasError,
-    reset: titleReset,
+    reset: resetTitle,
   } = useForm(validateText);
 
   const {
@@ -43,7 +48,7 @@ const AddPostForm = () => {
     valueBlurHandler: descrBlurHandler,
     isValid: descrIsValid,
     hasError: descrHasError,
-    reset: descrReset,
+    reset: resetDescr,
   } = useForm(validateText);
 
   const token = localStorage.getItem('token');
@@ -52,6 +57,12 @@ const AddPostForm = () => {
   if (titleIsValid && descrIsValid) {
     formIsValid = true;
   }
+
+  const resetForm = () => {
+    resetImgFile();
+    resetTitle();
+    resetDescr();
+  };
 
   const formSubmissionHandler = (e) => {
     e.preventDefault();
@@ -64,6 +75,15 @@ const AddPostForm = () => {
     formData.append('title', enteredTitle);
     formData.append('description', enteredDescr);
 
+    const createdPostData = (data) => {
+      if (data.status === 'success') {
+        dispatch(postActions.setPostChanged());
+        resetForm();
+      } else {
+        console.log(data);
+      }
+    };
+
     const reqConfig = {
       url: 'http://localhost:3000/api/v1/blogs',
       method: 'POST',
@@ -73,11 +93,7 @@ const AddPostForm = () => {
       },
     };
 
-    const receivedPostData = (data) => {
-      console.log(data);
-    };
-
-    postData(reqConfig, receivedPostData);
+    postData(reqConfig, createdPostData);
   };
 
   return (

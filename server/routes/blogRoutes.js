@@ -28,6 +28,6 @@ router
     blogController.resizeBlogImage,
     blogController.updateBlog
   )
-  .delete(blogController.deleteBlog);
+  .delete(authController.protect, blogController.deleteBlog);
 
 module.exports = router;
