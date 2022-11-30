@@ -95,7 +95,9 @@ const PostItem = (props) => {
           </div>
 
           <div className="post-item__comment--box">
-            <span className="post-item__comment--count">5</span>
+            <span className="post-item__comment--count">
+              {props.comments.length}
+            </span>
             <p className="post-item__comment--text">Comments</p>
           </div>
         </footer>

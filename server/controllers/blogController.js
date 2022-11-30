@@ -75,7 +75,9 @@ exports.getMyBlogs = catchAsync(async (req, res, next) => {
 });
 
 exports.getBlogById = catchAsync(async (req, res, next) => {
-  const blog = await Blog.findById(req.params.id);
+  const blog = await Blog.findById(req.params.id).populate({
+    path: 'comments',
+  });
 
   if (!blog) {
     return next(new AppError('No blog found with that ID', 404));

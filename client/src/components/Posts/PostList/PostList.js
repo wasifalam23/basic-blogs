@@ -54,6 +54,7 @@ const PostList = () => {
             authorAv={post.author.photo}
             authorFirstName={post.author.firstName}
             authorLastName={post.author.lastName}
+            comments={post.comments}
           />
         );
       })}

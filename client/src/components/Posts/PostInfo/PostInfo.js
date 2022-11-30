@@ -57,8 +57,10 @@ const PostInfo = () => {
             <p className="post-info__descrp">{post.description}</p>
           </main>
           <section className="post-info__comment--section">
-            <h3 className="post-info__comment--title">Comments (3)</h3>
-            <CommentList />
+            <h3 className="post-info__comment--title">
+              Comments ({post.comments.length})
+            </h3>
+            <CommentList comments={post.comments} />
 
             <div className="post-info__comment--input-box">
               <Input field="textarea" placeholder="Write your comment here" />
