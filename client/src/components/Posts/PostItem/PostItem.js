@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import moment from 'moment';
@@ -9,8 +9,11 @@ import DropdownMenu from '../DropdownMenu/DropdownMenu';
 
 import './PostItem.scss';
 import { postActions } from '../../../store/post-slice';
+import ConfirmModal from '../../../utils/Modal/ConfirmModal/ConfirmModal';
 
 const PostItem = (props) => {
+  const [dltConfirmModal, setDltConfirmModal] = useState(false);
+
   const currUserId = useSelector((state) => state.user.userData._id);
   const dispatch = useDispatch();
 
@@ -20,19 +23,43 @@ const PostItem = (props) => {
     navigate(`/postDetails/${props.id}`);
   };
 
+  const postPubDate = moment(props.pubDate).format('Do MMM YYYY');
+
   const dltPostHandler = () => {
+    setDltConfirmModal(true);
+  };
+
+  const dltModalConfirmHandler = () => {
     dispatch(postActions.setDeletePostId(props.id));
   };
 
-  const postPubDate = moment(props.pubDate).format('Do MMM YYYY');
+  const dltModalCancelHandler = () => {
+    setDltConfirmModal(false);
+  };
+
+  const editPostHandler = () => {
+    navigate(`editPost/${props.id}`);
+  };
 
   const dropDownBtns =
     props.authorId === currUserId ? (
-      <DropdownMenu className="post-item__dropdown" onDelete={dltPostHandler} />
+      <DropdownMenu
+        className="post-item__dropdown"
+        onDelete={dltPostHandler}
+        onEdit={editPostHandler}
+      />
     ) : null;
 
   return (
     <li className="post-item__container">
+      {dltConfirmModal && (
+        <ConfirmModal
+          title="Are you sure?"
+          message="Do you really want to delete this post?"
+          onConfirm={dltModalConfirmHandler}
+          onCancel={dltModalCancelHandler}
+        />
+      )}
       <header className="post-item__header">
         <img
           className="post-item__image"

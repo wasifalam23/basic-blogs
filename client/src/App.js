@@ -12,6 +12,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Posts from './pages/Posts';
 import AddPost from './pages/AddPost';
+import EditPost from './pages/EditPost';
 import PostDetails from './pages/PostDetails';
 import MyProfile from './pages/MyProfile';
 import EditMyProfile from './pages/EditMyProfile';
@@ -69,6 +70,7 @@ const App = () => {
       <Routes>
         {isLoggedIn && <Route path="/" element={<Posts />} />}
         {isLoggedIn && <Route path="/addPost" element={<AddPost />} />}
+        {isLoggedIn && <Route path="/editPost/:id" element={<EditPost />} />}
         {isLoggedIn && (
           <Route path="/postDetails/:id" element={<PostDetails />} />
         )}

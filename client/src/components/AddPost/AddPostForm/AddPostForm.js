@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postActions } from '../../../store/post-slice';
 
@@ -18,6 +19,8 @@ const AddPostForm = () => {
   const dispatch = useDispatch();
 
   const { sendRequest: postData } = useHttp();
+  const { sendRequest: updateData } = useHttp();
+  const { sendRequest: getDataById } = useHttp();
 
   const {
     imgFile,
@@ -52,6 +55,25 @@ const AddPostForm = () => {
   } = useForm(validateText);
 
   const token = localStorage.getItem('token');
+  const { id: postId } = useParams();
+
+  useEffect(() => {
+    if (!postId) return;
+
+    const postData = (data) => {
+      const { title, description, image } = data.data.blog;
+
+      setPreviewUrl(`http://localhost:3000/blogs/${image}`);
+      setTitle(title);
+      setDescr(description);
+    };
+
+    const reqConfig = {
+      url: `http://localhost:3000/api/v1/blogs/${postId}`,
+    };
+
+    getDataById(reqConfig, postData);
+  }, [postId, getDataById, setDescr, setPreviewUrl, setTitle]);
 
   let formIsValid = false;
   if (titleIsValid && descrIsValid) {
@@ -74,6 +96,30 @@ const AddPostForm = () => {
     formData.append('image', imgFile);
     formData.append('title', enteredTitle);
     formData.append('description', enteredDescr);
+
+    if (postId) {
+      const updatedPostData = (data) => {
+        if (data.status === 'success') {
+          dispatch(postActions.setPostChanged());
+          resetForm();
+        } else {
+          console.log(data);
+        }
+      };
+
+      const reqConfig = {
+        url: `http://localhost:3000/api/v1/blogs/${postId}`,
+        method: 'PATCH',
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      updateData(reqConfig, updatedPostData);
+
+      return;
+    }
 
     const createdPostData = (data) => {
       if (data.status === 'success') {
