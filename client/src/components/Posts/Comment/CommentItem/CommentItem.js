@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { commentActions } from '../../../../store/comment-slice.js';
+import ConfirmModal from '../../../../utils/Modal/ConfirmModal/ConfirmModal.js';
 
 import DropdownMenu from '../../DropdownMenu/DropdownMenu';
 import './CommentItem.scss';
 
 const CommentItem = (props) => {
+  const [dltConfirmModal, setDltConfirmModal] = useState(false);
+
   const currLoggedInUserId = useSelector((state) => state.user.userData._id);
   const dispatch = useDispatch();
 
@@ -17,7 +20,15 @@ const CommentItem = (props) => {
   };
 
   const commentDltHandler = () => {
+    setDltConfirmModal(true);
+  };
+
+  const dltModalConfirmHandler = () => {
     dispatch(commentActions.setCommentDeleteId(props.id));
+  };
+
+  const dltModalCancelHandler = () => {
+    setDltConfirmModal(false);
   };
 
   let dropDown;
@@ -40,6 +51,15 @@ const CommentItem = (props) => {
 
   return (
     <li className="comment-item__container">
+      {dltConfirmModal && (
+        <ConfirmModal
+          title="Are you sure?"
+          message="Do you really want to delete this post?"
+          onConfirm={dltModalConfirmHandler}
+          onCancel={dltModalCancelHandler}
+        />
+      )}
+
       <main className="comment-item__main--content">
         <div className="comment-item__user-img--holder">
           <img
