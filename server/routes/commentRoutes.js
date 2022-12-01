@@ -12,6 +12,7 @@ router
 
 router
   .route('/:id')
+  .get(commentController.getComment)
   .patch(commentController.updateComment)
   .delete(commentController.deleteComment);
 

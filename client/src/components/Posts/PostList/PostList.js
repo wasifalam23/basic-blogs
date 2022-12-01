@@ -13,14 +13,14 @@ const PostList = () => {
 
   const dispatch = useDispatch();
 
-  const deleteId = useSelector((state) => state.post.deletePostId);
+  const postDeleteId = useSelector((state) => state.post.deletePostId);
 
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    if (!deleteId) return;
+    if (!postDeleteId) return;
 
-    const applyData = (data) => {
+    const deletedPostData = (data) => {
       if (data.status === 'success') {
         dispatch(postActions.setPostChanged());
         dispatch(postActions.setDeletePostId(null));
@@ -29,15 +29,15 @@ const PostList = () => {
 
     deletePost(
       {
-        url: `http://localhost:3000/api/v1/blogs/${deleteId}`,
+        url: `http://localhost:3000/api/v1/blogs/${postDeleteId}`,
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
         },
       },
-      applyData
+      deletedPostData
     );
-  }, [dispatch, deleteId, deletePost, token]);
+  }, [dispatch, postDeleteId, deletePost, token]);
 
   return (
     <ul className="post-list__container">

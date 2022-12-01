@@ -1,20 +1,42 @@
 import React from 'react';
 import moment from 'moment';
+import { useSelector, useDispatch } from 'react-redux';
+import { commentActions } from '../../../../store/comment-slice.js';
 
 import DropdownMenu from '../../DropdownMenu/DropdownMenu';
-
 import './CommentItem.scss';
 
 const CommentItem = (props) => {
-  const onEditBtnClick = () => {
-    console.log('edit btn is clicked');
-  };
-
-  const onDeleteBtnClick = () => {
-    console.log('delete btn is clicked');
-  };
+  const currLoggedInUserId = useSelector((state) => state.user.userData._id);
+  const dispatch = useDispatch();
 
   const creationDate = moment(props.createdAt).format('MMM  Do YYYY, hh:mm a');
+
+  const commentEditHandler = () => {
+    dispatch(commentActions.setCommentEditId(props.id));
+  };
+
+  const commentDltHandler = () => {
+    dispatch(commentActions.setCommentDeleteId(props.id));
+  };
+
+  let dropDown;
+  if (props.commentCreatorId === currLoggedInUserId) {
+    dropDown = (
+      <DropdownMenu
+        className="comment-item__dropdown"
+        onDelete={commentDltHandler}
+        onEdit={commentEditHandler}
+      />
+    );
+  } else if (props.commentBlogAuthorId === currLoggedInUserId) {
+    dropDown = (
+      <DropdownMenu
+        className="comment-item__dropdown"
+        onDelete={commentDltHandler}
+      />
+    );
+  }
 
   return (
     <li className="comment-item__container">
@@ -41,12 +63,7 @@ const CommentItem = (props) => {
             <p className="comment-item__comment">{props.comment}</p>
           </div>
         </div>
-
-        <DropdownMenu
-          className="comment-item__dropdown"
-          editBtnHandler={onEditBtnClick}
-          deleteBtnHandler={onDeleteBtnClick}
-        />
+        {dropDown}
       </main>
     </li>
   );

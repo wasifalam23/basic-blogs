@@ -35,6 +35,21 @@ exports.getAllComments = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getComment = catchAsync(async (req, res, next) => {
+  const comment = await Comment.findById(req.params.id);
+
+  if (!comment) {
+    return next(new AppError('No comment found with that ID', 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      comment,
+    },
+  });
+});
+
 exports.createComment = catchAsync(async (req, res, next) => {
   if (!req.body.user) req.body.user = req.user.id;
   if (!req.body.blog) req.body.blog = req.params.blogId;

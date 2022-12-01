@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { commentActions } from '../../../store/comment-slice';
+import { postActions } from '../../../store/post-slice';
 import useHttp from '../../../hooks/http-hook';
 import useForm from '../../../hooks/form-hook';
 import { useParams } from 'react-router-dom';
@@ -13,10 +16,16 @@ const validateText = (value) => value.trim() !== '';
 
 const PostInfo = () => {
   const [post, setPost] = useState(null);
-  const [commentUpdated, setCommentUpdated] = useState(false);
 
-  const { sendRequest: getPost } = useHttp();
+  const commentChanged = useSelector((state) => state.comment.commentChanged);
+  const commentEditId = useSelector((state) => state.comment.commentEditId);
+
+  const dispatch = useDispatch();
+
+  const { sendRequest: getPostById } = useHttp();
   const { sendRequest: createComment } = useHttp();
+  const { sendRequest: getCommentById } = useHttp();
+  const { sendRequest: updateComment } = useHttp();
 
   const {
     value: enteredComment,
@@ -29,30 +38,84 @@ const PostInfo = () => {
   } = useForm(validateText);
 
   const { id: postId } = useParams();
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const receivedData = (data) => {
-      setPost(data.data.blog);
+      if (data.status === 'success') {
+        setPost(data.data.blog);
+      } else {
+        console.log(data);
+      }
     };
 
     const reqConfig = {
       url: `http://localhost:3000/api/v1/blogs/${postId}`,
     };
-    getPost(reqConfig, receivedData);
-  }, [getPost, postId, commentUpdated]);
+    getPostById(reqConfig, receivedData);
+  }, [getPostById, postId, commentChanged]);
+
+  useEffect(() => {
+    if (!commentEditId) return;
+
+    const commentData = (data) => {
+      if (data.status === 'success') {
+        setComment(data.data.comment.comment);
+      } else {
+        console.log(data);
+      }
+    };
+
+    const reqConfig = {
+      url: `http://localhost:3000/api/v1/comments/${commentEditId}`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    getCommentById(reqConfig, commentData);
+  }, [commentEditId, getCommentById, token, setComment, dispatch]);
 
   const pubDate = moment(post?.createdAt).format('Do MMM YYYY');
-
-  const token = localStorage.getItem('token');
 
   const commentSubmitHandler = (e) => {
     e.preventDefault();
 
     if (!commentIsValid) return;
 
+    if (commentEditId) {
+      const updatedCommentData = (data) => {
+        if (data.status === 'success') {
+          dispatch(commentActions.setCommentChanged());
+          dispatch(commentActions.setCommentEditId(null));
+          resetComment();
+        } else {
+          console.log(data);
+        }
+      };
+
+      const reqConfig = {
+        url: `http://localhost:3000/api/v1/comments/${commentEditId}`,
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          comment: enteredComment,
+        }),
+      };
+
+      updateComment(reqConfig, updatedCommentData);
+
+      return;
+    }
+
     const createdCommentData = (data) => {
       if (data.status === 'success') {
-        setCommentUpdated((prev) => !prev);
+        dispatch(postActions.setPostChanged());
+        dispatch(commentActions.setCommentChanged());
         resetComment();
       } else {
         console.log(data);
