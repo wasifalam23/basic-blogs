@@ -76,21 +76,21 @@
     margin-bottom: 2rem;
   }
 
-  &__comment--input-box {
+  &__comment--form-control {
     margin-top: 3rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
-  &__comment--input-box textarea {
+  &__comment--form-control textarea {
     border: 1px solid $color-gray-light;
     font-size: 1.4rem;
     padding: 1.2rem 1.2rem;
     height: 12rem;
   }
 
-  &__comment--input-box textarea::placeholder {
+  &__comment--form-control textarea::placeholder {
     font-size: 1.2rem;
   }
 
