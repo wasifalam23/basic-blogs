@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   userData: {},
+  userChanged: false,
 };
 
 const userSlice = createSlice({
@@ -11,6 +12,10 @@ const userSlice = createSlice({
     storeUserData(state, action) {
       const data = action.payload;
       state.userData = data;
+    },
+
+    setUserChanged(state, action) {
+      state.userChanged = !state.userChanged;
     },
   },
 });

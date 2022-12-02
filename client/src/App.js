@@ -24,6 +24,7 @@ const App = () => {
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const postChanged = useSelector((state) => state.post.postChanged);
+  const userChanged = useSelector((state) => state.user.userChanged);
 
   const dispatch = useDispatch();
   const token = localStorage.getItem('token');
@@ -48,7 +49,7 @@ const App = () => {
     };
 
     getCurrentUser(reqConfig, loggedInUserData);
-  }, [getCurrentUser, dispatch, token]);
+  }, [getCurrentUser, dispatch, token, userChanged]);
 
   useEffect(() => {
     if (!isLoggedIn) return;
