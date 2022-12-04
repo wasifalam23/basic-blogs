@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import addPhotoIcon from '../../../assets/add-photo.png';
+import defaultUserImg from '../../../assets/default.jpg';
 import { faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import './UserImageUpload.scss';
@@ -44,10 +44,10 @@ const UserImageUpload = (props) => {
     </div>
   );
 
-  const pickImgIcon = (
+  const defaultImg = (
     <img
       className="user-upload__image-add--icon"
-      src={addPhotoIcon}
+      src={defaultUserImg}
       alt="add-img-icon"
     />
   );
@@ -66,7 +66,7 @@ const UserImageUpload = (props) => {
 
       <main className="user-upload__preview">
         {props.url && image}
-        {!props.url && pickImgIcon}
+        {!props.url && defaultImg}
 
         <button
           type="button"

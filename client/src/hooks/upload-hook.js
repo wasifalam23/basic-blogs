@@ -4,6 +4,7 @@ const useUpload = () => {
   const [imgFile, setImgFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
   const [isValid, setIsValid] = useState(false);
+  const [resetDone, setResetDone] = useState(false);
   const [inputKey, setInputKey] = useState('');
 
   const imgFilePickedRef = useRef();
@@ -34,6 +35,7 @@ const useUpload = () => {
   };
 
   const resetFile = () => {
+    setResetDone(true);
     setPreviewUrl();
     setImgFile();
     const randomKey = Date.now().toString();
@@ -49,6 +51,7 @@ const useUpload = () => {
     imgPickedHandler,
     pickImgHandler,
     resetImgFile: resetFile,
+    resetImgDone: resetDone,
     inputKey,
   };
 };
