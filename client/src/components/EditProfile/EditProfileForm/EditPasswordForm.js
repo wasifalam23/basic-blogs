@@ -61,7 +61,7 @@ const EditPasswordForm = () => {
     };
 
     const reqConfig = {
-      url: `http://localhost:3000/api/v1/users/updateMyPassword`,
+      url: 'http://localhost:3000/api/v1/users/updateMyPassword',
       method: 'PATCH',
       body: JSON.stringify({
         passwordCurrent: enteredCurrPassword,
@@ -69,6 +69,7 @@ const EditPasswordForm = () => {
         passwordConfirm: enteredConfirmPassword,
       }),
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     };
