@@ -43,11 +43,7 @@ const ModalOverlay = (props) => {
 const ConfirmModal = (props) => {
   return (
     <React.Fragment>
-      {ReactDOM.createPortal(
-        <Backdrop onCancel={props.onCancel} />,
-        document.getElementById('backdrop-root')
-      )}
-
+      <Backdrop onCancel={props.onCancel} />
       {ReactDOM.createPortal(
         <ModalOverlay
           onConfirm={props.onConfirm}
