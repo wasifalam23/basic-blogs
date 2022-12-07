@@ -38,7 +38,7 @@ const PostItem = (props) => {
   };
 
   const editPostHandler = () => {
-    navigate(`editPost/${props.id}`);
+    navigate(`/editPost/${props.id}`);
   };
 
   const dropDownBtns =

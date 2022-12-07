@@ -6,7 +6,7 @@ import useHttp from '../../../hooks/http-hook';
 import PostItem from '../PostItem/PostItem';
 import './PostList.scss';
 
-const PostList = () => {
+const PostList = (props) => {
   const postsData = useSelector((state) => state.post.postData);
 
   const { sendRequest: deletePost } = useHttp();
@@ -41,23 +41,45 @@ const PostList = () => {
 
   return (
     <ul className="post-list__container">
-      {postsData.map((post) => {
-        return (
-          <PostItem
-            key={post._id}
-            id={post.id}
-            img={post.image}
-            pubDate={post.createdAt}
-            title={post.title}
-            descr={post.description}
-            authorId={post.author._id}
-            authorAv={post.author.photo}
-            authorFirstName={post.author.firstName}
-            authorLastName={post.author.lastName}
-            comments={post.comments}
-          />
-        );
-      })}
+      {props.myPosts &&
+        postsData
+          .filter((post) => post.author._id === props.loggedInUserId)
+          .map((post) => {
+            return (
+              <PostItem
+                key={post._id}
+                id={post.id}
+                img={post.image}
+                pubDate={post.createdAt}
+                title={post.title}
+                descr={post.description}
+                authorId={post.author._id}
+                authorAv={post.author.photo}
+                authorFirstName={post.author.firstName}
+                authorLastName={post.author.lastName}
+                comments={post.comments}
+              />
+            );
+          })}
+
+      {!props.myPosts &&
+        postsData.map((post) => {
+          return (
+            <PostItem
+              key={post._id}
+              id={post.id}
+              img={post.image}
+              pubDate={post.createdAt}
+              title={post.title}
+              descr={post.description}
+              authorId={post.author._id}
+              authorAv={post.author.photo}
+              authorFirstName={post.author.firstName}
+              authorLastName={post.author.lastName}
+              comments={post.comments}
+            />
+          );
+        })}
     </ul>
   );
 };

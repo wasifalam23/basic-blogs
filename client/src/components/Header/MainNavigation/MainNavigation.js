@@ -9,6 +9,7 @@ import './MainNavigation.scss';
 
 const MainNavigation = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const loggedInUserId = useSelector((state) => state.user.userData._id);
 
   return (
     <nav className="main-navigation">
@@ -39,7 +40,12 @@ const MainNavigation = () => {
 
         {isLoggedIn && (
           <li className="main-navigation__list--item">
-            <Link className="main-navigation__link">My Posts</Link>
+            <Link
+              className="main-navigation__link"
+              to={`/myPosts/${loggedInUserId}`}
+            >
+              My Posts
+            </Link>
           </li>
         )}
         {/* 
