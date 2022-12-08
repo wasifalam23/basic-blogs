@@ -6,7 +6,7 @@ import Login from './Login';
 import './AuthForm.scss';
 
 const AuthForm = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   const authModeSwitchHandler = () => {
     setIsLogin((prev) => !prev);

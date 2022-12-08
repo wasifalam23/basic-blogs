@@ -2,7 +2,7 @@
 
 .auth-form {
   &__container {
-    height: 58rem;
+    height: 55rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     background-color: $color-white;
@@ -12,7 +12,7 @@
 
   &__intro--holder {
     background-color: #d6f4eb;
-    padding: 3rem 2rem 0 0;
+    padding: 2.8rem 2rem 0 0;
   }
 
   &__form--holder {
@@ -56,21 +56,29 @@
   &__form--title {
     font-weight: $font-bold;
     font-size: 2.2rem;
-    margin-bottom: 3.2rem;
+    margin-bottom: 2.8rem;
   }
 
   &__form--control {
     display: flex;
     flex-direction: column;
-    gap: 2.2rem;
+    gap: 2rem;
+  }
+
+  &__form--control input {
+    font-size: 1.6rem;
+  }
+
+  &__form--control input::placeholder {
+    font-size: 1.3rem;
   }
 
   &__form--btn {
     width: 100%;
     text-align: center;
     display: block;
-    margin-top: 1rem;
-    padding: 1.4rem 2rem;
+    margin-top: 0.7rem;
+    padding: 1.2rem 2rem;
     font-size: 1.5rem;
     font-weight: $font-semibold;
   }

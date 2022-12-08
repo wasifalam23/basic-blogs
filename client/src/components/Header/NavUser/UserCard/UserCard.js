@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { uiActions } from '../../../../store/ui-slice';
 
-import { authActions } from '../../../../store/auth-slice';
 import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { uiActions } from '../../../store/ui-slice';
 import { authActions } from '../../../store/auth-slice';
@@ -13,6 +14,7 @@ const NavUser = () => {
   const ui = useSelector((state) => state.ui);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const cardOpenCloseHandler = () => {
     dispatch(uiActions.setUserCardState());
@@ -25,6 +27,7 @@ const NavUser = () => {
   const logoutModalConfirmHandler = () => {
     dispatch(authActions.logout());
     dispatch(uiActions.setLogoutConfirmModalState(false));
+    navigate('/auth', { replace: true });
   };
 
   const logoutModalCancelHandler = () => {
