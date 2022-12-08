@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { postActions } from '../../../store/post-slice';
 import { userActions } from '../../../store/user-slice';
+import {
+  VALIDATE_TEXT_REQUIRED,
+  VALIDATE_EMAIL,
+} from '../../FormElements/validator';
+
 import useUpload from '../../../hooks/upload-hook';
 import useForm from '../../../hooks/form-hook';
 import useHttp from '../../../hooks/http-hook';
@@ -9,8 +14,6 @@ import UserImageUpload from '../UserImageUpload/UserImageUpload';
 import Input from '../../FormElements/Input/Input';
 import Button from '../../FormElements/Button/Button';
 
-const validateText = (value) => value?.trim() !== '';
-const emailValidate = (value) => value?.includes('@');
 const EditAccountForm = () => {
   const { photo, firstName, lastName, email } = useSelector(
     (state) => state.user.userData
@@ -42,7 +45,7 @@ const EditAccountForm = () => {
     isValid: firstNameIsValid,
     hasError: firstNameHasError,
     reset: firstNameReset,
-  } = useForm(validateText);
+  } = useForm(VALIDATE_TEXT_REQUIRED);
 
   const {
     value: enteredLastName,
@@ -52,7 +55,7 @@ const EditAccountForm = () => {
     isValid: lastNameIsValid,
     hasError: lastNameHasError,
     reset: lastNameReset,
-  } = useForm(validateText);
+  } = useForm(VALIDATE_TEXT_REQUIRED);
 
   const {
     value: enteredEmail,
@@ -62,7 +65,7 @@ const EditAccountForm = () => {
     isValid: emailIsValid,
     hasError: emailHasError,
     reset: emailReset,
-  } = useForm(emailValidate);
+  } = useForm(VALIDATE_EMAIL);
 
   useEffect(() => {
     if (!photo || !firstName || !lastName || !email) return;
@@ -185,7 +188,7 @@ const EditAccountForm = () => {
               onChange={emailChangeHandler}
               onBlur={emailBlurHandler}
               hasError={emailHasError}
-              errorMsg="Email must not be empty"
+              errorMsg="Please enter a valid email"
             />
             <Button type="submit" className="edit-profile__account-save--btn">
               Save Settings

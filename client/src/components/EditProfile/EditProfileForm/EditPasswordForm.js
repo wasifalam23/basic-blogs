@@ -4,41 +4,37 @@ import useForm from '../../../hooks/form-hook';
 import useHttp from '../../../hooks/http-hook';
 import Input from '../../FormElements/Input/Input';
 import Button from '../../FormElements/Button/Button';
-
-const passwordValidate = (value) => value.trim().length >= 8;
+import { VALIDATE_PASSWORD } from '../../FormElements/validator';
 
 const EditPasswordForm = () => {
   const { sendRequest: updatePassword } = useHttp();
 
   const {
     value: enteredCurrPassword,
-    setEnteredValue: setCurrPassword,
     valueChangeHandler: currPasswordChangeHandler,
     valueBlurHandler: currPasswordBlurHandler,
     isValid: currPasswordIsValid,
     hasError: currPasswordHasError,
     reset: currPasswordReset,
-  } = useForm(passwordValidate);
+  } = useForm(VALIDATE_PASSWORD);
 
   const {
     value: enteredNewPassword,
-    setEnteredValue: setNewPassword,
     valueChangeHandler: newPasswordChangeHandler,
     valueBlurHandler: newPasswordBlurHandler,
     isValid: newPasswordIsValid,
     hasError: newPasswordHasError,
     reset: newPasswordReset,
-  } = useForm(passwordValidate);
+  } = useForm(VALIDATE_PASSWORD);
 
   const {
     value: enteredConfirmPassword,
-    setEnteredValue: setConfirmPassword,
     valueChangeHandler: confirmPasswordChangeHandler,
     valueBlurHandler: confirmPasswordBlurHandler,
     isValid: confirmPasswordIsValid,
     hasError: confirmPasswordHasError,
     reset: confirmPasswordReset,
-  } = useForm(passwordValidate);
+  } = useForm(VALIDATE_PASSWORD);
 
   const token = localStorage.getItem('token');
 

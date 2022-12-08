@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postActions } from '../../../store/post-slice';
 
+import { VALIDATE_TEXT_REQUIRED } from '../../FormElements/validator';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import useForm from '../../../hooks/form-hook';
 import useUpload from '../../../hooks/upload-hook';
@@ -13,8 +14,6 @@ import PostImageUpload from '../PostImageUpload/PostImageUpload';
 
 import './AddPostForm.scss';
 import useHttp from '../../../hooks/http-hook';
-
-const validateText = (value) => value.trim() !== '';
 
 const AddPostForm = () => {
   const dispatch = useDispatch();
@@ -43,7 +42,7 @@ const AddPostForm = () => {
     isValid: titleIsValid,
     hasError: titleHasError,
     reset: resetTitle,
-  } = useForm(validateText);
+  } = useForm(VALIDATE_TEXT_REQUIRED);
 
   const {
     value: enteredDescr,
@@ -53,7 +52,7 @@ const AddPostForm = () => {
     isValid: descrIsValid,
     hasError: descrHasError,
     reset: resetDescr,
-  } = useForm(validateText);
+  } = useForm(VALIDATE_TEXT_REQUIRED);
 
   const token = localStorage.getItem('token');
   const { id: postId } = useParams();

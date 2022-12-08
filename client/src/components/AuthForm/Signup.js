@@ -1,16 +1,17 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth-slice';
+import {
+  VALIDATE_TEXT_REQUIRED,
+  VALIDATE_EMAIL,
+  VALIDATE_PASSWORD,
+} from '../FormElements/validator';
 
 import useHttp from '../../hooks/http-hook';
 import useForm from '../../hooks/form-hook';
 
 import Input from '../FormElements/Input/Input';
 import Button from '../FormElements/Button/Button';
-
-const nameValidate = (value) => value.trim() !== '';
-const emailValidate = (value) => value.includes('@');
-const passwordValidate = (value) => value.trim().length >= 8;
 
 const Signup = () => {
   const { sendRequest: createUser } = useHttp();
@@ -24,7 +25,7 @@ const Signup = () => {
     isValid: firstNameIsValid,
     hasError: firstNameHasError,
     reset: firstNameReset,
-  } = useForm(nameValidate);
+  } = useForm(VALIDATE_TEXT_REQUIRED);
 
   const {
     value: enteredLastName,
@@ -33,7 +34,7 @@ const Signup = () => {
     isValid: lastNameIsValid,
     hasError: lastNameHasError,
     reset: lastNameReset,
-  } = useForm(nameValidate);
+  } = useForm(VALIDATE_TEXT_REQUIRED);
 
   const {
     value: enteredEmail,
@@ -42,7 +43,7 @@ const Signup = () => {
     isValid: emailIsValid,
     hasError: emailHasError,
     reset: emailReset,
-  } = useForm(emailValidate);
+  } = useForm(VALIDATE_EMAIL);
 
   const {
     value: enteredPass,
@@ -51,7 +52,7 @@ const Signup = () => {
     isValid: passIsValid,
     hasError: passHasError,
     reset: passReset,
-  } = useForm(passwordValidate);
+  } = useForm(VALIDATE_PASSWORD);
 
   const {
     value: enteredConfPass,
@@ -60,7 +61,7 @@ const Signup = () => {
     isValid: confPassIsValid,
     hasError: confPassHasError,
     reset: confPassReset,
-  } = useForm(passwordValidate);
+  } = useForm(VALIDATE_PASSWORD);
 
   let formIsValid =
     firstNameIsValid &&

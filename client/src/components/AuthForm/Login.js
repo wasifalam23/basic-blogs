@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth-slice';
+import { VALIDATE_EMAIL, VALIDATE_PASSWORD } from '../FormElements/validator';
 
 import useForm from '../../hooks/form-hook';
 import useHttp from '../../hooks/http-hook';
@@ -9,8 +10,6 @@ import useHttp from '../../hooks/http-hook';
 import Button from '../FormElements/Button/Button';
 import Input from '../FormElements/Input/Input';
 
-const emailValidate = (value) => value.includes('@');
-const passwordValidate = (value) => value.trim().length >= 8;
 const Login = () => {
   const { sendRequest: loginUser } = useHttp();
   const dispatch = useDispatch();
@@ -23,7 +22,7 @@ const Login = () => {
     isValid: emailIsValid,
     hasError: emailHasError,
     reset: emailReset,
-  } = useForm(emailValidate);
+  } = useForm(VALIDATE_EMAIL);
 
   const {
     value: enteredPass,
@@ -32,7 +31,7 @@ const Login = () => {
     isValid: passIsValid,
     hasError: passHasError,
     reset: passReset,
-  } = useForm(passwordValidate);
+  } = useForm(VALIDATE_PASSWORD);
 
   let formIsValid = emailIsValid && passIsValid;
 

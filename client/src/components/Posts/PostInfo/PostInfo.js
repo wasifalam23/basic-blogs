@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { commentActions } from '../../../store/comment-slice';
 import { postActions } from '../../../store/post-slice';
+import { VALIDATE_TEXT_REQUIRED } from '../../FormElements/validator';
+
 import useHttp from '../../../hooks/http-hook';
 import useForm from '../../../hooks/form-hook';
 import { useParams } from 'react-router-dom';
@@ -11,8 +13,6 @@ import CommentList from '../Comment/CommentList/CommentList';
 import Input from '../../FormElements/Input/Input';
 import Button from '../../FormElements/Button/Button';
 import './PostInfo.scss';
-
-const validateText = (value) => value.trim() !== '';
 
 const PostInfo = () => {
   const [post, setPost] = useState(null);
@@ -35,7 +35,7 @@ const PostInfo = () => {
     isValid: commentIsValid,
     hasError: commentHasError,
     reset: resetComment,
-  } = useForm(validateText);
+  } = useForm(VALIDATE_TEXT_REQUIRED);
 
   const { id: postId } = useParams();
   const token = localStorage.getItem('token');
