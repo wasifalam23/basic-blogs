@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import NavUser from '../NavUser/NavUser';
@@ -11,41 +11,44 @@ const MainNavigation = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const loggedInUserId = useSelector((state) => state.user.userData._id);
 
+  const linkClass = ({ isActive }) => {
+    return isActive
+      ? 'main-navigation__link main-navigation__link--active'
+      : 'main-navigation__link';
+  };
+
   return (
     <nav className="main-navigation">
       <ul className="main-navigation__list">
         {!isLoggedIn && (
           <li className="main-navigation__list--item">
-            <Link className="main-navigation__link" to="/auth">
+            <NavLink className="main-navigation__link " to="/auth">
               Login
-            </Link>
+            </NavLink>
           </li>
         )}
 
         {isLoggedIn && (
-          <li className="main-navigation__list--item">
-            <Link className="main-navigation__link" to="/">
+          <li className="main-navigation__list--item ">
+            <NavLink className={linkClass} to="/">
               Posts
-            </Link>
+            </NavLink>
           </li>
         )}
 
         {isLoggedIn && (
           <li className="main-navigation__list--item">
-            <Link className="main-navigation__link" to="/addPost">
+            <NavLink className={linkClass} to="/addPost">
               Add Post
-            </Link>
+            </NavLink>
           </li>
         )}
 
         {isLoggedIn && (
           <li className="main-navigation__list--item">
-            <Link
-              className="main-navigation__link"
-              to={`/myPosts/${loggedInUserId}`}
-            >
+            <NavLink className={linkClass} to={`/myPosts/${loggedInUserId}`}>
               My Posts
-            </Link>
+            </NavLink>
           </li>
         )}
 

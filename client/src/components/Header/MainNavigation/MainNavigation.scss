@@ -8,6 +8,7 @@
     justify-content: space-between;
     align-items: center;
     list-style: none;
+    margin-top: 2.3px;
   }
 
   &__link:link,
@@ -15,11 +16,16 @@
     display: inline-block;
     text-decoration: none;
     font-size: 1.6rem;
-    font-weight: $font-medium;
+    font-weight: $font-regular;
     color: $color-black;
+    border-bottom: 2.3px solid transparent;
+    width: calc(100% + 2px);
+    text-align: center;
+    line-height: 2rem;
   }
 
-  // &__link:active,
-  // &__link:hover {
-  // }
+  &__link--active:link,
+  &__link--active:visited {
+    border-bottom: 2.3px solid $color-teal-light;
+  }
 }
