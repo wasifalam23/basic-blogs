@@ -22,10 +22,15 @@
     width: calc(100% + 2px);
     text-align: center;
     line-height: 2rem;
+    transition: $transition-3s;
   }
 
   &__link--active:link,
   &__link--active:visited {
     border-bottom: 2.3px solid $color-teal-light;
+  }
+
+  &__link:hover {
+    transform: translateY(-1.5px);
   }
 }

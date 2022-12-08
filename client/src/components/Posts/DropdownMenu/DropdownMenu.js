@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import Backdrop from '../../../utils/Modal/Backdrop/Backdrop';
 
 import './DropdownMenu.scss';
 
@@ -9,6 +10,10 @@ const DropdownMenu = (props) => {
 
   const menuOpenHandler = () => {
     setIsMenuOpen((prev) => !prev);
+  };
+
+  const menuCloseHandler = () => {
+    setIsMenuOpen(false);
   };
 
   const editBtnClickHander = () => {
@@ -31,19 +36,28 @@ const DropdownMenu = (props) => {
         </button>
 
         {isMenuOpen && (
-          <div className="dropdown__btn--holder">
-            {props.onEdit && (
+          <React.Fragment>
+            <Backdrop
+              className="dropdown__backdrop"
+              onCancel={menuCloseHandler}
+            />
+            <div className="dropdown__btn--holder">
+              {props.onEdit && (
+                <button
+                  className="dropdown__edit--btn"
+                  onClick={editBtnClickHander}
+                >
+                  Edit
+                </button>
+              )}
               <button
-                className="dropdown__edit--btn"
-                onClick={editBtnClickHander}
+                className="dropdown__delete--btn"
+                onClick={props.onDelete}
               >
-                Edit
+                Delete
               </button>
-            )}
-            <button className="dropdown__delete--btn" onClick={props.onDelete}>
-              Delete
-            </button>
-          </div>
+            </div>
+          </React.Fragment>
         )}
       </div>
     </div>
