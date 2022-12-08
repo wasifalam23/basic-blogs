@@ -48,14 +48,6 @@ const MainNavigation = () => {
             </Link>
           </li>
         )}
-        {/* 
-        {isLoggedIn && (
-          <li className="main-navigation__list--item">
-            <Link className="main-navigation__link" onClick={logoutHandler}>
-              Logout
-            </Link>
-          </li>
-        )} */}
 
         {isLoggedIn && (
           <li className="main-navigation__list--item">

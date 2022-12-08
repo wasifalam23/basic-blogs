@@ -1,26 +1,47 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { uiActions } from '../../../store/ui-slice';
+import { authActions } from '../../../store/auth-slice';
 
 import UserCard from './UserCard/UserCard';
+import ConfirmModal from '../../../utils/Modal/ConfirmModal/ConfirmModal';
 
 import './NavUser.scss';
 
 const NavUser = () => {
-  const [cardIsOpen, setCardIsOpen] = useState(false);
   const userPhoto = useSelector((state) => state.user.userData.photo);
+  const ui = useSelector((state) => state.ui);
+
+  const dispatch = useDispatch();
 
   const cardOpenCloseHandler = () => {
-    setCardIsOpen((prev) => !prev);
-    console.log('clicked');
+    dispatch(uiActions.setUserCardState());
   };
 
   const cardCancelHander = () => {
-    setCardIsOpen(false);
+    dispatch(uiActions.setUserCardClose());
+  };
+
+  const logoutModalConfirmHandler = () => {
+    dispatch(authActions.logout());
+    dispatch(uiActions.setLogoutConfirmModalState(false));
+  };
+
+  const logoutModalCancelHandler = () => {
+    dispatch(uiActions.setLogoutConfirmModalState(false));
   };
 
   return (
     <React.Fragment>
-      {cardIsOpen && <UserCard onCancel={cardCancelHander} />}
+      {ui.userCardIsOpen && <UserCard onCancel={cardCancelHander} />}
+      {ui.showLogoutConfrimModal && (
+        <ConfirmModal
+          title="Are you sure?"
+          message="Do you really want to logout?"
+          onConfirm={logoutModalConfirmHandler}
+          onCancel={logoutModalCancelHandler}
+        />
+      )}
       <div
         className="logged-in-user__photo--holder"
         onClick={cardOpenCloseHandler}

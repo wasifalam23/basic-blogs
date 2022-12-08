@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postActions } from '../../../store/post-slice';
@@ -76,7 +77,7 @@ const AddPostForm = () => {
   }, [postId, getDataById, setDescr, setPreviewUrl, setTitle]);
 
   let formIsValid = false;
-  if (titleIsValid && descrIsValid) {
+  if (titleIsValid && descrIsValid && imgFileIsValid) {
     formIsValid = true;
   }
 

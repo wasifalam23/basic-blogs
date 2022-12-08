@@ -93,10 +93,15 @@ exports.getBlogById = catchAsync(async (req, res, next) => {
 });
 
 exports.createBlog = catchAsync(async (req, res, next) => {
-  if (!req.body.author) req.body.author = req.user.id; // added for dev
-  if (req.file) req.body.image = req.file.filename;
+  const blogValues = {
+    title: req.body.title,
+    description: req.body.description,
+    author: req.user.id,
+  };
 
-  const blog = await Blog.create(req.body);
+  if (req.file) blogValues.image = req.file.filename;
+
+  const blog = await Blog.create(blogValues);
 
   res.status(201).json({
     status: 'success',

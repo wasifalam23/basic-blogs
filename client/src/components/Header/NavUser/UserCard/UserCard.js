@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { uiActions } from '../../../../store/ui-slice';
 
 import { authActions } from '../../../../store/auth-slice';
 import { Link } from 'react-router-dom';
@@ -21,7 +22,8 @@ const UserCard = (props) => {
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
-    dispatch(authActions.logout());
+    dispatch(uiActions.setLogoutConfirmModalState(true));
+    dispatch(uiActions.setUserCardClose());
   };
 
   return (
