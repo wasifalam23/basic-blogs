@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -10,8 +11,9 @@ const AppError = require('./utils/appError');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'uploads')));
 

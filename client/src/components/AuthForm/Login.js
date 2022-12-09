@@ -43,7 +43,7 @@ const Login = () => {
     const loggedInUserData = (data) => {
       if (data.status === 'success') {
         dispatch(authActions.login(data.token));
-        navigate('/', { replace: true });
+        navigate('/');
         console.log('You have successfully logged in!');
       } else if (data.status === 'fail') {
         console.log(data.message);

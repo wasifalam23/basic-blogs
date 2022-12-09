@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { postActions } from './store/post-slice';
 import { userActions } from './store/user-slice';
 import { authActions } from './store/auth-slice';
 
 import useHttp from './hooks/http-hook';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import Posts from './pages/Posts';
@@ -30,9 +29,12 @@ const App = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
+    dispatch(authActions.stayLoggedIn());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (!token) return;
 
-    dispatch(authActions.stayLoggedIn());
     const loggedInUserData = (data) => {
       if (data.status === 'success') {
         dispatch(userActions.storeUserData(data.data.user));
@@ -69,6 +71,7 @@ const App = () => {
     <BrowserRouter>
       <Header />
       <Routes>
+        {!isLoggedIn && <Route path="/auth" element={<Auth />} />}
         {isLoggedIn && <Route path="/" element={<Posts />} />}
         {isLoggedIn && <Route path="/addPost" element={<AddPost />} />}
         {isLoggedIn && <Route path="/editPost/:id" element={<EditPost />} />}
@@ -79,7 +82,9 @@ const App = () => {
         {isLoggedIn && (
           <Route path="editMyProfile" element={<EditMyProfile />} />
         )}
-        {!isLoggedIn && <Route path="*" element={<Auth />} />}
+        {/* {!isLoggedIn && (
+          <Route path="*" element={<Navigate to="/auth" replace />} />
+        )} */}
       </Routes>
     </BrowserRouter>
   );
