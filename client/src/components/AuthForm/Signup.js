@@ -77,7 +77,7 @@ const Signup = () => {
 
     const createdUserData = (data) => {
       if (data.status === 'success') {
-        dispatch(authActions.login(data.token));
+        dispatch(authActions.setIsLoggedIn(true));
         console.log('You have successfully logged in!');
       } else if (data.status === 'fail') {
         console.log(data.message);

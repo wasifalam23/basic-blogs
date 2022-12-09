@@ -12,8 +12,6 @@ const CommentList = (props) => {
   const commentDeleteId = useSelector((state) => state.comment.commentDeleteId);
   const dispatch = useDispatch();
 
-  const token = localStorage.getItem('token');
-
   useEffect(() => {
     if (!commentDeleteId) return;
 
@@ -29,13 +27,10 @@ const CommentList = (props) => {
       {
         url: `http://localhost:3000/api/v1/comments/${commentDeleteId}`,
         method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       },
       deletedCommentData
     );
-  }, [commentDeleteId, token, deleteComment, dispatch]);
+  }, [commentDeleteId, deleteComment, dispatch]);
 
   return (
     <ul className="comment-list__container">

@@ -54,7 +54,6 @@ const AddPostForm = () => {
     reset: resetDescr,
   } = useForm(VALIDATE_TEXT_REQUIRED);
 
-  const token = localStorage.getItem('token');
   const { id: postId } = useParams();
 
   useEffect(() => {
@@ -111,9 +110,6 @@ const AddPostForm = () => {
         url: `http://localhost:3000/api/v1/blogs/${postId}`,
         method: 'PATCH',
         body: formData,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       };
 
       updateData(reqConfig, updatedPostData);
@@ -134,9 +130,6 @@ const AddPostForm = () => {
       url: 'http://localhost:3000/api/v1/blogs',
       method: 'POST',
       body: formData,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
     };
 
     postData(reqConfig, createdPostData);

@@ -36,8 +36,6 @@ const EditPasswordForm = () => {
     reset: confirmPasswordReset,
   } = useForm(VALIDATE_PASSWORD);
 
-  const token = localStorage.getItem('token');
-
   let passFormIsValid = false;
   if (currPasswordIsValid && newPasswordIsValid && confirmPasswordIsValid) {
     passFormIsValid = true;
@@ -66,7 +64,6 @@ const EditPasswordForm = () => {
       }),
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
       },
     };
 

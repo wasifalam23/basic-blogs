@@ -15,8 +15,6 @@ const PostList = (props) => {
 
   const postDeleteId = useSelector((state) => state.post.deletePostId);
 
-  const token = localStorage.getItem('token');
-
   useEffect(() => {
     if (!postDeleteId) return;
 
@@ -31,13 +29,10 @@ const PostList = (props) => {
       {
         url: `http://localhost:3000/api/v1/blogs/${postDeleteId}`,
         method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       },
       deletedPostData
     );
-  }, [dispatch, postDeleteId, deletePost, token]);
+  }, [dispatch, postDeleteId, deletePost]);
 
   return (
     <ul className="post-list__container">

@@ -18,22 +18,29 @@ import Auth from './pages/Auth';
 import MyPosts from './pages/MyPosts';
 
 const App = () => {
+  const { sendRequest: checkIsLoggedIn } = useHttp();
   const { sendRequest: fetchPosts } = useHttp();
   const { sendRequest: getCurrentUser } = useHttp();
 
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const postChanged = useSelector((state) => state.post.postChanged);
   const userChanged = useSelector((state) => state.user.userChanged);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    dispatch(authActions.stayLoggedIn());
-  }, [dispatch]);
+    const loggedInState = (data) => {
+      dispatch(authActions.setIsLoggedIn(data));
+    };
+
+    checkIsLoggedIn(
+      { url: 'http://localhost:3000/api/v1/users/isLoggedIn' },
+      loggedInState
+    );
+  }, [dispatch, checkIsLoggedIn]);
 
   useEffect(() => {
-    if (!token) return;
+    if (!isLoggedIn) return;
 
     const loggedInUserData = (data) => {
       if (data.status === 'success') {
@@ -45,13 +52,10 @@ const App = () => {
 
     const reqConfig = {
       url: 'http://localhost:3000/api/v1/users/me',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
     };
 
     getCurrentUser(reqConfig, loggedInUserData);
-  }, [getCurrentUser, dispatch, token, userChanged]);
+  }, [getCurrentUser, dispatch, userChanged, isLoggedIn]);
 
   useEffect(() => {
     if (!isLoggedIn) return;

@@ -89,8 +89,6 @@ const EditAccountForm = () => {
     email,
   ]);
 
-  const token = localStorage.getItem('token');
-
   let accountFormIsValid = false;
   if (firstNameIsValid && lastNameIsValid && emailIsValid) {
     accountFormIsValid = true;
@@ -129,9 +127,6 @@ const EditAccountForm = () => {
       url: `http://localhost:3000/api/v1/users/updateMe`,
       method: 'PATCH',
       body: formData,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
     };
 
     updateUser(reqConfig, updatedUserData);

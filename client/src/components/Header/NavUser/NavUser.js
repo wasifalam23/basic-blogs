@@ -8,8 +8,11 @@ import UserCard from './UserCard/UserCard';
 import ConfirmModal from '../../../utils/Modal/ConfirmModal/ConfirmModal';
 
 import './NavUser.scss';
+import useHttp from '../../../hooks/http-hook';
 
 const NavUser = () => {
+  const { sendRequest: logout } = useHttp();
+
   const userPhoto = useSelector((state) => state.user.userData.photo);
   const ui = useSelector((state) => state.ui);
 
@@ -25,7 +28,19 @@ const NavUser = () => {
   };
 
   const logoutModalConfirmHandler = () => {
-    dispatch(authActions.logout());
+    const logoutStatus = (data) => {
+      if (data.status === 'success') {
+        dispatch(authActions.setIsLoggedIn(false));
+      }
+    };
+
+    logout(
+      {
+        url: 'http://localhost:3000/api/v1/users/logout',
+      },
+      logoutStatus
+    );
+
     dispatch(uiActions.setLogoutConfirmModalState(false));
     navigate('/auth', { replace: true });
   };
