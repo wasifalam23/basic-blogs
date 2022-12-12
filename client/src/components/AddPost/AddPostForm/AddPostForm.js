@@ -64,6 +64,7 @@ const AddPostForm = () => {
       const { title, description, image } = data.data.blog;
 
       setPreviewUrl(`http://localhost:3000/blogs/${image}`);
+
       setTitle(title);
       setDescr(description);
     };
@@ -76,7 +77,7 @@ const AddPostForm = () => {
   }, [postId, getDataById, setDescr, setPreviewUrl, setTitle]);
 
   let formIsValid = false;
-  if (titleIsValid && descrIsValid && imgFileIsValid) {
+  if (titleIsValid && descrIsValid) {
     formIsValid = true;
   }
 
@@ -93,7 +94,7 @@ const AddPostForm = () => {
 
     const formData = new FormData();
 
-    formData.append('image', imgFile);
+    if (imgFile) formData.append('image', imgFile);
     formData.append('title', enteredTitle);
     formData.append('description', enteredDescr);
 
@@ -122,7 +123,7 @@ const AddPostForm = () => {
     const createdPostData = (data) => {
       if (data.status === 'success') {
         dispatch(postActions.setPostChanged());
-        toast.success('Post is published successfully');
+        toast.success('Post is added successfully');
         resetForm();
       } else {
         toast.error(data.message);
