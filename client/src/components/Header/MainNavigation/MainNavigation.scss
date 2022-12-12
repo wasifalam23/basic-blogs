@@ -1,11 +1,10 @@
 @import '../../../index.scss';
 
 .main-navigation {
-  width: 30%;
-
   &__list {
     display: flex;
-    justify-content: space-between;
+    gap: 8rem;
+    // justify-content: space-between;
     align-items: center;
     list-style: none;
     margin-top: 2.3px;

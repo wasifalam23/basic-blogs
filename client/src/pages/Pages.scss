@@ -8,3 +8,11 @@
     padding: 0 3.2rem;
   }
 }
+
+.my-posts {
+  &__alt--text {
+    font-size: 1.6rem;
+    font-weight: $font-regular;
+    color: $color-primary-teal;
+  }
+}

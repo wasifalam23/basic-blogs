@@ -59,8 +59,6 @@ const App = () => {
   }, [getCurrentUser, dispatch, userChanged, isLoggedIn]);
 
   useEffect(() => {
-    if (!isLoggedIn) return;
-
     const receivedPostData = (data) => {
       dispatch(postActions.storePostData(data.data.blogs));
     };
@@ -77,13 +75,12 @@ const App = () => {
       <Toastify />
       <Header />
       <Routes>
+        <Route path="/" element={<Posts />} />
+        <Route path="/postDetails/:id" element={<PostDetails />} />
         {!isLoggedIn && <Route path="/auth" element={<Auth />} />}
-        {isLoggedIn && <Route path="/" element={<Posts />} />}
         {isLoggedIn && <Route path="/addPost" element={<AddPost />} />}
         {isLoggedIn && <Route path="/editPost/:id" element={<EditPost />} />}
-        {isLoggedIn && (
-          <Route path="/postDetails/:id" element={<PostDetails />} />
-        )}
+
         {isLoggedIn && <Route path="/myPosts/:id" element={<MyPosts />} />}
         {isLoggedIn && (
           <Route path="editMyProfile" element={<EditMyProfile />} />

@@ -21,6 +21,7 @@ const PostInfo = () => {
 
   const commentChanged = useSelector((state) => state.comment.commentChanged);
   const commentEditId = useSelector((state) => state.comment.commentEditId);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const dispatch = useDispatch();
 
@@ -171,30 +172,32 @@ const PostInfo = () => {
               Comments ({post.comments.length})
             </h3>
             <CommentList comments={post.comments} />
-            <div>
-              <form
-                onSubmit={commentSubmitHandler}
-                className="post-info__comment--form-control"
-              >
-                <Input
-                  field="textarea"
-                  id="comment"
-                  placeholder="Write your comment here"
-                  type="text"
-                  value={enteredComment}
-                  onChange={commentChangeHandler}
-                  onBlur={commentBlurHandler}
-                  hasError={commentHasError}
-                  errorMsg="Comment must not be empty"
-                />
-                <Button
-                  type="submit"
-                  className="post-info__comment--submit-btn"
+            {isLoggedIn && (
+              <div>
+                <form
+                  onSubmit={commentSubmitHandler}
+                  className="post-info__comment--form-control"
                 >
-                  Submit
-                </Button>
-              </form>
-            </div>
+                  <Input
+                    field="textarea"
+                    id="comment"
+                    placeholder="Write your comment here"
+                    type="text"
+                    value={enteredComment}
+                    onChange={commentChangeHandler}
+                    onBlur={commentBlurHandler}
+                    hasError={commentHasError}
+                    errorMsg="Comment must not be empty"
+                  />
+                  <Button
+                    type="submit"
+                    className="post-info__comment--submit-btn"
+                  >
+                    Submit
+                  </Button>
+                </form>
+              </div>
+            )}
           </section>
         </main>
       )}

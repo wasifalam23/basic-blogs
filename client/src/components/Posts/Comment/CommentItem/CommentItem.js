@@ -11,6 +11,7 @@ const CommentItem = (props) => {
   const [dltConfirmModal, setDltConfirmModal] = useState(false);
 
   const currLoggedInUserId = useSelector((state) => state.user.userData._id);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
 
   const creationDate = moment(props.createdAt).format('MMM  Do YYYY, hh:mm a');
@@ -83,7 +84,7 @@ const CommentItem = (props) => {
             <p className="comment-item__comment">{props.comment}</p>
           </div>
         </div>
-        {dropDown}
+        {isLoggedIn && dropDown}
       </main>
     </li>
   );

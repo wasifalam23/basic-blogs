@@ -20,18 +20,16 @@ const MainNavigation = () => {
   return (
     <nav className="main-navigation">
       <ul className="main-navigation__list">
+        <li className="main-navigation__list--item ">
+          <NavLink className={linkClass} to="/">
+            Posts
+          </NavLink>
+        </li>
+
         {!isLoggedIn && (
           <li className="main-navigation__list--item">
-            <NavLink className="main-navigation__link " to="/auth">
+            <NavLink className={linkClass} to="/auth">
               Login
-            </NavLink>
-          </li>
-        )}
-
-        {isLoggedIn && (
-          <li className="main-navigation__list--item ">
-            <NavLink className={linkClass} to="/">
-              Posts
             </NavLink>
           </li>
         )}

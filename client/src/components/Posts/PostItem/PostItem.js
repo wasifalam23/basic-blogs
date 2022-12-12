@@ -15,6 +15,8 @@ const PostItem = (props) => {
   const [dltConfirmModal, setDltConfirmModal] = useState(false);
 
   const currUserId = useSelector((state) => state.user.userData._id);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -42,7 +44,7 @@ const PostItem = (props) => {
   };
 
   const dropDownBtns =
-    props.authorId === currUserId ? (
+    props.authorId === currUserId && isLoggedIn ? (
       <DropdownMenu
         className="post-item__dropdown"
         onDelete={dltPostHandler}

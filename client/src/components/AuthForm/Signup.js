@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth-slice';
 import {
   VALIDATE_TEXT_REQUIRED,
+  VALIDATE_TEXT_REQ_MIN_8,
   VALIDATE_EMAIL,
   VALIDATE_PASSWORD,
 } from '../FormElements/validator';
@@ -80,8 +81,9 @@ const Signup = () => {
       if (data.status === 'success') {
         dispatch(authActions.setIsLoggedIn(true));
         toast.success('You have successfully signed up');
-      } else if (data.status === 'fail') {
+      } else {
         toast.error(data.message);
+        console.log(data);
       }
     };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +8,7 @@ import PostList from '../components/Posts/PostList/PostList';
 import Button from '../components/FormElements/Button/Button';
 
 const MyPosts = () => {
+  const posts = useSelector((state) => state.post.postData);
   const { id: loggedInUserId } = useParams();
 
   const navigate = useNavigate();
@@ -22,7 +24,13 @@ const MyPosts = () => {
 
   return (
     <Container title="My Posts" button={addPostBtn}>
-      <PostList myPosts loggedInUserId={loggedInUserId} />
+      {posts.length === 0 ? (
+        <p className="my-posts__alt--text">
+          You currenly don't any post created.
+        </p>
+      ) : (
+        <PostList myPosts loggedInUserId={loggedInUserId} />
+      )}
     </Container>
   );
 };
