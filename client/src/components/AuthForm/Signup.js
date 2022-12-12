@@ -12,6 +12,7 @@ import useForm from '../../hooks/form-hook';
 
 import Input from '../FormElements/Input/Input';
 import Button from '../FormElements/Button/Button';
+import { toast } from 'react-toastify';
 
 const Signup = () => {
   const { sendRequest: createUser } = useHttp();
@@ -78,9 +79,9 @@ const Signup = () => {
     const createdUserData = (data) => {
       if (data.status === 'success') {
         dispatch(authActions.setIsLoggedIn(true));
-        console.log('You have successfully logged in!');
+        toast.success('You have successfully signed up');
       } else if (data.status === 'fail') {
-        console.log(data.message);
+        toast.error(data.message);
       }
     };
 

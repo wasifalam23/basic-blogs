@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { postActions } from '../../../store/post-slice';
 import useHttp from '../../../hooks/http-hook';
+import { toast } from 'react-toastify';
 
 import PostItem from '../PostItem/PostItem';
 import './PostList.scss';
@@ -20,8 +21,11 @@ const PostList = (props) => {
 
     const deletedPostData = (data) => {
       if (data.status === 'success') {
+        toast.success('Post is deleted successfully');
         dispatch(postActions.setPostChanged());
         dispatch(postActions.setDeletePostId(null));
+      } else {
+        toast.error(toast.message);
       }
     };
 

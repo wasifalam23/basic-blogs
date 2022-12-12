@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { toast } from 'react-toastify';
 import useForm from '../../../hooks/form-hook';
 import useHttp from '../../../hooks/http-hook';
 import Input from '../../FormElements/Input/Input';
@@ -48,9 +49,12 @@ const EditPasswordForm = () => {
 
     const updatedPasswordData = (data) => {
       if (data.status === 'success') {
-        console.log('your password has been changed successfully');
+        toast.success('You password has been changed');
+        currPasswordReset();
+        newPasswordReset();
+        confirmPasswordReset();
       } else {
-        console.log(data);
+        toast.error(data.message);
       }
     };
 

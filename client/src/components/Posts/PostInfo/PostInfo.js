@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { commentActions } from '../../../store/comment-slice';
 import { postActions } from '../../../store/post-slice';
+import { toast } from 'react-toastify';
+
 import { VALIDATE_TEXT_REQUIRED } from '../../FormElements/validator';
 
 import useHttp from '../../../hooks/http-hook';
@@ -84,11 +86,12 @@ const PostInfo = () => {
     if (commentEditId) {
       const updatedCommentData = (data) => {
         if (data.status === 'success') {
+          toast.success('Comment is updated successfully');
           dispatch(commentActions.setCommentChanged());
           dispatch(commentActions.setCommentEditId(null));
           resetComment();
         } else {
-          console.log(data);
+          toast.error(data.message);
         }
       };
 
@@ -110,11 +113,12 @@ const PostInfo = () => {
 
     const createdCommentData = (data) => {
       if (data.status === 'success') {
+        toast.success('Comment is updated successfully');
         dispatch(postActions.setPostChanged());
         dispatch(commentActions.setCommentChanged());
         resetComment();
       } else {
-        console.log(data);
+        toast.error(data.message);
       }
     };
 

@@ -13,6 +13,7 @@ import useHttp from '../../../hooks/http-hook';
 import UserImageUpload from '../UserImageUpload/UserImageUpload';
 import Input from '../../FormElements/Input/Input';
 import Button from '../../FormElements/Button/Button';
+import { toast } from 'react-toastify';
 
 const EditAccountForm = () => {
   const { photo, firstName, lastName, email } = useSelector(
@@ -112,6 +113,7 @@ const EditAccountForm = () => {
 
     const updatedUserData = (data) => {
       if (data.status === 'success') {
+        toast.success('Account is updated successfully');
         dispatch(postActions.setPostChanged());
         dispatch(userActions.setUserChanged());
         setUserUpdated((prev) => !prev);
@@ -119,7 +121,7 @@ const EditAccountForm = () => {
         lastNameReset();
         emailReset();
       } else {
-        console.log(data);
+        toast.error(data.message);
       }
     };
 

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postActions } from '../../../store/post-slice';
+import { toast } from 'react-toastify';
 
 import { VALIDATE_TEXT_REQUIRED } from '../../FormElements/validator';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
@@ -100,9 +101,10 @@ const AddPostForm = () => {
       const updatedPostData = (data) => {
         if (data.status === 'success') {
           dispatch(postActions.setPostChanged());
+          toast.success('Post is updated successfully');
           resetForm();
         } else {
-          console.log(data);
+          toast.error(data.message);
         }
       };
 
@@ -120,9 +122,10 @@ const AddPostForm = () => {
     const createdPostData = (data) => {
       if (data.status === 'success') {
         dispatch(postActions.setPostChanged());
+        toast.success('Post is published successfully');
         resetForm();
       } else {
-        console.log(data);
+        toast.error(data.message);
       }
     };
 

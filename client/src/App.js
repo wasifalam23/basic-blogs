@@ -16,6 +16,7 @@ import PostDetails from './pages/PostDetails';
 import EditMyProfile from './pages/EditMyProfile';
 import Auth from './pages/Auth';
 import MyPosts from './pages/MyPosts';
+import Toastify from './utils/Toastify/Toastify';
 
 const App = () => {
   const { sendRequest: checkIsLoggedIn } = useHttp();
@@ -73,6 +74,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <Toastify />
       <Header />
       <Routes>
         {!isLoggedIn && <Route path="/auth" element={<Auth />} />}
@@ -86,9 +88,7 @@ const App = () => {
         {isLoggedIn && (
           <Route path="editMyProfile" element={<EditMyProfile />} />
         )}
-        {/* {!isLoggedIn && (
-          <Route path="*" element={<Navigate to="/auth" replace />} />
-        )} */}
+        <Route path="*" element={<p>Loading...</p>} />
       </Routes>
     </BrowserRouter>
   );

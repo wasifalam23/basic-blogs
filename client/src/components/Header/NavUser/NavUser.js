@@ -9,6 +9,7 @@ import ConfirmModal from '../../../utils/Modal/ConfirmModal/ConfirmModal';
 
 import './NavUser.scss';
 import useHttp from '../../../hooks/http-hook';
+import { toast } from 'react-toastify';
 
 const NavUser = () => {
   const { sendRequest: logout } = useHttp();
@@ -30,7 +31,10 @@ const NavUser = () => {
   const logoutModalConfirmHandler = () => {
     const logoutStatus = (data) => {
       if (data.status === 'success') {
+        toast.success('You have successfully logged out');
         dispatch(authActions.setIsLoggedIn(false));
+      } else {
+        toast.error('Something went wrong!');
       }
     };
 

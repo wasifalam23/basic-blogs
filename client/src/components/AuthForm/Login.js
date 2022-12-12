@@ -9,6 +9,7 @@ import useHttp from '../../hooks/http-hook';
 
 import Button from '../FormElements/Button/Button';
 import Input from '../FormElements/Input/Input';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const { sendRequest: loginUser } = useHttp();
@@ -44,9 +45,9 @@ const Login = () => {
       if (data.status === 'success') {
         dispatch(authActions.setIsLoggedIn(true));
         navigate('/');
-        console.log('You have successfully logged in!');
+        toast.success('You have successfully logged in!');
       } else if (data.status === 'fail') {
-        console.log(data.message);
+        toast.error(data.message);
       }
     };
 

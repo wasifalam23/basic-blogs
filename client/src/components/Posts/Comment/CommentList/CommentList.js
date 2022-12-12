@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { commentActions } from '../../../../store/comment-slice';
 import { postActions } from '../../../../store/post-slice';
@@ -17,9 +18,12 @@ const CommentList = (props) => {
 
     const deletedCommentData = (data) => {
       if (data.status === 'success') {
+        toast.success('comment is deleted successfully');
         dispatch(postActions.setPostChanged());
         dispatch(commentActions.setCommentChanged());
         dispatch(commentActions.setCommentDeleteId(null));
+      } else {
+        toast.error(data.message);
       }
     };
 
