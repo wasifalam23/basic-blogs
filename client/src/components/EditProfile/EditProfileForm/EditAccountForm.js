@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { postActions } from '../../../store/post-slice';
 import { userActions } from '../../../store/user-slice';
 import {
+  VALIDATE_TEXT_REQ_MAX_8,
   VALIDATE_TEXT_REQUIRED,
   VALIDATE_EMAIL,
 } from '../../FormElements/validator';
@@ -46,7 +47,7 @@ const EditAccountForm = () => {
     isValid: firstNameIsValid,
     hasError: firstNameHasError,
     reset: firstNameReset,
-  } = useForm(VALIDATE_TEXT_REQUIRED);
+  } = useForm(VALIDATE_TEXT_REQ_MAX_8);
 
   const {
     value: enteredLastName,
@@ -56,7 +57,7 @@ const EditAccountForm = () => {
     isValid: lastNameIsValid,
     hasError: lastNameHasError,
     reset: lastNameReset,
-  } = useForm(VALIDATE_TEXT_REQUIRED);
+  } = useForm(VALIDATE_TEXT_REQ_MAX_8);
 
   const {
     value: enteredEmail,
@@ -72,7 +73,7 @@ const EditAccountForm = () => {
     if (!photo || !firstName || !lastName || !email) return;
 
     const photoUrl =
-      photo !== 'default.jpg' ? `http://localhost:3000/users/${photo}` : null;
+      photo === 'default.jpg' ? null : `http://localhost:3000/users/${photo}`;
 
     setPreviewUrl(photoUrl);
     setFirstName(firstName);
@@ -163,7 +164,7 @@ const EditAccountForm = () => {
               onChange={firstNameChangeHandler}
               onBlur={firstNameBlurHandler}
               hasError={firstNameHasError}
-              errorMsg="First Name must not be empty"
+              errorMsg="First Name shoud be between 3 to 8 char."
             />
             <Input
               field="input"
@@ -174,7 +175,7 @@ const EditAccountForm = () => {
               onChange={lastNameChangeHandler}
               onBlur={lastNameBlurHandler}
               hasError={lastNameHasError}
-              errorMsg="Last Name must not be empty"
+              errorMsg="Last Name shoud be between 3 to 8 char."
             />
             <Input
               field="input"

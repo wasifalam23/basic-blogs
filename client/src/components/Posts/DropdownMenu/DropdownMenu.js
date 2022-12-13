@@ -21,6 +21,11 @@ const DropdownMenu = (props) => {
     setIsMenuOpen(false);
   };
 
+  const dltBtnClickHander = () => {
+    props.onDelete();
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className={`dropdown__container ${props.className}`}>
       <div className="dropdown__content">
@@ -52,7 +57,7 @@ const DropdownMenu = (props) => {
               )}
               <button
                 className="dropdown__delete--btn"
-                onClick={props.onDelete}
+                onClick={dltBtnClickHander}
               >
                 Delete
               </button>

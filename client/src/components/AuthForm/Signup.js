@@ -2,8 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth-slice';
 import {
-  VALIDATE_TEXT_REQUIRED,
-  VALIDATE_TEXT_REQ_MIN_8,
+  VALIDATE_TEXT_REQ_MAX_8,
   VALIDATE_EMAIL,
   VALIDATE_PASSWORD,
 } from '../FormElements/validator';
@@ -27,7 +26,7 @@ const Signup = () => {
     isValid: firstNameIsValid,
     hasError: firstNameHasError,
     reset: firstNameReset,
-  } = useForm(VALIDATE_TEXT_REQUIRED);
+  } = useForm(VALIDATE_TEXT_REQ_MAX_8);
 
   const {
     value: enteredLastName,
@@ -36,7 +35,7 @@ const Signup = () => {
     isValid: lastNameIsValid,
     hasError: lastNameHasError,
     reset: lastNameReset,
-  } = useForm(VALIDATE_TEXT_REQUIRED);
+  } = useForm(VALIDATE_TEXT_REQ_MAX_8);
 
   const {
     value: enteredEmail,
@@ -120,7 +119,7 @@ const Signup = () => {
           onChange={firstNameChangeHandler}
           onBlur={firstNameBlurHandler}
           hasError={firstNameHasError}
-          errorMsg="First Name is a required field"
+          errorMsg="First Name shoud be between 3 to 8 char."
         />
         <Input
           field="input"
@@ -131,7 +130,7 @@ const Signup = () => {
           onChange={lastNameChangeHandler}
           onBlur={lastNameBlurHandler}
           hasError={lastNameHasError}
-          errorMsg="Last Name is a required field"
+          errorMsg="Last Name shoud be between 3 to 8 char."
         />
         <Input
           field="input"
@@ -142,7 +141,7 @@ const Signup = () => {
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
           hasError={emailHasError}
-          errorMsg="Email is a required field"
+          errorMsg="Please enter a valid email"
         />
         <Input
           field="input"
@@ -153,7 +152,7 @@ const Signup = () => {
           onChange={passChangeHandler}
           onBlur={passBlurHandler}
           hasError={passHasError}
-          errorMsg="Password should be atleast 8 characters long"
+          errorMsg="Password should be atleast 8 char. long"
         />
         <Input
           field="input"
@@ -164,7 +163,7 @@ const Signup = () => {
           onChange={confPassChangeHandler}
           onBlur={confPassBlurHandler}
           hasError={confPassHasError}
-          errorMsg="Confirm password should be atleast 8 characters long"
+          errorMsg="Confirm password should be atleast 8 char. long"
         />
         <Button type="submit" className="auth-form__form--btn">
           Sign Up

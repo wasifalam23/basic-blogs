@@ -41,7 +41,6 @@ const PostInfo = () => {
   } = useForm(VALIDATE_TEXT_REQUIRED);
 
   const { id: postId } = useParams();
-  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const receivedData = (data) => {
@@ -75,7 +74,7 @@ const PostInfo = () => {
     };
 
     getCommentById(reqConfig, commentData);
-  }, [commentEditId, getCommentById, token, setComment, dispatch]);
+  }, [commentEditId, getCommentById, setComment, dispatch]);
 
   const pubDate = moment(post?.createdAt).format('Do MMM YYYY');
 

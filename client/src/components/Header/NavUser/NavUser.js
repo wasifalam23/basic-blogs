@@ -6,6 +6,7 @@ import { authActions } from '../../../store/auth-slice';
 
 import UserCard from './UserCard/UserCard';
 import ConfirmModal from '../../../utils/Modal/ConfirmModal/ConfirmModal';
+import defaultUserJpg from '../../../assets/default.jpg';
 
 import './NavUser.scss';
 import useHttp from '../../../hooks/http-hook';
@@ -70,7 +71,11 @@ const NavUser = () => {
       >
         <img
           className="logged-in-user__photo"
-          src={`http://localhost:3000/users/${userPhoto}`}
+          src={
+            userPhoto
+              ? `http://localhost:3000/users/${userPhoto}`
+              : defaultUserJpg
+          }
           alt="user-avatar"
         />
       </div>

@@ -81,7 +81,7 @@ const Login = () => {
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
           hasError={emailHasError}
-          errorMsg="Email is a required field"
+          errorMsg="Please enter a valid email"
         />
         <Input
           field="input"
@@ -92,7 +92,7 @@ const Login = () => {
           onChange={passChangeHandler}
           onBlur={passBlurHandler}
           hasError={passHasError}
-          errorMsg="Password should be atleast 8 characters long"
+          errorMsg="Password should be atleast 8 char. long"
         />
         <Button type="submit" className="auth-form__form--btn">
           Login
