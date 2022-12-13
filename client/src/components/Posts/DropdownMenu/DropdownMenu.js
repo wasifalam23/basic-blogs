@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import Backdrop from '../../../utils/Modal/Backdrop/Backdrop';
-
+import ConfirmModal from '../../../utils/Modal/ConfirmModal/ConfirmModal';
 import './DropdownMenu.scss';
 
 const DropdownMenu = (props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [dltConfirmModalIsOpen, setDltConfirmModalIsOpen] = useState(false);
 
   const menuOpenHandler = () => {
     setIsMenuOpen((prev) => !prev);
@@ -22,12 +23,29 @@ const DropdownMenu = (props) => {
   };
 
   const dltBtnClickHander = () => {
-    props.onDelete();
+    setDltConfirmModalIsOpen(true);
     setIsMenuOpen(false);
+  };
+
+  const dltModalConfirmHandler = () => {
+    props.onDelete();
+    setDltConfirmModalIsOpen(false);
+  };
+
+  const dltModalCancleHandler = () => {
+    setDltConfirmModalIsOpen(false);
   };
 
   return (
     <div className={`dropdown__container ${props.className}`}>
+      {dltConfirmModalIsOpen && (
+        <ConfirmModal
+          title="Are you sure ?"
+          message={props.dltModalMsg}
+          onConfirm={dltModalConfirmHandler}
+          onCancel={dltModalCancleHandler}
+        />
+      )}
       <div className="dropdown__content">
         <button
           type="button"

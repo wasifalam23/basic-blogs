@@ -8,8 +8,6 @@ import DropdownMenu from '../../DropdownMenu/DropdownMenu';
 import './CommentItem.scss';
 
 const CommentItem = (props) => {
-  const [dltConfirmModal, setDltConfirmModal] = useState(false);
-
   const currLoggedInUserId = useSelector((state) => state.user.userData._id);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
@@ -21,15 +19,7 @@ const CommentItem = (props) => {
   };
 
   const commentDltHandler = () => {
-    setDltConfirmModal(true);
-  };
-
-  const dltModalConfirmHandler = () => {
     dispatch(commentActions.setCommentDeleteId(props.id));
-  };
-
-  const dltModalCancelHandler = () => {
-    setDltConfirmModal(false);
   };
 
   let dropDown;
@@ -39,6 +29,7 @@ const CommentItem = (props) => {
         className="comment-item__dropdown"
         onDelete={commentDltHandler}
         onEdit={commentEditHandler}
+        dltModalMsg="Are you really want to delete this comment?"
       />
     );
   } else if (props.commentBlogAuthorId === currLoggedInUserId) {
@@ -46,21 +37,14 @@ const CommentItem = (props) => {
       <DropdownMenu
         className="comment-item__dropdown"
         onDelete={commentDltHandler}
+        modalTitle="Are you sure?"
+        modalMsg="Are you really want to delete this comment?"
       />
     );
   }
 
   return (
     <li className="comment-item__container">
-      {dltConfirmModal && (
-        <ConfirmModal
-          title="Are you sure?"
-          message="Do you really want to delete this post?"
-          onConfirm={dltModalConfirmHandler}
-          onCancel={dltModalCancelHandler}
-        />
-      )}
-
       <main className="comment-item__main--content">
         <div className="comment-item__user-img--holder">
           <img

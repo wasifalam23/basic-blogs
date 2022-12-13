@@ -9,11 +9,8 @@ import DropdownMenu from '../DropdownMenu/DropdownMenu';
 
 import './PostItem.scss';
 import { postActions } from '../../../store/post-slice';
-import ConfirmModal from '../../../utils/Modal/ConfirmModal/ConfirmModal';
 
 const PostItem = (props) => {
-  const [dltConfirmModal, setDltConfirmModal] = useState(false);
-
   const currUserId = useSelector((state) => state.user.userData._id);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
@@ -28,15 +25,7 @@ const PostItem = (props) => {
   const postPubDate = moment(props.pubDate).format('Do MMM YYYY');
 
   const dltPostHandler = () => {
-    setDltConfirmModal(true);
-  };
-
-  const dltModalConfirmHandler = () => {
     dispatch(postActions.setDeletePostId(props.id));
-  };
-
-  const dltModalCancelHandler = () => {
-    setDltConfirmModal(false);
   };
 
   const editPostHandler = () => {
@@ -49,19 +38,12 @@ const PostItem = (props) => {
         className="post-item__dropdown"
         onDelete={dltPostHandler}
         onEdit={editPostHandler}
+        dltModalMsg="Do you really want to delete this post?"
       />
     ) : null;
 
   return (
     <li className="post-item__container">
-      {dltConfirmModal && (
-        <ConfirmModal
-          title="Are you sure?"
-          message="Do you really want to delete this post?"
-          onConfirm={dltModalConfirmHandler}
-          onCancel={dltModalCancelHandler}
-        />
-      )}
       <header className="post-item__header">
         <img
           className="post-item__image"
