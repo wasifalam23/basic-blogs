@@ -15,6 +15,7 @@ import CommentList from '../Comment/CommentList/CommentList';
 import Input from '../../FormElements/Input/Input';
 import Button from '../../FormElements/Button/Button';
 import './PostInfo.scss';
+import LoadingBar from '../../../utils/LoadingBar/LoadingBar';
 
 const PostInfo = () => {
   const [post, setPost] = useState(null);
@@ -25,7 +26,7 @@ const PostInfo = () => {
 
   const dispatch = useDispatch();
 
-  const { sendRequest: getPostById } = useHttp();
+  const { sendRequest: getPostById, isLoading: fetchingPost } = useHttp();
   const { sendRequest: createComment } = useHttp();
   const { sendRequest: getCommentById } = useHttp();
   const { sendRequest: updateComment } = useHttp();
@@ -138,6 +139,7 @@ const PostInfo = () => {
 
   return (
     <React.Fragment>
+      {fetchingPost && <LoadingBar />}
       {post && (
         <main className="post-info__container">
           <header className="post-info__header">

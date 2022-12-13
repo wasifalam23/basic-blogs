@@ -17,10 +17,11 @@ import EditMyProfile from './pages/EditMyProfile';
 import Auth from './pages/Auth';
 import MyPosts from './pages/MyPosts';
 import Toastify from './utils/Toastify/Toastify';
+import LoadingBar from './utils/LoadingBar/LoadingBar';
 
 const App = () => {
   const { sendRequest: checkIsLoggedIn } = useHttp();
-  const { sendRequest: fetchPosts } = useHttp();
+  const { sendRequest: fetchPosts, isLoading: fetchingPosts } = useHttp();
   const { sendRequest: getCurrentUser } = useHttp();
 
   const postChanged = useSelector((state) => state.post.postChanged);
@@ -72,6 +73,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      {fetchingPosts && <LoadingBar />}
       <Toastify />
       <Header />
       <Routes>
@@ -85,7 +87,10 @@ const App = () => {
         {isLoggedIn && (
           <Route path="editMyProfile" element={<EditMyProfile />} />
         )}
-        <Route path="*" element={<p>Loading...</p>} />
+        {!isLoggedIn && (
+          <Route path="*" element={<Navigate to="/" replace />} />
+        )}
+        <Route path="*" element={<div />} />
       </Routes>
     </BrowserRouter>
   );
