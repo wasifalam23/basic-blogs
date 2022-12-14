@@ -15,7 +15,6 @@ import CommentList from '../Comment/CommentList/CommentList';
 import Input from '../../FormElements/Input/Input';
 import Button from '../../FormElements/Button/Button';
 import './PostInfo.scss';
-import LoadingBar from '../../../utils/LoadingBar/LoadingBar';
 
 const PostInfo = () => {
   const [post, setPost] = useState(null);
@@ -26,10 +25,10 @@ const PostInfo = () => {
 
   const dispatch = useDispatch();
 
-  const { sendRequest: getPostById, isLoading: fetchingPost } = useHttp();
-  const { sendRequest: createComment } = useHttp();
+  const { sendRequest: getPostById } = useHttp();
+  const { sendRequest: createComment, isLoading: savingComment } = useHttp();
   const { sendRequest: getCommentById } = useHttp();
-  const { sendRequest: updateComment } = useHttp();
+  const { sendRequest: updateComment, isLoading: updatingComment } = useHttp();
 
   const {
     value: enteredComment,
@@ -87,7 +86,6 @@ const PostInfo = () => {
     if (commentEditId) {
       const updatedCommentData = (data) => {
         if (data.status === 'success') {
-          toast.success('Comment is updated successfully');
           dispatch(commentActions.setCommentChanged());
           dispatch(commentActions.setCommentEditId(null));
           resetComment();
@@ -114,7 +112,6 @@ const PostInfo = () => {
 
     const createdCommentData = (data) => {
       if (data.status === 'success') {
-        toast.success('Comment is updated successfully');
         dispatch(postActions.setPostChanged());
         dispatch(commentActions.setCommentChanged());
         resetComment();
@@ -139,7 +136,6 @@ const PostInfo = () => {
 
   return (
     <React.Fragment>
-      {fetchingPost && <LoadingBar />}
       {post && (
         <main className="post-info__container">
           <header className="post-info__header">
@@ -190,12 +186,22 @@ const PostInfo = () => {
                     hasError={commentHasError}
                     errorMsg="Comment must not be empty"
                   />
-                  <Button
-                    type="submit"
-                    className="post-info__comment--submit-btn"
-                  >
-                    Submit
-                  </Button>
+                  {savingComment || updatingComment ? (
+                    <Button
+                      type="submit"
+                      className="post-info__comment--submit-btn"
+                      disabled
+                    >
+                      Saving...
+                    </Button>
+                  ) : (
+                    <Button
+                      type="submit"
+                      className="post-info__comment--submit-btn "
+                    >
+                      Save
+                    </Button>
+                  )}
                 </form>
               </div>
             )}

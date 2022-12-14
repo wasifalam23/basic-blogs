@@ -22,4 +22,10 @@
   &__icon {
     font-size: 1.4rem;
   }
+
+  &__disabled {
+    pointer-events: none;
+    background-color: $color-teal-fade;
+    transition: none;
+  }
 }

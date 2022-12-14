@@ -22,7 +22,7 @@ const EditAccountForm = () => {
   );
   const dispatch = useDispatch();
 
-  const { sendRequest: updateUser } = useHttp();
+  const { sendRequest: updateUser, isLoading: updatingUser } = useHttp();
 
   const [userUpdated, setUserUpdated] = useState(false);
 
@@ -188,9 +188,19 @@ const EditAccountForm = () => {
               hasError={emailHasError}
               errorMsg="Please enter a valid email"
             />
-            <Button type="submit" className="edit-profile__account-save--btn">
-              Save Settings
-            </Button>
+            {updatingUser ? (
+              <Button
+                type="submit"
+                className="edit-profile__account-save--btn"
+                disabled
+              >
+                Saving...
+              </Button>
+            ) : (
+              <Button type="submit" className="edit-profile__account-save--btn">
+                Save Settings
+              </Button>
+            )}
           </div>
         </div>
       </form>

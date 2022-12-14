@@ -29,7 +29,7 @@ const CommentItem = (props) => {
         className="comment-item__dropdown"
         onDelete={commentDltHandler}
         onEdit={commentEditHandler}
-        dltModalMsg="Are you really want to delete this comment?"
+        dltModalMsg="Do you really want to delete this comment?"
       />
     );
   } else if (props.commentBlogAuthorId === currLoggedInUserId) {
@@ -37,8 +37,7 @@ const CommentItem = (props) => {
       <DropdownMenu
         className="comment-item__dropdown"
         onDelete={commentDltHandler}
-        modalTitle="Are you sure?"
-        modalMsg="Are you really want to delete this comment?"
+        dltModalMsg="Do you really want to delete this comment?"
       />
     );
   }

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { toast } from 'react-toastify';
 import useForm from '../../../hooks/form-hook';
 import useHttp from '../../../hooks/http-hook';
@@ -8,7 +7,8 @@ import Button from '../../FormElements/Button/Button';
 import { VALIDATE_PASSWORD } from '../../FormElements/validator';
 
 const EditPasswordForm = () => {
-  const { sendRequest: updatePassword } = useHttp();
+  const { sendRequest: updatePassword, isLoading: passwordUpdating } =
+    useHttp();
 
   const {
     value: enteredCurrPassword,
@@ -113,9 +113,19 @@ const EditPasswordForm = () => {
               hasError={confirmPasswordHasError}
               errorMsg="You must confirm your new password"
             />
-            <Button type="submit" className="edit-profile__account-save--btn">
-              Save Password
-            </Button>
+            {passwordUpdating ? (
+              <Button
+                type="submit"
+                className="edit-profile__account-save--btn"
+                disabled
+              >
+                Saving...
+              </Button>
+            ) : (
+              <Button type="submit" className="edit-profile__account-save--btn">
+                Save Password
+              </Button>
+            )}
           </div>
         </div>
       </form>

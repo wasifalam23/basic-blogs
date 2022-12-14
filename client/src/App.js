@@ -73,11 +73,10 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      {fetchingPosts && <LoadingBar />}
       <Toastify />
       <Header />
       <Routes>
-        <Route path="/" element={<Posts />} />
+        <Route path="/" element={<Posts isLoading={fetchingPosts} />} />
         <Route path="/postDetails/:id" element={<PostDetails />} />
         {!isLoggedIn && <Route path="/auth" element={<Auth />} />}
         {isLoggedIn && <Route path="/addPost" element={<AddPost />} />}
@@ -87,9 +86,9 @@ const App = () => {
         {isLoggedIn && (
           <Route path="editMyProfile" element={<EditMyProfile />} />
         )}
-        {!isLoggedIn && (
+        {/* {!isLoggedIn && (
           <Route path="*" element={<Navigate to="/" replace />} />
-        )}
+        )} */}
         <Route path="*" element={<div />} />
       </Routes>
     </BrowserRouter>

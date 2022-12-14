@@ -5,8 +5,9 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Container from '../utils/Container/Container';
 import PostList from '../components/Posts/PostList/PostList';
 import Button from '../components/FormElements/Button/Button';
+import LoadingBar from '../utils/LoadingBar/LoadingBar';
 
-const Posts = () => {
+const Posts = (props) => {
   const navigate = useNavigate();
   const addPostBtnClickHandler = () => {
     navigate('/addPost');
@@ -19,9 +20,12 @@ const Posts = () => {
   );
 
   return (
-    <Container title="All Posts" button={addPostBtn}>
-      <PostList />
-    </Container>
+    <React.Fragment>
+      {props.isLoading && <LoadingBar />}
+      <Container title="All Posts" button={addPostBtn}>
+        <PostList />
+      </Container>
+    </React.Fragment>
   );
 };
 

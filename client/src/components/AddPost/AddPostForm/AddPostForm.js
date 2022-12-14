@@ -19,8 +19,8 @@ import useHttp from '../../../hooks/http-hook';
 const AddPostForm = () => {
   const dispatch = useDispatch();
 
-  const { sendRequest: postData } = useHttp();
-  const { sendRequest: updateData } = useHttp();
+  const { sendRequest: postData, isLoading: postingData } = useHttp();
+  const { sendRequest: updateData, isLoading: updatingData } = useHttp();
   const { sendRequest: getDataById } = useHttp();
 
   const {
@@ -178,13 +178,24 @@ const AddPostForm = () => {
             errorMsg="Description must not be empty"
           />
         </div>
-        <Button
-          type="submit"
-          className="add-post__publish--btn"
-          icon={faPaperPlane}
-        >
-          Publish
-        </Button>
+        {postingData || updatingData ? (
+          <Button
+            type="submit"
+            className="add-post__publish--btn"
+            icon={faPaperPlane}
+            disabled
+          >
+            Publishing...
+          </Button>
+        ) : (
+          <Button
+            type="submit"
+            className="add-post__publish--btn"
+            icon={faPaperPlane}
+          >
+            Publish
+          </Button>
+        )}
       </div>
     </form>
   );
