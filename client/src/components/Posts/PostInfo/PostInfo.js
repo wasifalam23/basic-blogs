@@ -40,9 +40,11 @@ const PostInfo = () => {
     reset: resetComment,
   } = useForm(VALIDATE_TEXT_REQUIRED);
 
-  const { id: postId } = useParams();
+  const { postId } = useParams();
 
   useEffect(() => {
+    if (!postId) return;
+
     const receivedData = (data) => {
       if (data.status === 'success') {
         setPost(data.data.blog);

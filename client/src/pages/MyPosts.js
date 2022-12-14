@@ -9,11 +9,11 @@ import Button from '../components/FormElements/Button/Button';
 
 const MyPosts = () => {
   const posts = useSelector((state) => state.post.postData);
-  const { id: loggedInUserId } = useParams();
+  const { userId: loggedInUserId } = useParams();
 
   const navigate = useNavigate();
   const addPostBtnClickHandler = () => {
-    navigate('/addPost');
+    navigate('/posts/new');
   };
 
   const addPostBtn = (

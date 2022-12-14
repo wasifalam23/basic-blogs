@@ -6,7 +6,7 @@ import './Pages.scss';
 
 const EditMyProfile = () => {
   return (
-    <Container title="Edit Profile" navBack="Posts">
+    <Container title="Edit Profile" navBack="back">
       <EditProfileForm />
     </Container>
   );

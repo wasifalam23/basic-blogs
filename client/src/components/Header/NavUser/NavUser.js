@@ -33,6 +33,7 @@ const NavUser = () => {
     const logoutStatus = (data) => {
       if (data.status === 'success') {
         toast.success('You have successfully logged out');
+        navigate('/auth');
         dispatch(authActions.setIsLoggedIn(false));
       } else {
         toast.error('Something went wrong!');

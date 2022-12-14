@@ -8,7 +8,7 @@ const PostDetails = () => {
   const prevRoute = useLocation();
 
   return (
-    <Container title="Post Details" navBack="Posts">
+    <Container title="Post Details" navBack="back">
       <PostInfo />
     </Container>
   );

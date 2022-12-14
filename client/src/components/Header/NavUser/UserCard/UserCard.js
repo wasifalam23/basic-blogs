@@ -44,7 +44,7 @@ const UserCard = (props) => {
           <Link
             onClick={props.onCancel}
             className="user-card__edit-user--link"
-            to="/editMyProfile"
+            to="/user-update"
           >
             <FontAwesomeIcon
               className="user-card__edit-user--icon"

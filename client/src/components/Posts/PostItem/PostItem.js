@@ -18,10 +18,6 @@ const PostItem = (props) => {
 
   const navigate = useNavigate();
 
-  const readMoreHandler = () => {
-    navigate(`/postDetails/${props.id}`);
-  };
-
   const postPubDate = moment(props.pubDate).format('Do MMM YYYY');
 
   const dltPostHandler = () => {
@@ -29,7 +25,11 @@ const PostItem = (props) => {
   };
 
   const editPostHandler = () => {
-    navigate(`/editPost/${props.id}`);
+    navigate(`/posts/${props.id}`);
+  };
+
+  const readMoreHandler = () => {
+    navigate(`details/${props.id}`);
   };
 
   const dropDownBtns =

@@ -10,7 +10,7 @@ import LoadingBar from '../utils/LoadingBar/LoadingBar';
 const Posts = (props) => {
   const navigate = useNavigate();
   const addPostBtnClickHandler = () => {
-    navigate('/addPost');
+    navigate('/posts/new');
   };
 
   const addPostBtn = (

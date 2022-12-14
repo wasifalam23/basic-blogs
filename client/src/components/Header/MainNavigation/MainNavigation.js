@@ -36,7 +36,7 @@ const MainNavigation = () => {
 
         {isLoggedIn && (
           <li className="main-navigation__list--item">
-            <NavLink className={linkClass} to="/addPost">
+            <NavLink className={linkClass} to="/posts/new">
               Add Post
             </NavLink>
           </li>
@@ -44,7 +44,7 @@ const MainNavigation = () => {
 
         {isLoggedIn && (
           <li className="main-navigation__list--item">
-            <NavLink className={linkClass} to={`/myPosts/${loggedInUserId}`}>
+            <NavLink className={linkClass} to={`/${loggedInUserId}/posts`}>
               My Posts
             </NavLink>
           </li>

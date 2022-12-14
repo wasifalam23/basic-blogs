@@ -10,7 +10,10 @@
   padding-right: 10rem;
   height: 6rem;
 
-  &__logo {
+  &__logo:link,
+  &__logo:visited {
+    text-decoration: none;
+    display: block;
     font-weight: $font-semibold;
     font-size: 2.4rem;
     color: $color-primary-teal;

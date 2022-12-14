@@ -55,7 +55,7 @@ const AddPostForm = () => {
     reset: resetDescr,
   } = useForm(VALIDATE_TEXT_REQUIRED);
 
-  const { id: postId } = useParams();
+  const { postId } = useParams();
 
   useEffect(() => {
     if (!postId) return;

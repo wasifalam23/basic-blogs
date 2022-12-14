@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth-slice';
 import {
@@ -18,6 +19,7 @@ const Signup = () => {
   const { sendRequest: createUser } = useHttp();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     value: enteredFirstName,
@@ -80,9 +82,9 @@ const Signup = () => {
       if (data.status === 'success') {
         dispatch(authActions.setIsLoggedIn(true));
         toast.success('You have successfully signed up');
+        navigate('/');
       } else {
         toast.error(data.message);
-        console.log(data);
       }
     };
 
