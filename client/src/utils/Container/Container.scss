@@ -12,6 +12,32 @@
     justify-content: space-between;
   }
 
+  &__title-nav--holder {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+
+  &__nav-back--icon {
+    font-size: 1.1rem;
+    margin-right: 2px;
+  }
+
+  &__nav-back--btn {
+    border: none;
+    background: none;
+    font-family: $font-family-inter;
+    font-size: 1.3rem;
+    font-weight: $font-medium;
+    color: $color-primary-teal;
+    cursor: pointer;
+  }
+
+  &__nav-back--btn:hover {
+    text-decoration: underline;
+  }
+
   &__title {
     font-size: 1.8rem;
     font-weight: $font-medium;

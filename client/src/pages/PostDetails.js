@@ -1,10 +1,14 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+
 import Container from '../utils/Container/Container';
 import PostInfo from '../components/Posts/PostInfo/PostInfo';
 
 const PostDetails = () => {
+  const prevRoute = useLocation();
+
   return (
-    <Container title="Post Details">
+    <Container title="Post Details" navBack="Posts">
       <PostInfo />
     </Container>
   );
