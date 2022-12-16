@@ -10,6 +10,7 @@ import Button from '../components/FormElements/Button/Button';
 const MyPosts = () => {
   const posts = useSelector((state) => state.post.postData);
   const { userId: loggedInUserId } = useParams();
+  const myPosts = posts.filter((post) => post.author._id === loggedInUserId);
 
   const navigate = useNavigate();
   const addPostBtnClickHandler = () => {
@@ -24,7 +25,7 @@ const MyPosts = () => {
 
   return (
     <Container title="My Posts" button={addPostBtn}>
-      {posts.length === 0 ? (
+      {myPosts.length === 0 ? (
         <p className="my-posts__alt--text">
           You currenly don't any post created.
         </p>
