@@ -6,13 +6,7 @@ import { authActions } from './store/auth-slice';
 
 import useHttp from './hooks/http-hook';
 
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  Navigate,
-  Outlet,
-} from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import Posts from './pages/Posts';
@@ -23,6 +17,7 @@ import EditMyProfile from './pages/EditMyProfile';
 import Auth from './pages/Auth';
 import MyPosts from './pages/MyPosts';
 import Toastify from './utils/Toastify/Toastify';
+import FallBack from './pages/FallBack';
 
 const App = () => {
   const { sendRequest: checkIsLoggedIn } = useHttp();
@@ -83,14 +78,28 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Posts isLoading={fetchingPosts} />} />
         <Route path="/details/:postId" element={<PostDetails />} />
-        {isLoggedIn && <Route path="/posts/new" element={<AddPost />} />}
-        {isLoggedIn && <Route path="/posts/:postId" element={<EditPost />} />}
-        {isLoggedIn && <Route path="/:userId/posts" element={<MyPosts />} />}
+        <Route
+          path="/posts/new"
+          element={isLoggedIn ? <AddPost /> : <FallBack />}
+        />
+        <Route
+          path="/posts/:postId"
+          element={isLoggedIn ? <EditPost /> : <FallBack />}
+        />
+        <Route
+          path="/:userId/posts"
+          element={isLoggedIn ? <MyPosts /> : <FallBack />}
+        />
 
-        {!isLoggedIn && <Route path="/auth" element={<Auth />} />}
-        {isLoggedIn && (
-          <Route path="/user-update" element={<EditMyProfile />} />
-        )}
+        <Route
+          path="/auth"
+          element={!isLoggedIn ? <Auth /> : <Navigate to="/" replace />}
+        />
+
+        <Route
+          path="/user-update"
+          element={isLoggedIn ? <EditMyProfile /> : <FallBack />}
+        />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

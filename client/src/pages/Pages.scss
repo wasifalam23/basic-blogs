@@ -16,3 +16,11 @@
     color: $color-primary-teal;
   }
 }
+
+.fallback-text {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 5rem;
+  font-weight: $font-regular;
+  color: $color-black;
+}

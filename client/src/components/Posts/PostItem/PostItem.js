@@ -29,7 +29,7 @@ const PostItem = (props) => {
   };
 
   const readMoreHandler = () => {
-    navigate(`details/${props.id}`);
+    navigate(`/details/${props.id}`);
   };
 
   const dropDownBtns =
