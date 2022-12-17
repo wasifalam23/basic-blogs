@@ -35,6 +35,16 @@ $border-radius-5px: 5px;
 $transition-3s: all 0.3s ease-in-out;
 $box-shadow-2: 1px 2px 5px rgba(0, 0, 0, 0.1);
 
+// Break Points
+$bp-small: 48em; // 768px
+
+// Mixins
+@mixin for-small-device {
+  @media screen and (max-width: $bp-small) {
+    @content;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -46,10 +56,17 @@ $box-shadow-2: 1px 2px 5px rgba(0, 0, 0, 0.1);
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  overflow-x: hidden;
 }
 
 body {
   font-family: $font-family-inter;
   line-height: 1;
   background-color: $color-primary-gray;
+
+  @media screen and (max-width: $bp-small) {
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+  }
 }

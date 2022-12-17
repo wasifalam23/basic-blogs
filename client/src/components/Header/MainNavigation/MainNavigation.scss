@@ -4,10 +4,34 @@
   &__list {
     display: flex;
     gap: 8rem;
-    // justify-content: space-between;
     align-items: center;
     list-style: none;
     margin-top: 2.3px;
+
+    @include for-small-device {
+      position: absolute;
+      right: 0;
+      background-color: #06533c;
+      height: 100vh;
+      width: 30rem;
+      top: 5.8rem;
+      z-index: 10000;
+      flex-direction: column;
+      gap: 7rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in;
+      padding-top: 4rem;
+    }
+  }
+
+  &__list--active {
+    transform: translateX(0%);
+  }
+
+  &__list--item {
+    @include for-small-device {
+      opacity: 0;
+    }
   }
 
   &__link:link,
@@ -17,19 +41,91 @@
     font-size: 1.6rem;
     font-weight: $font-regular;
     color: $color-black;
-    // border-bottom: 2.3px solid transparent;
     width: calc(100% + 5px);
     text-align: center;
     line-height: 1.2;
     transition: $transition-3s;
+
+    @include for-small-device {
+      color: $color-white;
+      transition: initial;
+      width: initial;
+    }
   }
 
   &__link--active:link,
   &__link--active:visited {
     border-bottom: 2.3px solid $color-teal-light;
+
+    @include for-small-device {
+      border: none;
+    }
   }
 
   &__link:hover {
     transform: translateY(-1.5px);
+
+    @include for-small-device {
+      transform: translateY(0);
+    }
+  }
+
+  &__user--box {
+    display: none;
+
+    @include for-small-device {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid $color-teal-light;
+    }
+  }
+
+  &__user--photo {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    border: 3px solid $color-teal-light;
+  }
+
+  &__user--name {
+    font-size: 1.4rem;
+    font-weight: $font-semibold;
+    color: $color-white;
+    margin-top: 1rem;
+  }
+
+  &__user--email {
+    font-size: 1.3rem;
+    margin-top: 0.7rem;
+    font-weight: $font-medium;
+    color: $color-gray-light;
+  }
+
+  &__nav--user {
+    @include for-small-device {
+      display: none;
+    }
+  }
+
+  &__logout,
+  &__edit-profile {
+    display: none;
+
+    @include for-small-device {
+      display: initial;
+    }
+  }
+
+  &__logout--btn {
+    font-family: $font-family-inter;
+    border: none;
+    background: none;
+    font-size: 1.4rem;
+    font-weight: $font-regular;
+    color: $color-white;
   }
 }

@@ -1,14 +1,26 @@
 @import '../../index.scss';
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color: $color-primary-gray;
-  border-bottom: 0.5px solid #ced4da;
-  padding-left: 24rem;
   padding-right: 10rem;
-  height: 6rem;
+  padding-left: 24rem;
+  border-bottom: 0.5px solid #ced4da;
+
+  @include for-small-device {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  &__backdrop {
+    margin-top: 5.9rem;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 6rem;
+  }
 
   &__logo:link,
   &__logo:visited {
@@ -17,5 +29,21 @@
     font-weight: $font-semibold;
     font-size: 2.4rem;
     color: $color-primary-teal;
+  }
+
+  &__burger {
+    display: none;
+    cursor: pointer;
+
+    @include for-small-device {
+      display: initial;
+    }
+  }
+
+  &__burger--item {
+    height: 3px;
+    width: 25px;
+    background-color: $color-black;
+    margin: 5px;
   }
 }
