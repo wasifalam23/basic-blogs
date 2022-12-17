@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import MainNavigation from './MainNavigation/MainNavigation';
 import Backdrop from '../../utils/Modal/Backdrop/Backdrop';
 import './Header.scss';
+import SideDrawer from './SideDrawer/SideDrawer';
 
 const Header = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
@@ -11,7 +12,7 @@ const Header = () => {
     setDrawerIsOpen((prev) => !prev);
   };
 
-  const backdropClickHandler = () => {
+  const backdropCloseHandler = () => {
     setDrawerIsOpen(false);
   };
 
@@ -21,7 +22,7 @@ const Header = () => {
         {drawerIsOpen && (
           <Backdrop
             className="header__backdrop"
-            onCancel={backdropClickHandler}
+            onCancel={backdropCloseHandler}
           />
         )}
 
@@ -29,13 +30,28 @@ const Header = () => {
           Basic Blogs
         </Link>
 
-        <MainNavigation drawerIsOpen={drawerIsOpen} />
+        <MainNavigation />
+        <SideDrawer
+          drawerIsOpen={drawerIsOpen}
+          onCancel={backdropCloseHandler}
+        />
 
         <div className="header__burger" onClick={burgerClickHandler}>
-          <div className="header__burger--line1 header__burger--item" />
-          <div className="header__burger--line2 header__burger--item" />
-          <div className="header__burger--line3 header__burger--item" />
-          <div />
+          <div
+            className={`${
+              drawerIsOpen && 'header__burger--line1'
+            } header__burger--item`}
+          />
+          <div
+            className={`${
+              drawerIsOpen && 'header__burger--line2'
+            } header__burger--item`}
+          />
+          <div
+            className={`${
+              drawerIsOpen && 'header__burger--line3'
+            } header__burger--item`}
+          />
           <div />
         </div>
       </nav>

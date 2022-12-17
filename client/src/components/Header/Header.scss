@@ -45,5 +45,18 @@
     width: 25px;
     background-color: $color-black;
     margin: 5px;
+    transition: all 0.3s ease;
+  }
+
+  &__burger--line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  &__burger--line2 {
+    opacity: 0;
+  }
+
+  &__burger--line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
   }
 }

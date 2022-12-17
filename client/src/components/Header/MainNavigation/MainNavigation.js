@@ -18,28 +18,7 @@ const MainNavigation = (props) => {
   };
 
   return (
-    <ul
-      className={`main-navigation__list ${
-        props.drawerIsOpen && 'main-navigation__list--active'
-      }`}
-    >
-      {isLoggedIn && (
-        <div className="main-navigation__user--box">
-          <img
-            className="main-navigation__user--photo"
-            src={`http://localhost:3000/users/${loggedInUser.photo}`}
-            alt="user-avatar"
-          />
-
-          <div className="main-navigation__user--info">
-            <p className="main-navigation__user--name">
-              {loggedInUser.firstName} {loggedInUser.lastName}
-            </p>
-            <p className="main-navigation__user--email">{loggedInUser.email}</p>
-          </div>
-        </div>
-      )}
-
+    <ul className="main-navigation__list">
       <li className="main-navigation__list--item">
         <NavLink className={linkClass} to="/">
           Posts
@@ -67,20 +46,6 @@ const MainNavigation = (props) => {
           <NavLink className={linkClass} to={`/${loggedInUser._id}/posts`}>
             My Posts
           </NavLink>
-        </li>
-      )}
-
-      {isLoggedIn && (
-        <li className="main-navigation__list--item main-navigation__edit-profile">
-          <NavLink className={linkClass} to="/user-update">
-            Edit Profile
-          </NavLink>
-        </li>
-      )}
-
-      {isLoggedIn && (
-        <li className="main-navigation__list--item main-navigation__logout">
-          <button className="main-navigation__logout--btn">Logout</button>
         </li>
       )}
 
