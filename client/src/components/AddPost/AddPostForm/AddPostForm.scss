@@ -4,8 +4,13 @@
   &__container {
     display: grid;
     grid-template-columns: 40fr 60fr;
-    grid-column-gap: 6rem;
+    grid-column-gap: 4.8rem;
     grid-row-gap: 3rem;
+
+    @include for-small-desktop {
+      grid-template-columns: 41fr 59fr;
+      grid-column-gap: 4rem;
+    }
   }
 
   &__text--inputs {

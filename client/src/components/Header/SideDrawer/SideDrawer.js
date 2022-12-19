@@ -1,5 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import defaultUserJpg from '../../../assets/default.jpg';
+
 import {
   faListAlt,
   faList,
@@ -35,7 +37,11 @@ const SideDrawer = (props) => {
         <div className="side-drawer__user--box">
           <img
             className="side-drawer__user--photo"
-            src={`http://localhost:3000/users/${loggedInUser.photo}`}
+            src={
+              loggedInUser.photo
+                ? `http://localhost:3000/users/${loggedInUser.photo}`
+                : defaultUserJpg
+            }
             alt="user-avatar"
           />
 

@@ -6,6 +6,10 @@
     border-radius: 50%;
     cursor: pointer;
     transition: $transition-3s;
+
+    @include for-tablet {
+      width: 4.4rem;
+    }
   }
 
   &__photo:hover {

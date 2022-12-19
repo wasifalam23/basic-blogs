@@ -35,12 +35,31 @@ $border-radius-5px: 5px;
 $transition-3s: all 0.3s ease-in-out;
 $box-shadow-2: 1px 2px 5px rgba(0, 0, 0, 0.1);
 
-// Break Points
-$bp-small: 48em; // 768px
+// Mixins, Breakpoints
+// 1366px
+@mixin for-small-desktop {
+  @media screen and (max-width: 85.25em) {
+    @content;
+  }
+}
 
-// Mixins
+// 1200px
+@mixin for-landscape-tablet {
+  @media screen and (max-width: 75em) {
+    @content;
+  }
+}
+
+// 944px
+@mixin for-tablet {
+  @media screen and (max-width: 59em) {
+    @content;
+  }
+}
+
+// 768px
 @mixin for-small-device {
-  @media screen and (max-width: $bp-small) {
+  @media screen and (max-width: 48em) {
     @content;
   }
 }
@@ -59,6 +78,14 @@ html {
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent !important;
   outline: none !important;
+
+  @include for-landscape-tablet {
+    font-size: 56.25%; // 9px
+  }
+
+  @include for-tablet {
+    font-size: 50%; // 8px
+  }
 }
 
 body {
@@ -66,7 +93,7 @@ body {
   line-height: 1;
   background-color: $color-primary-gray;
 
-  @media screen and (max-width: $bp-small) {
+  @include for-small-device {
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;

@@ -2,7 +2,6 @@
 
 .post-info {
   &__container {
-    max-width: 80rem;
     margin: 0 auto;
     margin-top: 10rem;
   }
@@ -36,9 +35,6 @@
     font-size: 1.5rem;
     color: $color-gray-dark-3;
     font-weight: $font-medium;
-  }
-
-  &__content--main {
   }
 
   &__post-img--holder {
@@ -88,16 +84,27 @@
     font-size: 1.4rem;
     padding: 1.2rem 1.2rem;
     height: 12rem;
+
+    @include for-tablet {
+      font-size: 1.5rem;
+    }
   }
 
   &__comment--form-control textarea::placeholder {
     font-size: 1.2rem;
+    @include for-tablet {
+      font-size: 1.25rem;
+    }
   }
 
   &__comment--submit-btn {
     align-self: flex-end;
     font-size: 1.3rem;
     padding: 0.7rem 1.3rem;
+
+    @include for-tablet {
+      padding: 0.9rem 1.5rem;
+    }
   }
 
   &__comment--submit-btn--disabled {

@@ -1,11 +1,24 @@
 @import '../index.scss';
 
+.post-details {
+  &__container {
+    max-width: 85rem;
+  }
+}
+
+.edit-profile {
+  &__container {
+    max-width: 120rem;
+  }
+}
+
 .auth {
   &__container {
-    max-width: 100rem;
+    max-width: 95rem;
     margin: 0 auto;
-    margin-top: 15rem;
-    padding: 0 3.2rem;
+    margin-top: 10rem;
+    padding: 0 3rem;
+    padding-bottom: 10rem;
   }
 }
 

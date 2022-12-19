@@ -63,7 +63,7 @@ const PostItem = (props) => {
           className="post-item__read-more--btn"
           onClick={readMoreHandler}
         >
-          Read More
+          Read Post
         </button>
 
         <footer className="post-item__footer">

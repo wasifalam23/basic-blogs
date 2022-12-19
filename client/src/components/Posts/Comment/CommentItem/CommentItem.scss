@@ -4,9 +4,13 @@
   &__container {
     position: relative;
     background-color: $color-teal-light-2;
-    padding: 1.2rem 1.2rem;
+    padding: 1.2rem;
     padding-right: 3rem;
     border-radius: $border-radius-5px;
+
+    @include for-tablet {
+      padding: 1.3rem 1.5rem;
+    }
   }
 
   &__main--content {
@@ -14,22 +18,21 @@
     gap: 1rem;
   }
 
-  &__user-img--holder {
-  }
-
   &__user-img {
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 50%;
+
+    @include for-tablet {
+      width: 4rem;
+      height: 4rem;
+    }
   }
 
   &__content {
     display: flex;
     gap: 2rem;
     margin-top: 0.4rem;
-  }
-
-  &__user-comment--holder {
   }
 
   &__user-date--holder {
@@ -49,6 +52,11 @@
     line-height: 1.2;
     font-weight: $font-regular;
     color: $color-black;
+
+    @include for-tablet {
+      margin-top: 0.5rem;
+      font-size: 1.4rem;
+    }
   }
 
   &__comment-date {

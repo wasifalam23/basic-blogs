@@ -7,22 +7,25 @@
 
   &__container {
     width: 22rem;
-    position: fixed;
+    position: absolute;
     background-color: $color-white;
     z-index: 100;
-    right: 11rem;
+    right: 6rem;
     top: 5.5rem;
     border-radius: $border-radius-5px;
     overflow: hidden;
     padding: 2rem 1.4rem;
     padding-bottom: 1.4rem;
     box-shadow: $box-shadow-2;
+
+    @include for-small-desktop {
+      right: 5rem;
+    }
   }
 
   &__user--holder {
     display: flex;
     flex-direction: column;
-
     align-items: center;
     padding: 0 3.5rem 2rem 3.5rem;
     border-bottom: 0.5px solid $color-gray-dark;
@@ -40,12 +43,12 @@
     font-size: 1.4rem;
     font-weight: $font-medium;
     color: $color-black;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
   &__user--email {
     font-size: 1.35rem;
-    color: $color-gray-dark-4;
+    color: $color-gray-dark-2;
     font-weight: $font-medium;
   }
 

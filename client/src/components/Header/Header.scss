@@ -2,13 +2,15 @@
 
 .header {
   background-color: $color-primary-gray;
-  padding-right: 10rem;
-  padding-left: 24rem;
+  padding: 0 4.8rem;
   border-bottom: 0.5px solid #ced4da;
 
-  @include for-small-device {
-    padding-left: 4rem;
-    padding-right: 4rem;
+  @include for-small-desktop {
+    padding: 0 4rem;
+  }
+
+  @include for-landscape-tablet {
+    padding: 0 6rem;
   }
 
   &__backdrop {
@@ -20,6 +22,10 @@
     justify-content: space-between;
     align-items: center;
     height: 6rem;
+
+    @include for-tablet {
+      height: 7rem;
+    }
   }
 
   &__logo:link,
