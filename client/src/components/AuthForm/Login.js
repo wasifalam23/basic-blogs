@@ -52,7 +52,7 @@ const Login = () => {
     };
 
     const reqConfig = {
-      url: 'http://localhost:3000/api/v1/users/login',
+      url: 'http://192.168.0.106:3000/api/v1/users/login',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

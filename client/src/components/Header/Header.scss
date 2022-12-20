@@ -13,8 +13,12 @@
     padding: 0 6rem;
   }
 
+  @include for-smaller-tablet {
+    padding: 0 3rem;
+  }
+
   &__backdrop {
-    margin-top: 5.9rem;
+    margin-top: 7rem;
   }
 
   &__nav {
@@ -41,7 +45,7 @@
     display: none;
     cursor: pointer;
 
-    @include for-small-device {
+    @include for-smaller-tablet {
       display: initial;
     }
   }

@@ -39,7 +39,7 @@ const SideDrawer = (props) => {
             className="side-drawer__user--photo"
             src={
               loggedInUser.photo
-                ? `http://localhost:3000/users/${loggedInUser.photo}`
+                ? `http://192.168.0.106:3000/users/${loggedInUser.photo}`
                 : defaultUserJpg
             }
             alt="user-avatar"

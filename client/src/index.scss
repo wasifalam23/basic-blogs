@@ -58,7 +58,7 @@ $box-shadow-2: 1px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 // 768px
-@mixin for-small-device {
+@mixin for-smaller-tablet {
   @media screen and (max-width: 48em) {
     @content;
   }
@@ -93,7 +93,7 @@ body {
   line-height: 1;
   background-color: $color-primary-gray;
 
-  @include for-small-device {
+  @include for-smaller-tablet {
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;

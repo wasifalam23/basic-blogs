@@ -42,7 +42,7 @@ const NavUser = () => {
 
     logout(
       {
-        url: 'http://localhost:3000/api/v1/users/logout',
+        url: 'http://192.168.0.106:3000/api/v1/users/logout',
       },
       logoutStatus
     );
@@ -74,7 +74,7 @@ const NavUser = () => {
           className="logged-in-user__photo"
           src={
             userPhoto
-              ? `http://localhost:3000/users/${userPhoto}`
+              ? `http://192.168.0.106:3000/users/${userPhoto}`
               : defaultUserJpg
           }
           alt="user-avatar"

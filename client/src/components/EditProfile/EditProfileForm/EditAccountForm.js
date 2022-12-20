@@ -73,7 +73,9 @@ const EditAccountForm = () => {
     if (!photo || !firstName || !lastName || !email) return;
 
     const photoUrl =
-      photo === 'default.jpg' ? null : `http://localhost:3000/users/${photo}`;
+      photo === 'default.jpg'
+        ? null
+        : `http://192.168.0.106:3000/users/${photo}`;
 
     setPreviewUrl(photoUrl);
     setFirstName(firstName);
@@ -127,7 +129,7 @@ const EditAccountForm = () => {
     };
 
     const reqConfig = {
-      url: `http://localhost:3000/api/v1/users/updateMe`,
+      url: `http://192.168.0.106:3000/api/v1/users/updateMe`,
       method: 'PATCH',
       body: formData,
     };

@@ -59,7 +59,7 @@ const EditPasswordForm = () => {
     };
 
     const reqConfig = {
-      url: 'http://localhost:3000/api/v1/users/updateMyPassword',
+      url: 'http://192.168.0.106:3000/api/v1/users/updateMyPassword',
       method: 'PATCH',
       body: JSON.stringify({
         passwordCurrent: enteredCurrPassword,

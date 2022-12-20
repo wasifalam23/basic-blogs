@@ -47,7 +47,7 @@ const PostItem = (props) => {
       <header className="post-item__header">
         <img
           className="post-item__image"
-          src={`http://localhost:3000/blogs/${props.img}`}
+          src={`http://192.168.0.106:3000/blogs/${props.img}`}
           alt="post"
         />
       </header>
@@ -70,7 +70,7 @@ const PostItem = (props) => {
           <div className="post-item__author--box">
             <img
               className="post-item__author--avatar"
-              src={`http://localhost:3000/users/${props.authorAv}`}
+              src={`http://192.168.0.106:3000/users/${props.authorAv}`}
               alt="author-avatar"
             />
             <p className="post-item__author--name">

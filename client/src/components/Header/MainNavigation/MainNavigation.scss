@@ -8,7 +8,7 @@
     list-style: none;
     margin-top: 2.3px;
 
-    @include for-small-device {
+    @include for-smaller-tablet {
       display: none;
     }
 

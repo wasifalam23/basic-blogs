@@ -63,14 +63,14 @@ const AddPostForm = () => {
     const postData = (data) => {
       const { title, description, image } = data.data.blog;
 
-      setPreviewUrl(`http://localhost:3000/blogs/${image}`);
+      setPreviewUrl(`http://192.168.0.106:3000/blogs/${image}`);
 
       setTitle(title);
       setDescr(description);
     };
 
     const reqConfig = {
-      url: `http://localhost:3000/api/v1/blogs/${postId}`,
+      url: `http://192.168.0.106:3000/api/v1/blogs/${postId}`,
     };
 
     getDataById(reqConfig, postData);
@@ -110,7 +110,7 @@ const AddPostForm = () => {
       };
 
       const reqConfig = {
-        url: `http://localhost:3000/api/v1/blogs/${postId}`,
+        url: `http://192.168.0.106:3000/api/v1/blogs/${postId}`,
         method: 'PATCH',
         body: formData,
       };
@@ -131,7 +131,7 @@ const AddPostForm = () => {
     };
 
     const reqConfig = {
-      url: 'http://localhost:3000/api/v1/blogs',
+      url: 'http://192.168.0.106:3000/api/v1/blogs',
       method: 'POST',
       body: formData,
     };

@@ -31,7 +31,7 @@ const PostList = (props) => {
 
     deletePost(
       {
-        url: `http://localhost:3000/api/v1/blogs/${postDeleteId}`,
+        url: `http://192.168.0.106:3000/api/v1/blogs/${postDeleteId}`,
         method: 'DELETE',
       },
       deletedPostData

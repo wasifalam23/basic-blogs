@@ -36,7 +36,7 @@ const App = () => {
     };
 
     checkIsLoggedIn(
-      { url: 'http://localhost:3000/api/v1/users/isLoggedIn' },
+      { url: 'http://192.168.0.106:3000/api/v1/users/isLoggedIn' },
       loggedInState
     );
   }, [dispatch, checkIsLoggedIn]);
@@ -53,7 +53,7 @@ const App = () => {
     };
 
     const reqConfig = {
-      url: 'http://localhost:3000/api/v1/users/me',
+      url: 'http://192.168.0.106:3000/api/v1/users/me',
     };
 
     getCurrentUser(reqConfig, loggedInUserData);
@@ -65,7 +65,7 @@ const App = () => {
     };
 
     const reqConfig = {
-      url: 'http://localhost:3000/api/v1/blogs',
+      url: 'http://192.168.0.106:3000/api/v1/blogs',
     };
 
     fetchPosts(reqConfig, receivedPostData);

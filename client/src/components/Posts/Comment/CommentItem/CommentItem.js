@@ -48,7 +48,7 @@ const CommentItem = (props) => {
         <div className="comment-item__user-img--holder">
           <img
             className="comment-item__user-img"
-            src={`http://localhost:3000/users/${props.userImg}`}
+            src={`http://192.168.0.106:3000/users/${props.userImg}`}
             alt="user-avatar"
           />
         </div>

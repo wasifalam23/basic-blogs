@@ -89,7 +89,7 @@ const Signup = () => {
     };
 
     const reqConfig = {
-      url: 'http://localhost:3000/api/v1/users/signup',
+      url: 'http://192.168.0.106:3000/api/v1/users/signup',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

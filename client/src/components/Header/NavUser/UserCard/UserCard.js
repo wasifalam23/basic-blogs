@@ -30,7 +30,7 @@ const UserCard = (props) => {
       <div className="user-card__user--holder">
         <img
           className="user-card__user--photo"
-          src={`http://localhost:3000/users/${user.photo}`}
+          src={`http://192.168.0.106:3000/users/${user.photo}`}
           alt=""
         />
         <p className="user-card__user--name">

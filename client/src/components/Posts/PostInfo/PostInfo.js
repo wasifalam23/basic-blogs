@@ -54,7 +54,7 @@ const PostInfo = () => {
     };
 
     const reqConfig = {
-      url: `http://localhost:3000/api/v1/blogs/${postId}`,
+      url: `http://192.168.0.106:3000/api/v1/blogs/${postId}`,
     };
     getPostById(reqConfig, receivedData);
   }, [getPostById, postId, commentChanged]);
@@ -71,7 +71,7 @@ const PostInfo = () => {
     };
 
     const reqConfig = {
-      url: `http://localhost:3000/api/v1/comments/${commentEditId}`,
+      url: `http://192.168.0.106:3000/api/v1/comments/${commentEditId}`,
       method: 'GET',
     };
 
@@ -97,7 +97,7 @@ const PostInfo = () => {
       };
 
       const reqConfig = {
-        url: `http://localhost:3000/api/v1/comments/${commentEditId}`,
+        url: `http://192.168.0.106:3000/api/v1/comments/${commentEditId}`,
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ const PostInfo = () => {
     };
 
     const reqConfig = {
-      url: `http://localhost:3000/api/v1/blogs/${postId}/comments`,
+      url: `http://192.168.0.106:3000/api/v1/blogs/${postId}/comments`,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ const PostInfo = () => {
             <div className="post-info__author--box">
               <img
                 className="post-info__author--avatar"
-                src={`http://localhost:3000/users/${post.author.photo}`}
+                src={`http://192.168.0.106:3000/users/${post.author.photo}`}
                 alt="author-avatar"
               />
               <p className="post-info__author--name">
@@ -158,7 +158,7 @@ const PostInfo = () => {
             <div className="post-info__post-img--holder">
               <img
                 className="post-info__post-img"
-                src={`http://localhost:3000/blogs/${post.image}`}
+                src={`http://192.168.0.106:3000/blogs/${post.image}`}
                 alt="post"
               />
             </div>
