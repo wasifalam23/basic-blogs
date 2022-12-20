@@ -4,7 +4,7 @@ import AddPostForm from '../components/AddPost/AddPostForm/AddPostForm';
 
 const AddPost = () => {
   return (
-    <Container title="Add New Post">
+    <Container title="Add New Post" className="add-post-page__container">
       <AddPostForm />
     </Container>
   );

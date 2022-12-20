@@ -11,20 +11,46 @@
       grid-template-columns: 41fr 59fr;
       grid-column-gap: 4rem;
     }
+
+    @include for-tablet {
+      grid-template-columns: 1fr;
+      grid-row-gap: 6rem;
+    }
   }
 
   &__text--inputs {
     display: flex;
     flex-direction: column;
     gap: 3rem;
+
+    @include for-tablet {
+      gap: 2.5rem;
+    }
+  }
+
+  &__input--title input {
+    @include for-tablet {
+      padding: 1.8rem 2rem;
+    }
   }
 
   &__input--description {
     height: 100%;
+
+    @include for-tablet {
+      height: 40rem;
+    }
   }
 
   &__publish--btn {
     grid-column: 2/-1;
     justify-self: end;
+
+    @include for-tablet {
+      font-size: 1.6rem;
+      padding: 1.4rem 2rem;
+      grid-column: initial;
+      margin-top: -3rem;
+    }
   }
 }

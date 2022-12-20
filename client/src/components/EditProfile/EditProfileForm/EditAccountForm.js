@@ -152,7 +152,7 @@ const EditAccountForm = () => {
 
         <div>
           <h3 className="edit-profile__input-type--title">
-            Your Account Settings
+            Your Account Settings + Photo
           </h3>
           <div className="edit-profile__text-inputs--holder">
             <Input
@@ -191,13 +191,13 @@ const EditAccountForm = () => {
             {updatingUser ? (
               <Button
                 type="submit"
-                className="edit-profile__account-save--btn"
+                className="edit-profile__save--btn"
                 disabled
               >
                 Saving...
               </Button>
             ) : (
-              <Button type="submit" className="edit-profile__account-save--btn">
+              <Button type="submit" className="edit-profile__save--btn">
                 Save Settings
               </Button>
             )}

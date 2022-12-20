@@ -7,6 +7,10 @@
   &__inputs--holder {
     display: flex;
     gap: 8rem;
+
+    @include for-tablet {
+      gap: 6rem;
+    }
   }
 
   &__user-img--upload {
@@ -34,9 +38,14 @@
     gap: 2rem;
   }
 
-  &__account-save--btn {
+  &__save--btn {
     align-self: flex-end;
     margin-top: 0.5rem;
     // padding: 0.8rem 2rem;
+
+    @include for-tablet {
+      padding: 1.2rem 2rem;
+      font-size: 1.4rem;
+    }
   }
 }

@@ -26,7 +26,7 @@ const MyPosts = () => {
   return (
     <Container title="My Posts" button={addPostBtn}>
       {myPosts.length === 0 ? (
-        <p className="my-posts__alt--text">
+        <p className="my-posts-page__alt--text">
           You currenly don't any post created.
         </p>
       ) : (

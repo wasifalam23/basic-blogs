@@ -159,6 +159,7 @@ const AddPostForm = () => {
             id="title"
             placeholder="Give a title"
             type="text"
+            className="add-post__input--title"
             value={enteredTitle}
             onChange={titleChangeHandler}
             onBlur={titleBlurHandler}

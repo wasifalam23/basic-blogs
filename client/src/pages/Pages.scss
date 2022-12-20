@@ -1,18 +1,26 @@
 @import '../index.scss';
 
-.post-details {
+.add-post-page {
+  &__container {
+    @include for-tablet {
+      max-width: 85%;
+    }
+  }
+}
+
+.post-details-page {
   &__container {
     max-width: 85rem;
   }
 }
 
-.edit-profile {
+.edit-profile-page {
   &__container {
     max-width: 120rem;
   }
 }
 
-.auth {
+.auth-page {
   &__container {
     max-width: 95rem;
     margin: 0 auto;
@@ -22,7 +30,7 @@
   }
 }
 
-.my-posts {
+.my-posts-page {
   &__alt--text {
     font-size: 1.6rem;
     font-weight: $font-regular;

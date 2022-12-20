@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultUserImg from '../../../assets/default.jpg';
-import { faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faTimes, faCamera } from '@fortawesome/free-solid-svg-icons';
 
 import './UserImageUpload.scss';
 
@@ -73,7 +73,10 @@ const UserImageUpload = (props) => {
           className="user-upload__pick-img--btn"
           onClick={props.onPickImg}
         >
-          <FontAwesomeIcon icon={faPen} className="user-upload__pick--icon" />
+          <FontAwesomeIcon
+            icon={faCamera}
+            className="user-upload__pick--icon"
+          />
         </button>
       </main>
     </div>

@@ -116,13 +116,13 @@ const EditPasswordForm = () => {
             {passwordUpdating ? (
               <Button
                 type="submit"
-                className="edit-profile__account-save--btn"
+                className="edit-profile__save--btn"
                 disabled
               >
                 Saving...
               </Button>
             ) : (
-              <Button type="submit" className="edit-profile__account-save--btn">
+              <Button type="submit" className="edit-profile__save--btn">
                 Save Password
               </Button>
             )}

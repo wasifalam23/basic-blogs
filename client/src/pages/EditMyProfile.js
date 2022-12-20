@@ -9,7 +9,7 @@ const EditMyProfile = () => {
     <Container
       title="Edit Profile"
       navBack="back"
-      className="edit-profile__container"
+      className="edit-profile-page__container"
     >
       <EditProfileForm />
     </Container>

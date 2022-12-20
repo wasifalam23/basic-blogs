@@ -5,7 +5,7 @@ import './Pages.scss';
 
 const Auth = () => {
   return (
-    <div className="auth__container">
+    <div className="auth-page__container">
       <AuthForm />
     </div>
   );

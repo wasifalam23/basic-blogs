@@ -11,7 +11,7 @@ const PostDetails = () => {
     <Container
       title="Post Details"
       navBack="back"
-      className="post-details__container"
+      className="post-details-page__container"
     >
       <PostInfo />
     </Container>
