@@ -80,7 +80,7 @@ const App = () => {
         <Route path="/details/:postId" element={<PostDetails />} />
         <Route
           path="/posts/new"
-          element={isLoggedIn ? <AddPost /> : <AddPost />}
+          element={isLoggedIn ? <AddPost /> : <FallBack />}
         />
         <Route
           path="/posts/:postId"
@@ -98,7 +98,7 @@ const App = () => {
 
         <Route
           path="/user-update"
-          element={isLoggedIn ? <EditMyProfile /> : <EditMyProfile />}
+          element={isLoggedIn ? <EditMyProfile /> : <FallBack />}
         />
 
         <Route path="*" element={<Navigate to="/" replace />} />

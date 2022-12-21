@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { uiActions } from '../../../store/ui-slice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultUserJpg from '../../../assets/default.jpg';
-import ConfirmModal from '../../../utils/Modal/ConfirmModal/ConfirmModal';
-import useLogout from '../../../hooks/logout-hook';
 
 import {
   faListAlt,
@@ -19,10 +17,9 @@ import {
 import { NavLink } from 'react-router-dom';
 
 import './SideDrawer.scss';
+import LogoutModal from '../LogoutModal/LogoutModal';
 
 const SideDrawer = (props) => {
-  const { logout } = useLogout();
-
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const loggedInUser = useSelector((state) => state.user.userData);
 
@@ -38,15 +35,6 @@ const SideDrawer = (props) => {
     dispatch(uiActions.setUserCardClose());
   };
 
-  const logoutModalConfirmHandler = () => {
-    logout();
-    dispatch(uiActions.setLogoutConfirmModalState(false));
-  };
-
-  const logoutModalCancelHandler = () => {
-    dispatch(uiActions.setLogoutConfirmModalState(false));
-  };
-
   const linkClass = ({ isActive }) => {
     return isActive
       ? 'side-drawer__link side-drawer__link--active'
@@ -59,14 +47,7 @@ const SideDrawer = (props) => {
         props.drawerIsOpen && 'side-drawer__list--active'
       }`}
     >
-      {showLogoutConfrimModal && (
-        <ConfirmModal
-          title="Logout?"
-          message="Do you really want to logout?"
-          onConfirm={logoutModalConfirmHandler}
-          onCancel={logoutModalCancelHandler}
-        />
-      )}
+      {showLogoutConfrimModal && <LogoutModal />}
       {isLoggedIn && (
         <div className="side-drawer__user--box">
           <img
