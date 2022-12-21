@@ -14,6 +14,10 @@
     @include for-tablet {
       height: 40rem;
     }
+
+    @include for-mobile {
+      height: 30rem;
+    }
   }
 
   &__preview:hover {

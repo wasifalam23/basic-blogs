@@ -41,6 +41,10 @@
     border: 1px solid $color-gray-light;
     font-size: 1.8rem;
     outline: none;
+
+    @include for-tablet {
+      padding: 1.6rem 2rem;
+    }
   }
 
   &__box input:focus,

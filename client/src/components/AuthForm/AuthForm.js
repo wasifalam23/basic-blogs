@@ -17,7 +17,8 @@ const AuthForm = () => {
       <div className="auth-form__intro--holder">
         <h3 className="auth-form__intro--title">Basic Blogs</h3>
         <p className="auth-form__intro--descr">
-          A site user can create simple <br /> blog posts.
+          A site where user can create <br />
+          simple blog posts.
         </p>
         <img src={contentCreator} alt="" className="auth-form__intro--illus" />
       </div>
