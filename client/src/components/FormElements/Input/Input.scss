@@ -59,10 +59,6 @@
     }
   }
 
-  &__box input::placeholder {
-    font-size: 1.4rem;
-  }
-
   &__box--invalid input,
   &__box--invalid textarea {
     border: 1px solid $color-red-medium;

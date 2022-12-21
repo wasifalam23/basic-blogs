@@ -5,6 +5,10 @@
     @include for-tablet {
       max-width: 85%;
     }
+
+    @include for-mobile {
+      max-width: 100%;
+    }
   }
 }
 

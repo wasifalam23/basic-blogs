@@ -12,6 +12,10 @@
     height: 20rem;
     border-top-right-radius: $border-radius-5px;
     border-top-left-radius: $border-radius-5px;
+
+    @include for-mobile {
+      height: 25rem;
+    }
   }
 
   &__content--main {
@@ -26,6 +30,10 @@
       padding-left: 1.4rem;
       height: 21rem;
     }
+
+    @include for-mobile {
+      height: 28.5rem;
+    }
   }
 
   &__pub-date {
@@ -35,8 +43,8 @@
   }
 
   &__dropdown {
-    right: 5px;
-    top: 1px;
+    right: 0.5rem;
+    top: 0.1rem;
 
     .dropdown__action--icon {
       font-size: 1.5rem;
@@ -62,6 +70,10 @@
     @include for-tablet {
       width: 23rem;
     }
+
+    @include for-mobile {
+      width: 80%;
+    }
   }
 
   &__descrp {
@@ -73,6 +85,11 @@
     text-overflow: ellipsis;
     white-space: wrap;
     color: $color-black;
+
+    @include for-mobile {
+      height: 13.5rem;
+      font-size: 1.4rem;
+    }
   }
 
   &__read-more--btn {
@@ -137,6 +154,10 @@
 
     @include for-tablet {
       font-size: 1.22rem;
+    }
+
+    @include for-mobile {
+      font-size: 1.4rem;
     }
   }
 }

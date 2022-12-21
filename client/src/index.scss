@@ -64,6 +64,13 @@ $box-shadow-2: 1px 2px 5px rgba(0, 0, 0, 0.1);
   }
 }
 
+// 544px
+@mixin for-mobile {
+  @media screen and (max-width: 34em) {
+    @content;
+  }
+}
+
 *,
 *::before,
 *::after {
