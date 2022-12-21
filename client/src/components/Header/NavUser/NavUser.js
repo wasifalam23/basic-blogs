@@ -1,25 +1,23 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { uiActions } from '../../../store/ui-slice';
-import { authActions } from '../../../store/auth-slice';
 
 import UserCard from './UserCard/UserCard';
 import ConfirmModal from '../../../utils/Modal/ConfirmModal/ConfirmModal';
 import defaultUserJpg from '../../../assets/default.jpg';
 
 import './NavUser.scss';
-import useHttp from '../../../hooks/http-hook';
-import { toast } from 'react-toastify';
+
+import useLogout from '../../../hooks/logout-hook';
 
 const NavUser = () => {
-  const { sendRequest: logout } = useHttp();
+  const { logout } = useLogout();
 
   const userPhoto = useSelector((state) => state.user.userData.photo);
   const ui = useSelector((state) => state.ui);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const cardOpenCloseHandler = () => {
     dispatch(uiActions.setUserCardState());
@@ -30,25 +28,8 @@ const NavUser = () => {
   };
 
   const logoutModalConfirmHandler = () => {
-    const logoutStatus = (data) => {
-      if (data.status === 'success') {
-        toast.success('You have successfully logged out');
-        navigate('/auth');
-        dispatch(authActions.setIsLoggedIn(false));
-      } else {
-        toast.error('Something went wrong!');
-      }
-    };
-
-    logout(
-      {
-        url: 'http://192.168.0.106:3000/api/v1/users/logout',
-      },
-      logoutStatus
-    );
-
+    logout();
     dispatch(uiActions.setLogoutConfirmModalState(false));
-    navigate('/auth', { replace: true });
   };
 
   const logoutModalCancelHandler = () => {
@@ -60,7 +41,7 @@ const NavUser = () => {
       {ui.userCardIsOpen && <UserCard onCancel={cardCancelHander} />}
       {ui.showLogoutConfrimModal && (
         <ConfirmModal
-          title="Are you sure?"
+          title="Logout?"
           message="Do you really want to logout?"
           onConfirm={logoutModalConfirmHandler}
           onCancel={logoutModalCancelHandler}

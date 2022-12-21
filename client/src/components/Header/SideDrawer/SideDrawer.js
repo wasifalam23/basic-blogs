@@ -1,6 +1,10 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { uiActions } from '../../../store/ui-slice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultUserJpg from '../../../assets/default.jpg';
+import ConfirmModal from '../../../utils/Modal/ConfirmModal/ConfirmModal';
+import useLogout from '../../../hooks/logout-hook';
 
 import {
   faListAlt,
@@ -13,13 +17,35 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import './SideDrawer.scss';
 
 const SideDrawer = (props) => {
+  const { logout } = useLogout();
+
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const loggedInUser = useSelector((state) => state.user.userData);
+
+  const showLogoutConfrimModal = useSelector(
+    (state) => state.ui.showLogoutConfrimModal
+  );
+
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    props.onCancel();
+    dispatch(uiActions.setLogoutConfirmModalState(true));
+    dispatch(uiActions.setUserCardClose());
+  };
+
+  const logoutModalConfirmHandler = () => {
+    logout();
+    dispatch(uiActions.setLogoutConfirmModalState(false));
+  };
+
+  const logoutModalCancelHandler = () => {
+    dispatch(uiActions.setLogoutConfirmModalState(false));
+  };
 
   const linkClass = ({ isActive }) => {
     return isActive
@@ -33,6 +59,14 @@ const SideDrawer = (props) => {
         props.drawerIsOpen && 'side-drawer__list--active'
       }`}
     >
+      {showLogoutConfrimModal && (
+        <ConfirmModal
+          title="Logout?"
+          message="Do you really want to logout?"
+          onConfirm={logoutModalConfirmHandler}
+          onCancel={logoutModalCancelHandler}
+        />
+      )}
       {isLoggedIn && (
         <div className="side-drawer__user--box">
           <img
@@ -155,10 +189,7 @@ const SideDrawer = (props) => {
       )}
 
       {isLoggedIn && (
-        <li
-          className="side-drawer__list--item"
-          onClick={() => props.onCancel()}
-        >
+        <li className="side-drawer__list--item" onClick={logoutHandler}>
           <button className="side-drawer__logout--btn">
             <div className="side-drawer__link-icon-text--holder">
               <FontAwesomeIcon
