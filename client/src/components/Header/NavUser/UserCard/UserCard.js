@@ -79,11 +79,7 @@ const LoggedInUserCard = (props) => {
   return (
     <React.Fragment>
       <Backdrop onCancel={props.onCancel} className="user-card__backdrop" />
-
-      {ReactDOM.createPortal(
-        <UserCard onCancel={props.onCancel} />,
-        document.getElementById('user-card-root')
-      )}
+      <UserCard onCancel={props.onCancel} />
     </React.Fragment>
   );
 };

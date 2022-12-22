@@ -1,6 +1,10 @@
 @import '../../../index.scss';
 
-.logged-in-user {
+.nav-user {
+  &__container {
+    position: relative;
+  }
+
   &__photo {
     width: 4rem;
     border-radius: 50%;

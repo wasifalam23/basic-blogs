@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MainNavigation from './MainNavigation/MainNavigation';
 import Backdrop from '../../utils/Modal/Backdrop/Backdrop';
@@ -6,7 +6,18 @@ import './Header.scss';
 import SideDrawer from './SideDrawer/SideDrawer';
 
 const Header = () => {
+  const [boxShadow, setBoxShadow] = useState(false);
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+
+  const giveBoxShadow = () => {
+    if (window.scrollY >= 100) {
+      setBoxShadow(true);
+    } else {
+      setBoxShadow(false);
+    }
+  };
+
+  window.addEventListener('scroll', giveBoxShadow);
 
   const burgerClickHandler = () => {
     setDrawerIsOpen((prev) => !prev);
@@ -17,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
+    <header className={`header ${boxShadow && 'header__box-shadow'}`}>
       <nav className="header__nav">
         {drawerIsOpen && (
           <Backdrop

@@ -28,7 +28,7 @@
   &__container {
     max-width: 95rem;
     margin: 0 auto;
-    margin-top: 10rem;
+    margin-top: 16rem;
     padding: 0 3rem;
     padding-bottom: 10rem;
 
@@ -39,7 +39,7 @@
     }
 
     @include for-mobile {
-      margin-top: 6rem;
+      margin-top: 12rem;
     }
   }
 }

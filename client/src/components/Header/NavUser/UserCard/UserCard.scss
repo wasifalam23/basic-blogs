@@ -10,8 +10,8 @@
     position: absolute;
     background-color: $color-white;
     z-index: 100;
-    right: 6rem;
-    top: 5.5rem;
+    right: 2rem;
+    top: 4.3rem;
     border-radius: $border-radius-5px;
     overflow: hidden;
     padding: 2rem 1.4rem;
@@ -19,7 +19,11 @@
     box-shadow: $box-shadow-2;
 
     @include for-small-desktop {
-      right: 5rem;
+      top: 4.6rem;
+    }
+
+    @include for-tablet {
+      top: 5rem;
     }
   }
 

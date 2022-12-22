@@ -25,15 +25,12 @@ const NavUser = () => {
   };
 
   return (
-    <React.Fragment>
-      {ui.userCardIsOpen && <UserCard onCancel={cardCancelHander} />}
+    <div className="nav-user__container">
       {ui.showLogoutConfrimModal && <LogoutModal />}
-      <div
-        className="logged-in-user__photo--holder"
-        onClick={cardOpenCloseHandler}
-      >
+      {ui.userCardIsOpen && <UserCard onCancel={cardCancelHander} />}
+      <div className="nav-user__photo--holder" onClick={cardOpenCloseHandler}>
         <img
-          className="logged-in-user__photo"
+          className="nav-user__photo"
           src={
             userPhoto
               ? `http://192.168.0.106:3000/users/${userPhoto}`
@@ -42,7 +39,7 @@ const NavUser = () => {
           alt="user-avatar"
         />
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
