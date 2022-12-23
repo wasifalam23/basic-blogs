@@ -21,7 +21,7 @@ const UserCard = (props) => {
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
-    dispatch(uiActions.setLogoutConfirmModalState(true));
+    dispatch(uiActions.setDesktopLogoutConfirmModalState(true));
     dispatch(uiActions.setUserCardClose());
   };
 

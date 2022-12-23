@@ -33,11 +33,13 @@ const LogoutModal = () => {
     );
 
     navigate('/auth', { replace: true });
-    dispatch(uiActions.setLogoutConfirmModalState(false));
+    dispatch(uiActions.setDesktopLogoutConfirmModalState(false));
+    dispatch(uiActions.setMobileLogoutConfirmModalState(false));
   };
 
   const logoutModalCancelHandler = () => {
-    dispatch(uiActions.setLogoutConfirmModalState(false));
+    dispatch(uiActions.setDesktopLogoutConfirmModalState(false));
+    dispatch(uiActions.setMobileLogoutConfirmModalState(false));
   };
 
   return (

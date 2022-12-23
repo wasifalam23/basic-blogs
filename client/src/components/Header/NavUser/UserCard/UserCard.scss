@@ -2,7 +2,7 @@
 
 .user-card {
   &__backdrop {
-    background: none;
+    background: transparent !important;
   }
 
   &__container {

@@ -8,7 +8,7 @@
     padding: 3rem 4rem;
     border-radius: $border-radius-5px;
     transform: translate(-50%);
-    z-index: 1000;
+    z-index: 10000;
     overflow: hidden;
     background-color: $color-white;
     display: flex;
@@ -16,6 +16,10 @@
     justify-content: center;
     flex-direction: column;
     box-shadow: $box-shadow-2;
+  }
+
+  &__backdrop {
+    z-index: 1000;
   }
 
   &__header {

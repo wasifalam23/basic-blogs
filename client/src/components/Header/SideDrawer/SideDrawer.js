@@ -23,16 +23,13 @@ const SideDrawer = (props) => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const loggedInUser = useSelector((state) => state.user.userData);
 
-  const showLogoutConfrimModal = useSelector(
-    (state) => state.ui.showLogoutConfrimModal
-  );
+  const ui = useSelector((state) => state.ui);
 
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
     props.onCancel();
-    dispatch(uiActions.setLogoutConfirmModalState(true));
-    dispatch(uiActions.setUserCardClose());
+    dispatch(uiActions.setMobileLogoutConfirmModalState(true));
   };
 
   const linkClass = ({ isActive }) => {
@@ -47,7 +44,7 @@ const SideDrawer = (props) => {
         props.drawerIsOpen && 'side-drawer__list--active'
       }`}
     >
-      {showLogoutConfrimModal && <LogoutModal />}
+      {ui.showMobileLogoutConfirmModal && <LogoutModal />}
       {isLoggedIn && (
         <div className="side-drawer__user--box">
           <img

@@ -3,7 +3,7 @@
 .dropdown {
   &__container {
     position: absolute;
-    z-index: 100;
+    z-index: 90;
   }
 
   &__backdrop {
@@ -53,6 +53,7 @@
     padding: 0.7rem 0;
     display: flex;
     flex-direction: column;
+    z-index: 100;
 
     @include for-landscape-tablet {
       top: 2.3rem;

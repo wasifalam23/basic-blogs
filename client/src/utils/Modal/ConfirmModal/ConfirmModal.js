@@ -2,8 +2,8 @@ import React from 'react';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactDOM from 'react-dom';
-import Backdrop from '../Backdrop/Backdrop';
 import Button from '../../../components/FormElements/Button/Button';
+import Backdrop from '../Backdrop/Backdrop';
 import './ConfirmModal.scss';
 
 const ModalOverlay = (props) => {
@@ -43,7 +43,14 @@ const ModalOverlay = (props) => {
 const ConfirmModal = (props) => {
   return (
     <React.Fragment>
-      <Backdrop onCancel={props.onCancel} />
+      {ReactDOM.createPortal(
+        <Backdrop
+          onCancel={props.onCancel}
+          className="confirm-modal__backdrop"
+        />,
+        document.getElementById('backdrop-root')
+      )}
+
       {ReactDOM.createPortal(
         <ModalOverlay
           onConfirm={props.onConfirm}

@@ -26,7 +26,7 @@ const NavUser = () => {
 
   return (
     <div className="nav-user__container">
-      {ui.showLogoutConfrimModal && <LogoutModal />}
+      {ui.showDesktopLogoutConfirmModal && <LogoutModal />}
       {ui.userCardIsOpen && <UserCard onCancel={cardCancelHander} />}
       <div className="nav-user__photo--holder" onClick={cardOpenCloseHandler}>
         <img

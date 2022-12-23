@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   userCardIsOpen: false,
-  showLogoutConfrimModal: false,
+  showDesktopLogoutConfirmModal: false,
+  showMobileLogoutConfirmModal: false,
 };
 
 const uiSlice = createSlice({
@@ -17,8 +18,12 @@ const uiSlice = createSlice({
       state.userCardIsOpen = false;
     },
 
-    setLogoutConfirmModalState(state, action) {
-      state.showLogoutConfrimModal = action.payload;
+    setDesktopLogoutConfirmModalState(state, action) {
+      state.showDesktopLogoutConfirmModal = action.payload;
+    },
+
+    setMobileLogoutConfirmModalState(state, action) {
+      state.showMobileLogoutConfirmModal = action.payload;
     },
   },
 });
