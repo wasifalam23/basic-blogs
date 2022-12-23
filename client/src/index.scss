@@ -71,6 +71,13 @@ $box-shadow-2: 1px 2px 5px rgba(0, 0, 0, 0.1);
   }
 }
 
+// 384px
+@mixin for-small-mobile {
+  @media screen and (max-width: 24em) {
+    @content;
+  }
+}
+
 *,
 *::before,
 *::after {

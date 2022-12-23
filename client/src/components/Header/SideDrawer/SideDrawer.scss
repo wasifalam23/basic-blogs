@@ -25,6 +25,10 @@
     @include for-mobile {
       width: 62%;
     }
+
+    @include for-small-mobile {
+      width: 70%;
+    }
   }
 
   &__list--active {

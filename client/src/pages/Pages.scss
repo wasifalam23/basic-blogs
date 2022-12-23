@@ -41,6 +41,10 @@
     @include for-mobile {
       margin-top: 12rem;
     }
+
+    @include for-small-mobile {
+      padding: 0 3rem;
+    }
   }
 }
 

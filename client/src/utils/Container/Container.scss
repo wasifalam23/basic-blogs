@@ -7,6 +7,10 @@
   padding: 0 4rem;
   padding-bottom: 10rem;
 
+  @include for-small-mobile {
+    padding: 0 3rem;
+  }
+
   &__header {
     margin-bottom: 6rem;
     display: flex;
