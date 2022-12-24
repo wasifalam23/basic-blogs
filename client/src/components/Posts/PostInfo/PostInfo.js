@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { commentActions } from '../../../store/comment-slice';
 import { postActions } from '../../../store/post-slice';
@@ -167,9 +169,15 @@ const PostInfo = () => {
           </main>
 
           <section className="post-info__comment--section">
-            <h3 className="post-info__comment--title">
-              Comments ({post.comments.length})
-            </h3>
+            <div className="post-info__comment-logo-title--box">
+              <FontAwesomeIcon
+                className="post-info__comment--icon"
+                icon={faCommentAlt}
+              />
+              <h3 className="post-info__comment--title">
+                Comments ({post.comments.length})
+              </h3>
+            </div>
             <CommentList comments={post.comments} />
             {isLoggedIn && (
               <div>

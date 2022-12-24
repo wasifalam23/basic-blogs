@@ -79,6 +79,8 @@
     }
   }
 
+  // Comment Section
+
   &__comment--section {
     width: 60%;
     margin-top: 7rem;
@@ -92,11 +94,27 @@
     }
   }
 
+  &__comment-logo-title--box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 0.8rem;
+  }
+
+  &__comment--icon {
+    font-size: 1.4rem;
+    margin-top: 0.2rem;
+    color: $color-black;
+
+    @include for-landscape-tablet {
+      margin-top: 0.1rem;
+    }
+  }
+
   &__comment--title {
     font-size: 1.5rem;
     font-weight: $font-semibold;
     color: $color-black;
-    margin-bottom: 2rem;
 
     @include for-tablet {
       font-size: 1.6rem;
