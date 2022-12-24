@@ -27,7 +27,7 @@ const MyPosts = () => {
     <Container title="My Posts" button={addPostBtn}>
       {myPosts.length === 0 ? (
         <p className="my-posts-page__alt--text">
-          You currenly don't any post created.
+          You currenly don't have any post created.
         </p>
       ) : (
         <PostList myPosts loggedInUserId={loggedInUserId} />

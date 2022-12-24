@@ -7,7 +7,7 @@ const FallBack = () => {
   useEffect(() => {
     setTimeout(() => {
       setInitial(false);
-    }, 5000);
+    }, 4000);
   }, []);
 
   return (
