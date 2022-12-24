@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import Backdrop from '../../../utils/Modal/Backdrop/Backdrop';
-import ConfirmModal from '../../../utils/Modal/ConfirmModal/ConfirmModal';
+import ConfirmModal from '../../../utils/ConfirmModal/ConfirmModal';
+import Backdrop from '../../../utils/Backdrop/Backdrop';
 import './DropdownMenu.scss';
 
 const DropdownMenu = (props) => {

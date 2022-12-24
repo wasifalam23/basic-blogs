@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { commentActions } from '../../../../store/comment-slice.js';
-import ConfirmModal from '../../../../utils/Modal/ConfirmModal/ConfirmModal.js';
 
 import DropdownMenu from '../../DropdownMenu/DropdownMenu';
 import './CommentItem.scss';

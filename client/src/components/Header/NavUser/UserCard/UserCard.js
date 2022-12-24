@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { uiActions } from '../../../../store/ui-slice';
 
 import { Link } from 'react-router-dom';
-import ReactDOM from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUserEdit,
@@ -11,7 +10,7 @@ import {
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
-import Backdrop from '../../../../utils/Modal/Backdrop/Backdrop';
+import Backdrop from '../../../../utils/Backdrop/Backdrop';
 
 import './UserCard.scss';
 

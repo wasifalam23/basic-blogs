@@ -2,7 +2,7 @@ import React from 'react';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactDOM from 'react-dom';
-import Button from '../../../components/FormElements/Button/Button';
+import Button from '../../components/FormElements/Button/Button';
 import Backdrop from '../Backdrop/Backdrop';
 import './ConfirmModal.scss';
 

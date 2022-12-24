@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import MainNavigation from './MainNavigation/MainNavigation';
-import Backdrop from '../../utils/Modal/Backdrop/Backdrop';
+import Backdrop from '../../utils/Backdrop/Backdrop';
 import './Header.scss';
 import SideDrawer from './SideDrawer/SideDrawer';
 

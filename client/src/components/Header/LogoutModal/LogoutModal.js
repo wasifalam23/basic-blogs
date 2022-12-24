@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useHttp from '../../../hooks/http-hook';
 
-import ConfirmModal from '../../../utils/Modal/ConfirmModal/ConfirmModal';
+import ConfirmModal from '../../../utils/ConfirmModal/ConfirmModal';
 
 const LogoutModal = () => {
   const { sendRequest: logoutUser } = useHttp();
