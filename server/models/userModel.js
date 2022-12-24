@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: [true, 'Please tell us your first name'],
+    minLength: [3, 'First Name should atleast have 3 characters'],
     maxLength: [8, 'First Name should not exceed 8 characters'],
   },
 
@@ -14,6 +15,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: [true, 'Please tell us your last name'],
+    minLength: [3, 'Last Name should atleast have 3 characters'],
     maxLength: [8, 'Last Name should not exceed 8 characters'],
   },
 
@@ -48,6 +50,18 @@ const userSchema = new mongoose.Schema({
       message: 'Passwords are not the same',
     },
   },
+});
+
+userSchema.pre('save', function (next) {
+  this.firstName =
+    this.firstName.charAt(0).toUpperCase() +
+    this.firstName.slice(1).toLowerCase();
+
+  this.lastName =
+    this.lastName.charAt(0).toUpperCase() +
+    this.lastName.slice(1).toLowerCase();
+
+  next();
 });
 
 userSchema.pre('save', async function (next) {

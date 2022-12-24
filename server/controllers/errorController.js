@@ -11,7 +11,7 @@ const handleCastErorDB = (err) => {
 const handleDuplicateFieldsDB = (err) => {
   const value = Object.keys(err.keyValue).map((key) => key);
 
-  const message = `Duplicate field value: ${value}. Please use another value!`;
+  const message = `Please user another ${value}`;
   return new AppError(message, 400);
 };
 
@@ -60,14 +60,23 @@ module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
 
-  // if (req.file && req.file.filename) {
-  //   fs.unlink(
-  //     path.join(__dirname, `../images/contacts/${req.file.filename}`),
-  //     (err) => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
+  if (req.file && req.file.filename) {
+    if (req.file.filename.startsWith('blog')) {
+      fs.unlink(
+        path.join(__dirname, `../uploads/blogs/${req.file.filename}`),
+        (err) => {
+          console.log(err);
+        }
+      );
+    } else if (req.file.filename.startsWith('user')) {
+      fs.unlink(
+        path.join(__dirname, `../uploads/users/${req.file.filename}`),
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
+  }
 
   if (process.env.NODE_ENV === 'development') {
     sendErrorDev(err, res);
